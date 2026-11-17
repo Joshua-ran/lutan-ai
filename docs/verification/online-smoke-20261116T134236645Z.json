@@ -1,0 +1,13 @@
+{
+  "url": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+  "synthetic_scenarios": true,
+  "real_model_requested": true,
+  "started_at": "2026-11-16T13:42:36.645Z",
+  "status": "failed",
+  "gates": [],
+  "turns": [],
+  "checks": {},
+  "screenshot_paths": [],
+  "failure": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "completed_at": "2026-11-16T13:42:38.838Z"
+}

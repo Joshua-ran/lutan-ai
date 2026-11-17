@@ -1,0 +1,92 @@
+{
+  "kind": "gate_usability_real_browser",
+  "executed_at": "2026-11-16T11:48:21.550Z",
+  "synthetic_input": true,
+  "routes_mocked": false,
+  "browser": "Chrome via Playwright; Browser plugin not available",
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "unknown_gate_clear": true,
+      "draft_preserved": true,
+      "automatic_permission_selected": false,
+      "blocked_api_posts": 0,
+      "console_errors": [],
+      "normal_submission": {
+        "source": "agent",
+        "model": "deepseek-flash",
+        "model_calls": 1,
+        "api_http_status": 200,
+        "duration_ms": 1544,
+        "api_output": {
+          "observations": {
+            "visible": [],
+            "reported": [
+              "软饵试了半小时没口，实际覆盖的水层还不清楚。下一步先做什么？",
+              "用户自述：目标鳜鱼；水位未知；水流未知。"
+            ],
+            "unknown": [
+              "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+              "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+              "天气数据不等于现场水位或鱼口预测。",
+              "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。"
+            ]
+          },
+          "action": "保持当前拟饵，确认下沉和回收路径，记录实际覆盖的水层，暂不同时更换拟饵与位置。",
+          "action_kind": "confirm_observation",
+          "reason": "实际搜索水层未知，不能区分覆盖不足与其他原因，也不能断言鱼在底层。",
+          "check": "记录能够确认的搜索水层，无法判断时继续标为未知；无口不能证明某个水层无效或没有鱼。",
+          "follow_up_question": "当前拟饵实际覆盖了哪个水层？",
+          "session_id": "c424d2e5-7404-41ea-9724-0010f3d1601b",
+          "turn_id": "743a1e6d-7730-4be8-89fb-9929e2646af6",
+          "created_at": "2026-11-16T11:48:24.122Z",
+          "answer_source": "agent",
+          "model_name": "deepseek-flash",
+          "provider": "deepseek",
+          "model_calls": 1,
+          "duration_ms": 1432,
+          "tool_events": [],
+          "warnings": [
+            "合法性来自用户自述，系统未独立核验适用公告。"
+          ],
+          "reported_actions": [],
+          "context": {
+            "water": "河流 / 支流",
+            "fish": "鳜鱼",
+            "alias": "",
+            "waterlevel": "未知",
+            "rain": "未知",
+            "legality": "用户已核实允许",
+            "structure": "不清楚",
+            "duration": "20–40 分钟",
+            "lures": [
+              "软饵"
+            ],
+            "layers": "不清楚",
+            "adjust": "不清楚",
+            "signal": "不清楚",
+            "flow": "未知",
+            "clarity": "未知",
+            "observed": "不清楚"
+          },
+          "agent_version": "lutan-agent-1.2.0"
+        }
+      },
+      "reload_preserves_permission_and_result": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "unknown_gate_clear": true,
+      "draft_preserved": true,
+      "automatic_permission_selected": false,
+      "blocked_api_posts": 0,
+      "console_errors": []
+    }
+  ]
+}

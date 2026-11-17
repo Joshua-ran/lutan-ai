@@ -1,0 +1,950 @@
+{
+  "status": "passed",
+  "executed_at": "2026-11-16T15:44:15.651Z",
+  "ui": "http://127.0.0.1:5173",
+  "api": "http://127.0.0.1:5173",
+  "synthetic_scenarios": true,
+  "real_model_requests": true,
+  "photo_source": {
+    "url": "https://commons.wikimedia.org/wiki/File:River_shoreline_with_gray_rocks_close_up_photo.jpg",
+    "author": "U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "note": "公开授权示例，非南充现场"
+  },
+  "vision": {
+    "status": "passed",
+    "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+    "roundtrip_ms": 2731,
+    "input": {
+      "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+      "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+      "image": "[omitted: actual image was sent; source is documented]",
+      "context": {
+        "water": "河流 / 支流",
+        "fish": "鳜鱼",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "不清楚",
+        "duration": "不清楚",
+        "lures": [
+          "软饵"
+        ],
+        "layers": "主要一个水层",
+        "adjust": "不清楚",
+        "signal": "不清楚",
+        "flow": "未知",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "session_snapshot": {
+        "messages": [],
+        "actions": [],
+        "observations": {
+          "visible": [],
+          "reported": [],
+          "unknown": []
+        },
+        "city": ""
+      }
+    },
+    "output": {
+      "observations": {
+        "visible": [
+          "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+          "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+          "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+          "远景可见低矮山脊和较多云层。"
+        ],
+        "reported": [
+          "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+          "用户自述：目标鳜鱼；水位未知；水流未知。"
+        ],
+        "unknown": [
+          "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+          "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+          "天气数据不等于现场水位或鱼口预测。",
+          "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。"
+        ]
+      },
+      "action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+      "action_kind": "change_layer",
+      "reason": "照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+      "check": "记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+      "follow_up_question": null,
+      "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+      "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+      "created_at": "2026-11-16T15:44:21.059Z",
+      "answer_source": "agent",
+      "model_name": "deepseek-flash",
+      "provider": "deepseek",
+      "model_calls": 1,
+      "duration_ms": 2411,
+      "tool_events": [],
+      "warnings": [
+        "合法性来自用户自述，系统未独立核验适用公告。"
+      ],
+      "reported_actions": [],
+      "context": {
+        "water": "河流 / 支流",
+        "fish": "鳜鱼",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "乱石 / 深浅交界",
+        "duration": "20–40 分钟",
+        "lures": [
+          "软饵"
+        ],
+        "layers": "主要一个水层",
+        "adjust": "不清楚",
+        "signal": "无口",
+        "flow": "未知",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "agent_version": "lutan-agent-1.2.0"
+    },
+    "screenshot": "docs/assets/agent-showcase-vision.png",
+    "api_http_status": 200
+  },
+  "weather": {
+    "status": "passed",
+    "message": "请查询四川南充当前真实天气，告诉我温度、降水、风速和数据时间，不要据天气预测鱼口。",
+    "roundtrip_ms": 6035,
+    "input": {
+      "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+      "message": "请查询四川南充当前真实天气，告诉我温度、降水、风速和数据时间，不要据天气预测鱼口。",
+      "context": {
+        "water": "河流 / 支流",
+        "fish": "鳜鱼",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "乱石 / 深浅交界",
+        "duration": "20–40 分钟",
+        "lures": [
+          "软饵"
+        ],
+        "layers": "主要一个水层",
+        "adjust": "不清楚",
+        "signal": "跟饵",
+        "flow": "未知",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "session_snapshot": {
+        "messages": [
+          {
+            "id": "b0261313-5e04-4697-a462-f1297a3a9bbd",
+            "role": "user",
+            "text": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+            "created_at": "2026-11-16T15:44:18.554Z",
+            "had_image": true
+          },
+          {
+            "id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+            "role": "assistant",
+            "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。\n依据：照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。\n观察：记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+            "created_at": "2026-11-16T15:44:21.059Z",
+            "had_image": false
+          },
+          {
+            "id": "f56371d1-1ce7-440d-a613-64ed56f9b0ae",
+            "role": "user",
+            "text": "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+            "created_at": "2026-11-16T15:44:21.507Z",
+            "had_image": false
+          },
+          {
+            "id": "bdcc380c-c8c1-4576-af45-694184828863",
+            "role": "assistant",
+            "text": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。\n依据：照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。本次会话已经记录该方向没有改善，规则回退因此选择另一个尚未失败的单变量方向。\n观察：只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+            "created_at": "2026-11-16T15:44:24.087Z",
+            "had_image": false
+          },
+          {
+            "id": "e36306a6-905d-4342-a0a3-9b498a0c2147",
+            "role": "user",
+            "text": "我换了位置，发现鱼有跟饵但不咬。",
+            "created_at": "2026-11-16T15:44:24.427Z",
+            "had_image": false
+          },
+          {
+            "id": "23529b49-4449-417a-91e0-e0d67cbe9ecb",
+            "role": "assistant",
+            "text": "保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。\n依据：照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。\n观察：记录这次节奏比较前后的跟饵或攻击反馈；没有变化也如实记录，不据此确认鱼种或保证鱼口。",
+            "created_at": "2026-11-16T15:44:26.122Z",
+            "had_image": false
+          }
+        ],
+        "actions": [
+          {
+            "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+            "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+            "kind": "change_layer",
+            "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+            "created_at": "2026-11-16T15:44:21.059Z",
+            "applied_at": null,
+            "feedback": "没有改善",
+            "feedback_at": "2026-11-16T15:44:21.512Z",
+            "source": "agent"
+          },
+          {
+            "id": "ab671e5f-0da4-4a1e-8440-5eeb4325a40b",
+            "turn_id": "bdcc380c-c8c1-4576-af45-694184828863",
+            "kind": "check_rig",
+            "text": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。",
+            "created_at": "2026-11-16T15:44:24.087Z",
+            "applied_at": null,
+            "feedback": "暂未尝试",
+            "feedback_at": null,
+            "source": "agent"
+          },
+          {
+            "id": "fa349a24-0b4d-4c1f-b95b-eda75f4c249e",
+            "turn_id": "user-reported",
+            "kind": "change_position",
+            "text": "我换了位置，发现鱼有跟饵但不咬。",
+            "created_at": "2026-11-16T15:44:24.430Z",
+            "applied_at": null,
+            "feedback": "已尝试",
+            "feedback_at": "2026-11-16T15:44:24.430Z",
+            "source": "user_reported"
+          },
+          {
+            "id": "1dae5597-a45c-42a5-9fc0-67dc6c951954",
+            "turn_id": "23529b49-4449-417a-91e0-e0d67cbe9ecb",
+            "kind": "retrieve_rhythm",
+            "text": "保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。",
+            "created_at": "2026-11-16T15:44:26.122Z",
+            "applied_at": null,
+            "feedback": "暂未尝试",
+            "feedback_at": null,
+            "source": "agent"
+          }
+        ],
+        "observations": {
+          "visible": [
+            "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+            "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+            "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+            "远景可见低矮山脊和较多云层。"
+          ],
+          "reported": [
+            "我换了位置，发现鱼有跟饵但不咬。",
+            "用户自述：目标鳜鱼；水位未知；水流未知。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "city": "四川南充"
+      }
+    },
+    "output": {
+      "observations": {
+        "visible": [
+          "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+          "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+          "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+          "远景可见低矮山脊和较多云层。"
+        ],
+        "reported": [
+          "请查询四川南充当前真实天气，告诉我温度、降水、风速和数据时间，不要据天气预测鱼口。",
+          "用户自述：目标鳜鱼；水位未知；水流未知。"
+        ],
+        "unknown": [
+          "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+          "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+          "天气数据不等于现场水位或鱼口预测。"
+        ]
+      },
+      "action": "保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。",
+      "action_kind": "retrieve_rhythm",
+      "reason": "照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。",
+      "check": "记录这次节奏比较前后的跟饵或攻击反馈；没有变化也如实记录，不据此确认鱼种或保证鱼口。",
+      "follow_up_question": null,
+      "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+      "turn_id": "882c4c2a-fc36-4d87-9ff9-5ed070c17255",
+      "created_at": "2026-11-16T15:44:32.733Z",
+      "answer_source": "agent",
+      "model_name": "deepseek-flash",
+      "provider": "deepseek",
+      "model_calls": 2,
+      "duration_ms": 5952,
+      "tool_events": [
+        {
+          "id": "e7ad90a3-9846-416c-9231-054a94605d3b",
+          "name": "get_weather",
+          "status": "ok",
+          "started_at": "2026-11-16T15:44:27.656Z",
+          "duration_ms": 2928,
+          "summary": "已查询 南充 的城市天气",
+          "result": {
+            "status": "ok",
+            "city": "南充",
+            "region": "四川 / 中国",
+            "requested_city": "南充",
+            "location_resolution": "按用户提供的城市及地区筛选",
+            "temperature_c": 11.8,
+            "precipitation_mm": 0,
+            "wind_kmh": 13.8,
+            "units": {
+              "temperature": "°C",
+              "precipitation": "mm",
+              "wind": "km/h"
+            },
+            "precipitation_interval_seconds": 900,
+            "weather_code": 3,
+            "data_time": "2026-11-16T23:30",
+            "timezone": "Asia/Shanghai",
+            "retrieved_at": "2026-11-16T15:44:30.583Z",
+            "source": "Open-Meteo Weather Forecast / GeoNames",
+            "source_url": "https://open-meteo.com/en/docs",
+            "geocoding_source_url": "https://open-meteo.com/en/docs/geocoding-api",
+            "license": "CC BY 4.0",
+            "limitations": "天气为城市附近网格模型数据，不是钓点实测、水温、小河道水位或鱼口预测。",
+            "cached": false
+          }
+        }
+      ],
+      "warnings": [
+        "合法性来自用户自述，系统未独立核验适用公告。"
+      ],
+      "reported_actions": [
+        {
+          "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+          "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+          "kind": "change_layer",
+          "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+          "created_at": "2026-11-16T15:44:21.059Z",
+          "applied_at": null,
+          "feedback": "没有改善",
+          "feedback_at": "2026-11-16T15:44:21.512Z",
+          "source": "agent"
+        },
+        {
+          "id": "ab671e5f-0da4-4a1e-8440-5eeb4325a40b",
+          "turn_id": "bdcc380c-c8c1-4576-af45-694184828863",
+          "kind": "check_rig",
+          "text": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。",
+          "created_at": "2026-11-16T15:44:24.087Z",
+          "applied_at": null,
+          "feedback": "暂未尝试",
+          "feedback_at": null,
+          "source": "agent"
+        },
+        {
+          "id": "fa349a24-0b4d-4c1f-b95b-eda75f4c249e",
+          "turn_id": "user-reported",
+          "kind": "change_position",
+          "text": "我换了位置，发现鱼有跟饵但不咬。",
+          "created_at": "2026-11-16T15:44:24.430Z",
+          "applied_at": null,
+          "feedback": "已尝试",
+          "feedback_at": "2026-11-16T15:44:24.430Z",
+          "source": "user_reported"
+        },
+        {
+          "id": "1dae5597-a45c-42a5-9fc0-67dc6c951954",
+          "turn_id": "23529b49-4449-417a-91e0-e0d67cbe9ecb",
+          "kind": "retrieve_rhythm",
+          "text": "保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。",
+          "created_at": "2026-11-16T15:44:26.122Z",
+          "applied_at": null,
+          "feedback": "暂未尝试",
+          "feedback_at": null,
+          "source": "agent"
+        }
+      ],
+      "context": {
+        "water": "河流 / 支流",
+        "fish": "鳜鱼",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "乱石 / 深浅交界",
+        "duration": "20–40 分钟",
+        "lures": [
+          "软饵"
+        ],
+        "layers": "主要一个水层",
+        "adjust": "不清楚",
+        "signal": "跟饵",
+        "flow": "未知",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "agent_version": "lutan-agent-1.2.0"
+    },
+    "screenshot": "docs/assets/agent-showcase-weather.png",
+    "result": {
+      "status": "ok",
+      "city": "南充",
+      "region": "四川 / 中国",
+      "requested_city": "南充",
+      "location_resolution": "按用户提供的城市及地区筛选",
+      "temperature_c": 11.8,
+      "precipitation_mm": 0,
+      "wind_kmh": 13.8,
+      "units": {
+        "temperature": "°C",
+        "precipitation": "mm",
+        "wind": "km/h"
+      },
+      "precipitation_interval_seconds": 900,
+      "weather_code": 3,
+      "data_time": "2026-11-16T23:30",
+      "timezone": "Asia/Shanghai",
+      "retrieved_at": "2026-11-16T15:44:30.583Z",
+      "source": "Open-Meteo Weather Forecast / GeoNames",
+      "source_url": "https://open-meteo.com/en/docs",
+      "geocoding_source_url": "https://open-meteo.com/en/docs/geocoding-api",
+      "license": "CC BY 4.0",
+      "limitations": "天气为城市附近网格模型数据，不是钓点实测、水温、小河道水位或鱼口预测。",
+      "cached": false
+    },
+    "tool_event": {
+      "id": "e7ad90a3-9846-416c-9231-054a94605d3b",
+      "name": "get_weather",
+      "status": "ok",
+      "started_at": "2026-11-16T15:44:27.656Z",
+      "duration_ms": 2928,
+      "summary": "已查询 南充 的城市天气",
+      "result": {
+        "status": "ok",
+        "city": "南充",
+        "region": "四川 / 中国",
+        "requested_city": "南充",
+        "location_resolution": "按用户提供的城市及地区筛选",
+        "temperature_c": 11.8,
+        "precipitation_mm": 0,
+        "wind_kmh": 13.8,
+        "units": {
+          "temperature": "°C",
+          "precipitation": "mm",
+          "wind": "km/h"
+        },
+        "precipitation_interval_seconds": 900,
+        "weather_code": 3,
+        "data_time": "2026-11-16T23:30",
+        "timezone": "Asia/Shanghai",
+        "retrieved_at": "2026-11-16T15:44:30.583Z",
+        "source": "Open-Meteo Weather Forecast / GeoNames",
+        "source_url": "https://open-meteo.com/en/docs",
+        "geocoding_source_url": "https://open-meteo.com/en/docs/geocoding-api",
+        "license": "CC BY 4.0",
+        "limitations": "天气为城市附近网格模型数据，不是钓点实测、水温、小河道水位或鱼口预测。",
+        "cached": false
+      }
+    },
+    "api_http_status": 200
+  },
+  "turns": [
+    {
+      "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+      "status": 200,
+      "roundtrip_ms": 2731,
+      "input": {
+        "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+        "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+        "image": "[omitted: actual image was sent; source is documented]",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [],
+          "actions": [],
+          "observations": {
+            "visible": [],
+            "reported": [],
+            "unknown": []
+          },
+          "city": ""
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [
+            "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+            "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+            "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+            "远景可见低矮山脊和较多云层。"
+          ],
+          "reported": [
+            "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+            "用户自述：目标鳜鱼；水位未知；水流未知。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。",
+            "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。"
+          ]
+        },
+        "action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+        "action_kind": "change_layer",
+        "reason": "照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+        "check": "记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+        "follow_up_question": null,
+        "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+        "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+        "created_at": "2026-11-16T15:44:21.059Z",
+        "answer_source": "agent",
+        "model_name": "deepseek-flash",
+        "provider": "deepseek",
+        "model_calls": 1,
+        "duration_ms": 2411,
+        "tool_events": [],
+        "warnings": [
+          "合法性来自用户自述，系统未独立核验适用公告。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "screenshot": "docs/assets/agent-showcase-turn1.png"
+    },
+    {
+      "message": "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+      "status": 200,
+      "roundtrip_ms": 2637,
+      "input": {
+        "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+        "message": "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [
+            {
+              "id": "b0261313-5e04-4697-a462-f1297a3a9bbd",
+              "role": "user",
+              "text": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+              "created_at": "2026-11-16T15:44:18.554Z",
+              "had_image": true
+            },
+            {
+              "id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+              "role": "assistant",
+              "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。\n依据：照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。\n观察：记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+              "created_at": "2026-11-16T15:44:21.059Z",
+              "had_image": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+              "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+              "kind": "change_layer",
+              "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+              "created_at": "2026-11-16T15:44:21.059Z",
+              "applied_at": null,
+              "feedback": "暂未尝试",
+              "feedback_at": null,
+              "source": "agent"
+            }
+          ],
+          "observations": {
+            "visible": [
+              "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+              "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+              "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+              "远景可见低矮山脊和较多云层。"
+            ],
+            "reported": [
+              "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+              "用户自述：目标鳜鱼；水位未知；水流未知。"
+            ],
+            "unknown": [
+              "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+              "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+              "天气数据不等于现场水位或鱼口预测。",
+              "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。"
+            ]
+          },
+          "city": ""
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [
+            "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+            "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+            "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+            "远景可见低矮山脊和较多云层。"
+          ],
+          "reported": [
+            "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+            "用户自述：目标鳜鱼；水位未知；水流未知。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。",
+        "action_kind": "check_rig",
+        "reason": "照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。本次会话已经记录该方向没有改善，规则回退因此选择另一个尚未失败的单变量方向。",
+        "check": "只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+        "follow_up_question": null,
+        "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+        "turn_id": "bdcc380c-c8c1-4576-af45-694184828863",
+        "created_at": "2026-11-16T15:44:24.087Z",
+        "answer_source": "agent",
+        "model_name": "deepseek-flash",
+        "provider": "deepseek",
+        "model_calls": 2,
+        "duration_ms": 2576,
+        "tool_events": [
+          {
+            "id": "9b5a4056-e879-42f1-9a00-386fd118fb0a",
+            "name": "get_session_history",
+            "status": "ok",
+            "started_at": "2026-11-16T15:44:22.360Z",
+            "duration_ms": 0,
+            "summary": "已读取本次会话 1 条动作记录",
+            "result": {
+              "status": "ok",
+              "source": "client_session_snapshot_user_reported",
+              "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+              "actions": [
+                {
+                  "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+                  "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+                  "kind": "change_layer",
+                  "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+                  "created_at": "2026-11-16T15:44:21.059Z",
+                  "applied_at": null,
+                  "feedback": "没有改善",
+                  "feedback_at": "2026-11-16T15:44:21.512Z",
+                  "source": "agent"
+                }
+              ],
+              "attempted_count": 1,
+              "failed_action_kinds": [
+                "change_layer"
+              ],
+              "notice": "来自前端明确传入的本次会话快照，不是服务端读取 localStorage，也不是独立核验的渔获记录。"
+            }
+          }
+        ],
+        "warnings": [
+          "合法性来自用户自述，系统未独立核验适用公告。"
+        ],
+        "reported_actions": [
+          {
+            "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+            "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+            "kind": "change_layer",
+            "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+            "created_at": "2026-11-16T15:44:21.059Z",
+            "applied_at": null,
+            "feedback": "没有改善",
+            "feedback_at": "2026-11-16T15:44:21.512Z",
+            "source": "agent"
+          }
+        ],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "screenshot": "docs/assets/agent-showcase-turn2.png"
+    },
+    {
+      "message": "我换了位置，发现鱼有跟饵但不咬。",
+      "status": 200,
+      "roundtrip_ms": 2145,
+      "input": {
+        "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+        "message": "我换了位置，发现鱼有跟饵但不咬。",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [
+            {
+              "id": "b0261313-5e04-4697-a462-f1297a3a9bbd",
+              "role": "user",
+              "text": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+              "created_at": "2026-11-16T15:44:18.554Z",
+              "had_image": true
+            },
+            {
+              "id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+              "role": "assistant",
+              "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。\n依据：照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。\n观察：记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+              "created_at": "2026-11-16T15:44:21.059Z",
+              "had_image": false
+            },
+            {
+              "id": "f56371d1-1ce7-440d-a613-64ed56f9b0ae",
+              "role": "user",
+              "text": "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+              "created_at": "2026-11-16T15:44:21.507Z",
+              "had_image": false
+            },
+            {
+              "id": "bdcc380c-c8c1-4576-af45-694184828863",
+              "role": "assistant",
+              "text": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。\n依据：照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。本次会话已经记录该方向没有改善，规则回退因此选择另一个尚未失败的单变量方向。\n观察：只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+              "created_at": "2026-11-16T15:44:24.087Z",
+              "had_image": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+              "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+              "kind": "change_layer",
+              "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+              "created_at": "2026-11-16T15:44:21.059Z",
+              "applied_at": null,
+              "feedback": "没有改善",
+              "feedback_at": "2026-11-16T15:44:21.512Z",
+              "source": "agent"
+            },
+            {
+              "id": "ab671e5f-0da4-4a1e-8440-5eeb4325a40b",
+              "turn_id": "bdcc380c-c8c1-4576-af45-694184828863",
+              "kind": "check_rig",
+              "text": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。",
+              "created_at": "2026-11-16T15:44:24.087Z",
+              "applied_at": null,
+              "feedback": "暂未尝试",
+              "feedback_at": null,
+              "source": "agent"
+            }
+          ],
+          "observations": {
+            "visible": [
+              "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+              "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+              "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+              "远景可见低矮山脊和较多云层。"
+            ],
+            "reported": [
+              "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+              "用户自述：目标鳜鱼；水位未知；水流未知。"
+            ],
+            "unknown": [
+              "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+              "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+              "天气数据不等于现场水位或鱼口预测。"
+            ]
+          },
+          "city": ""
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [
+            "前景是大片圆润的砾石和卵石滩，石块较为密集。",
+            "水面开阔，表面有细碎波纹和反光，水色偏深蓝。",
+            "对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。",
+            "远景可见低矮山脊和较多云层。"
+          ],
+          "reported": [
+            "我换了位置，发现鱼有跟饵但不咬。",
+            "用户自述：目标鳜鱼；水位未知；水流未知。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。",
+        "action_kind": "retrieve_rhythm",
+        "reason": "照片观察（模型识别，待核实）：前景是大片圆润的砾石和卵石滩，石块较为密集；水面开阔，表面有细碎波纹和反光，水色偏深蓝。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。",
+        "check": "记录这次节奏比较前后的跟饵或攻击反馈；没有变化也如实记录，不据此确认鱼种或保证鱼口。",
+        "follow_up_question": null,
+        "session_id": "075ab727-68f6-4171-82e3-81479b69bd78",
+        "turn_id": "23529b49-4449-417a-91e0-e0d67cbe9ecb",
+        "created_at": "2026-11-16T15:44:26.122Z",
+        "answer_source": "agent",
+        "model_name": "deepseek-flash",
+        "provider": "deepseek",
+        "model_calls": 1,
+        "duration_ms": 1692,
+        "tool_events": [],
+        "warnings": [
+          "合法性来自用户自述，系统未独立核验适用公告。"
+        ],
+        "reported_actions": [
+          {
+            "id": "c63ddc76-46f5-4b03-97ec-11407d60f4f1",
+            "turn_id": "49e8feb9-4a49-4501-9198-b42cabffa25d",
+            "kind": "change_layer",
+            "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+            "created_at": "2026-11-16T15:44:21.059Z",
+            "applied_at": null,
+            "feedback": "没有改善",
+            "feedback_at": "2026-11-16T15:44:21.512Z",
+            "source": "agent"
+          },
+          {
+            "id": "ab671e5f-0da4-4a1e-8440-5eeb4325a40b",
+            "turn_id": "bdcc380c-c8c1-4576-af45-694184828863",
+            "kind": "check_rig",
+            "text": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。",
+            "created_at": "2026-11-16T15:44:24.087Z",
+            "applied_at": null,
+            "feedback": "暂未尝试",
+            "feedback_at": null,
+            "source": "agent"
+          },
+          {
+            "id": "fa349a24-0b4d-4c1f-b95b-eda75f4c249e",
+            "turn_id": "user-reported",
+            "kind": "change_position",
+            "text": "我换了位置，发现鱼有跟饵但不咬。",
+            "created_at": "2026-11-16T15:44:24.430Z",
+            "applied_at": null,
+            "feedback": "已尝试",
+            "feedback_at": "2026-11-16T15:44:24.430Z",
+            "source": "user_reported"
+          }
+        ],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "跟饵",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "screenshot": "docs/assets/agent-showcase-turn3.png"
+    }
+  ],
+  "checks": {
+    "real_image": true,
+    "real_weather_tool": true,
+    "real_session_history_tool": true,
+    "three_turn_decision": true,
+    "reload": true,
+    "mobile_no_overflow": true,
+    "page_errors": []
+  },
+  "completed_at": "2026-11-16T15:44:33.502Z",
+  "preconditions": {
+    "legality": "合成演示假设用户已核验允许；实际使用必须真实核验",
+    "layers": "在界面提前由用户自述选择主要一个水层，非照片推断",
+    "photo": "公开授权示例，非南充或本次用户现场",
+    "transport": "真实本机React界面及Express API，无请求模拟，Node使用现有环境代理"
+  },
+  "public_verification": {
+    "url": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+    "vision": "真实图片已返回模型观察",
+    "session_history": "实际执行 get_session_history",
+    "response_boundary": "部分模型回复未通过校验，按既有机制返回规则建议",
+    "weather": "Open-Meteo 返回 HTTP 429，本轮云端天气未成功",
+    "record": "agent-showcase-public.json",
+    "weather_record": "agent-showcase-public-weather.json"
+  },
+  "delivery_note": "本页截图来自本机真实接口联调；公网已验证图片输入和会话工具。公网部分模型回复会回退规则，天气服务本轮返回 HTTP 429；完整天气演示请在已启用现有代理的本机环境复现。未伪造或填补云端天气结果。"
+}

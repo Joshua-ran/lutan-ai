@@ -1,0 +1,131 @@
+{
+  "kind": "reviewed_real_deepseek_check_index",
+  "reviewer": "Codex",
+  "reviewed_at": "2026-11-16T11:54:12.662Z",
+  "review_scope": "source, rule contract, single action, unknown boundaries; not expert fishing judgement",
+  "accepted_run": "run-20261116T114932739Z.json",
+  "accepted_run_sha256": "b572f95ef0d79a9e28ab422e43531e6f3526617ac2014efbab04a3ca01e13262",
+  "provider_origin": "https://api.deepseek.com",
+  "provider_model": "deepseek-flash",
+  "summary": {
+    "synthetic_cases": 5,
+    "surfaces": 2,
+    "technical_checks": 10,
+    "passed": 10,
+    "provider_http_calls_in_accepted_run": 6,
+    "total_calls_including_probes_quality_failures_and_browser": 25,
+    "current_fix_provider_calls": 8
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "D03",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 1726
+    },
+    {
+      "case_id": "D03",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 846
+    },
+    {
+      "case_id": "D04",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 1792
+    },
+    {
+      "case_id": "D04",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 536
+    },
+    {
+      "case_id": "D06",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 1281
+    },
+    {
+      "case_id": "D06",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 650
+    },
+    {
+      "case_id": "D01",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 4
+    },
+    {
+      "case_id": "D01",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 3
+    },
+    {
+      "case_id": "P05",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 4
+    },
+    {
+      "case_id": "P05",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 6
+    }
+  ],
+  "excluded_from_final_quality_acceptance": [
+    {
+      "file": "run-20261116T111228846Z.json",
+      "reason": "D03 free generation added unsupported fish psychology and extra next steps"
+    },
+    {
+      "file": "run-20261116T111245518Z.json",
+      "reason": "Three Agent outputs passed transport/schema but failed single-action/factual review; retained as regression evidence"
+    },
+    {
+      "file": "browser-initial-setup.json",
+      "reason": "Browser seeding after app mount caused context/message target mismatch; corrected test setup and reran"
+    }
+  ],
+  "browser_record": "browser-real-api.json",
+  "limitations": {
+    "synthetic_input": true,
+    "rule_candidate_selection_for_three_branches": true,
+    "real_photo_validation": false,
+    "live_weather_validation": false,
+    "field_effects_or_users": false,
+    "rule_candidate_selection_for_five_branches": true
+  },
+  "previous_review": "acceptance-initial.json",
+  "current_usability_report": "docs/USABILITY_FIX.md",
+  "current_usability_browser_record": "docs/verification/gate-usability-browser.json",
+  "current_fix_excluded_record": {
+    "file": "docs/verification/gate-usability-browser-first.json",
+    "reason": "Transport succeeded but free missing-layer advice overclaimed that a layer was invalid; protected contract added and rerun"
+  }
+}

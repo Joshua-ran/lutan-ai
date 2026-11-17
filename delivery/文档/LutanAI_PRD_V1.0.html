@@ -1,0 +1,312 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI｜产品需求文档（PRD）V1.0 · 路探 AI</title><link rel="stylesheet" href="../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../LutanAI_PRD_V1.0.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：LutanAI_PRD_V1.0.md</p><h1 id="路探-ai-产品需求文档-prd-v1-0">路探 AI｜产品需求文档（PRD）V1.0</h1>
+<p><strong>版本</strong>：V1.0（方案与可交互原型阶段）<br><strong>日期</strong>：2026-11-16<br><strong>项目属性</strong>：个人 AI 产品经理作品集 / 消费者工具产品 / 尚未正式上线<br><strong>目标用户</strong>：四川南充及周边自然河流、支流、湖库的淡水路亚玩家；首批目标鱼为翘嘴、鳜鱼和淡水鲈鱼（具体鲈鱼物种需进一步核实）。</p>
+<blockquote>
+<p>事实边界：本文中的“用户需求”是尚待外部验证的假设。依据包括项目发起人的一手自述（U001）与先前整理的 13 条公开论坛/游记案例（二手定性研究），<strong>不是</strong>已访谈 13 位用户，更不是实际运营数据。交互原型没有连接 AI、实时水文、鱼群或合法性判断服务。</p>
+</blockquote>
+<h2 id="1-项目概览">1. 项目概览</h2>
+<h3 id="1-1-背景">1.1 背景</h3>
+<p>路亚野钓的实际决策至少包括：出发前选择水域和目标鱼；现场选择标点与搜索方式；鱼口不佳后决定换饵、换水层、换位或结束作钓。用户很难确定“水域曾有目标鱼”“当前标点能遇到鱼”“鱼现在愿不愿意攻击拟饵”三件事之间的差异。小支流水文数据又存在监测与公开获取的不确定性。</p>
+<h3 id="1-2-核心-jtbd-待验证">1.2 核心 JTBD（待验证）</h3>
+<ul>
+<li><strong>出钓前</strong>：当我准备去不熟悉的河流/水库时，希望知道目标鱼有没有可追溯的历史出现证据、天气与水况已知什么、未知什么，以便做合理准备而不是依赖不透明的鱼情分数。</li>
+<li><strong>作钓中</strong>：当我在结构区连续没口、换过拟饵和位置仍拿不准时，希望得到一条按当前情况排序的可验证动作，并知道推荐的依据。</li>
+<li><strong>出钓后</strong>：当我已尝试调整时，希望能轻松标记“有改善/无改善/未尝试”，下次不必从头回忆。</li>
+</ul>
+<h3 id="1-3-产品定位">1.3 产品定位</h3>
+<p><strong>路探 AI：淡水路亚的出钓前参考与作钓中诊断助手。</strong> 不是实时鱼群定位器，不保证中鱼，不预测“百分之几有鱼”，不代替安全/禁钓信息的官方核查。</p>
+<h3 id="1-4-成功标准-目标值-不是结果">1.4 成功标准（目标值，不是结果）</h3>
+<ol>
+<li>一次“现场没口诊断”的核心输入可以在 <strong>60 秒内</strong>完成（初版可用性设计目标，以真实测试计时）。</li>
+<li>每次输出<strong>一个优先动作</strong>、说明依据和未知点，避免同时推荐五六个变量。</li>
+<li>在“没有鱼种记录/水位数据/合法性数据”情况下不编造相应事实；高风险状态先给安全提醒。</li>
+<li>反馈至少可区分“有改善、无改善、未尝试、不适用”，并支持删除本地记录。</li>
+</ol>
+<h2 id="2-需求依据与可靠性分级">2. 需求依据与可靠性分级</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>我们真正知道什么</th>
+<th>不能推导什么</th>
+<th>追踪</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>U001 项目发起人自述</td>
+<td>南充周边支流河道；目标鳜鱼/翘嘴/鲈鱼；软饵和铁板；选桥墩、乱石、回水湾等结构；水位稳定时个人体验较好；没口会换饵/手法/水层/位置</td>
+<td>不能推广为南充所有钓友的普遍规律，更不能证明水位变化导致鱼口差</td>
+<td>《用户访谈与 MVP 定义 V0.1》</td>
+</tr>
+<tr>
+<td>C01 / R01 / R05 / R07</td>
+<td>一些用户难区分触底与鱼口，或不知道换饵/换位/手法的顺序</td>
+<td>不能证明哪种操作普遍最有效</td>
+<td>《公开钓友案例库 V0.1》</td>
+</tr>
+<tr>
+<td>C03 / R02 / R03 / R09</td>
+<td>有人记录过水位、雨后浑浊、不同深度作钓表现的变化，部分经验相互冲突</td>
+<td>不能证明通用的涨退水与鱼口因果关系</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>C02 / R08</td>
+<td>“看到鱼但没口”、个人长期记录等场景存在公开讨论</td>
+<td>不能证明某条具体南充支流现在有鱼</td>
+<td>同上</td>
+</tr>
+</tbody></table>
+<p><strong>证据类型的产品约定</strong>：</p>
+<ul>
+<li>A：有时间、粗粒度地点与来源可核验的调查/渔获“出现”记录；仅支撑历史出现。</li>
+<li>B：用户提交但尚未核实的线索；明确标记“待核实”。</li>
+<li>C：水域特征适宜性推断；不是物种出现证据。</li>
+<li>D：无有效记录；显示“数据不足 / 无法判断”，<strong>不可显示“没有目标鱼”</strong>。</li>
+</ul>
+<p>目前 V1.0 原型默认为 D，不构造任何真实鱼种证据记录。</p>
+<h2 id="3-用户旅程与主流程">3. 用户旅程与主流程</h2>
+<pre><code class="language-text">出钓前                         到达水边                      收竿/复盘
+水域类型+目标鱼 ─────→ 作钓计划卡 ─────→ 无口/跟饵/有触碰 ──→ 一项调整建议 ──→ 反馈结果
+      │                 │                        │                │
+      └─ 查看证据状态       └─ 保留此前信息              └─ 可修改输入       └─ 本地留存/导出/删除
+</code></pre>
+<p>默认操作顺序：先选择水域类型与目标鱼 → 查看“已知/未知/建议核实”三分区 → 点击“开始作钓”复用上下文 → 选择结构、水位观察、已试拟饵/水层/鱼口 → 获取单项动作与证据说明 → 选择反馈。所有非确定信息允许“未知”。</p>
+<h2 id="4-功能需求与验收标准">4. 功能需求与验收标准</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>优先级</th>
+<th>模块与用户故事</th>
+<th>V1 验收标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F01</td>
+<td>P0</td>
+<td>创建出钓计划：选河流/支流/湖库、翘嘴/鳜鱼/鲈鱼，填写可选水域昵称</td>
+<td>可跳过昵称、不索取 GPS、跨步骤复用选择</td>
+</tr>
+<tr>
+<td>F02</td>
+<td>P0</td>
+<td>出钓前信息卡：明确鱼种证据缺口和水文数据缺口</td>
+<td>没有可核验资料显示“暂无法判断”，不展示虚构概率或水位</td>
+</tr>
+<tr>
+<td>F03</td>
+<td>P0</td>
+<td>现场诊断：结构、用户观察水位/水色/流速、拟饵、搜索水层、时长、鱼口类型、已换位等</td>
+<td>字段允许“不确定/未观察”；修改任一输入后可重新生成结果</td>
+</tr>
+<tr>
+<td>F04</td>
+<td>P0</td>
+<td>诊断结果：优先动作+简短解释+未知边界</td>
+<td>单次只强调一项变量；有明显水流急变/危险状态时安全优先</td>
+</tr>
+<tr>
+<td>F05</td>
+<td>P0</td>
+<td>结果反馈：有改善、无改善、未尝试、不适用</td>
+<td>可保存反馈和输入快照，能在原型里查看及删除</td>
+</tr>
+<tr>
+<td>F06</td>
+<td>P0</td>
+<td>数据隐私与合法性提示</td>
+<td>不采集精确钓点，未知合法性不视作允许垂钓；不诱导进入危险河道</td>
+</tr>
+<tr>
+<td>F07</td>
+<td>P1</td>
+<td>经过许可的天气 API 接入与记录来源/时间</td>
+<td>获取失败仍能运行诊断，显示“不可用”而非臆造</td>
+</tr>
+<tr>
+<td>F08</td>
+<td>P1</td>
+<td>有来源的鱼种历史出现记录</td>
+<td>含日期、粗粒度空间范围、来源、审核状态，默认不显示精确标点</td>
+</tr>
+<tr>
+<td>F09</td>
+<td>P1</td>
+<td>历史对比：同一用户多次出钓尝试的变化</td>
+<td>对比事实并标明样本不足，不输出因果性断言</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>暂缓</td>
+<td>全国实时鱼群预测、全国钓点共享/实时水位预报、装备电商</td>
+<td>不进入 MVP</td>
+</tr>
+</tbody></table>
+<h3 id="4-1-诊断优先级规则-原型规则-不是已验证的渔业知识">4.1 诊断优先级规则（原型规则，不是已验证的渔业知识）</h3>
+<ol>
+<li><strong>安全规则</strong>：用户报告明显急涨水/急流及危险情况 → 优先离开危险岸边、核对官方预警；不要继续给具体涉水操作建议。</li>
+<li><strong>有跟饵</strong>：先试调整同一拟饵的操作节奏并记录反应，而不是一次修改多个变量。</li>
+<li><strong>有触碰但未中鱼</strong>：先检查钩尖和拟饵运行状态，同时提醒“触碰不一定是鱼口”。</li>
+<li><strong>不知道实际搜索水层</strong>：先确认软饵/铁板实际下沉与搜索水层，暂不盲目更换多款饵。</li>
+<li><strong>多种因素均已尝试且长时间无反馈</strong>：考虑结束该标点搜索、选择其他合法安全的结构区域；不能断言此处无鱼。</li>
+<li><strong>还未换位</strong>：在安全且合法的前提下小范围比较不同结构/流态，其他变量尽量保持不变。</li>
+<li><strong>证据不足</strong>：询问最关键的缺失信息；仍无法确认则给保守建议与不确定性说明。</li>
+</ol>
+<p>不同鱼种可在后续版本引入经过审核的知识库，不把论坛轶事直接固化为生物学结论。</p>
+<h3 id="4-2-输出结构-拟用于将来的-ai-workflow">4.2 输出结构（拟用于将来的 AI Workflow）</h3>
+<pre><code class="language-json">{
+  &quot;observed_facts&quot;: [&quot;用户手动输入的事实&quot;],
+  &quot;evidence_status&quot;: &quot;verified | unverified | insufficient&quot;,
+  &quot;priority_action&quot;: &quot;一项可执行建议&quot;,
+  &quot;rationale&quot;: &quot;建议依据（明确不是实时鱼情事实）&quot;,
+  &quot;unknowns&quot;: [&quot;当前无法确认的内容&quot;],
+  &quot;safety_or_legality_notice&quot;: &quot;必要时给出&quot;,
+  &quot;follow_up_question&quot;: &quot;最多一个必要追问，也可以为 null&quot;
+}
+</code></pre>
+<h2 id="5-产品与数据架构-拟议-非已实现">5. 产品与数据架构（拟议，非已实现）</h2>
+<ul>
+<li><strong>用户前端</strong>：移动端优先 Web/H5，后续再评估微信小程序。</li>
+<li><strong>业务层</strong>：会话状态、字段校验、证据分级、策略优先级、安全检查与反馈存储。</li>
+<li><strong>AI 层</strong>：输入抽取（可先表单）、基于规则的决策路由、LLM 生成克制的解释、输出 JSON Schema 验证和兜底；不需要一开始就用多 Agent。</li>
+<li><strong>可选工具层</strong>：天气 API（有时间、来源与许可检查）、官方水文资料（有覆盖时再接入）、经审核的鱼种出现证据库；每个工具返回数据质量标记。</li>
+<li><strong>数据层</strong>：匿名或用户授权的出钓会话与反馈、来源索引、删除能力、用户私密位置默认禁止共享。</li>
+</ul>
+<p>重要区分：<strong>API 天气数据≠实际水温≠小河道水位≠鱼群分布</strong>。不得用这些变量相互替代。</p>
+<h2 id="6-核心对象与字段草案">6. 核心对象与字段草案</h2>
+<table>
+<thead>
+<tr>
+<th>实体</th>
+<th>关键字段</th>
+<th>隐私/质量原则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TripSession</td>
+<td>session_id、water_type、fish_target、optional_water_alias、created_at</td>
+<td>别名可选，不收集精确坐标</td>
+</tr>
+<tr>
+<td>Observation</td>
+<td>water_level_trend、flow_state、water_clarity、source=user_reported</td>
+<td>用户观察不标注成监测实测</td>
+</tr>
+<tr>
+<td>Attempt</td>
+<td>lures[]、layers[]、duration_bucket、structures[]、move_status、bite_signal</td>
+<td>允许未知，区分没中鱼与没鱼口</td>
+</tr>
+<tr>
+<td>Diagnosis</td>
+<td>rule_version、observed_facts[]、priority_action、rationale、unknowns[]、warnings[]</td>
+<td>可追溯输入与规则版本</td>
+</tr>
+<tr>
+<td>Outcome</td>
+<td>status、user_note、timestamp</td>
+<td>有改善/无改善/未尝试/不适用，不等于中鱼率</td>
+</tr>
+<tr>
+<td>SpeciesEvidence（P1）</td>
+<td>species、rough_area、observed_date、source_url、verification_state</td>
+<td>必须注明来源与审核状态</td>
+</tr>
+</tbody></table>
+<h2 id="7-用户体验与风险控制">7. 用户体验与风险控制</h2>
+<ul>
+<li>两个主入口始终可见：“出钓前”“正在作钓”；输入复用，不反复填写。</li>
+<li>手机端优先大按钮、一屏一组选择，诊断流程不超过 3 个主要步骤（设计目标）。</li>
+<li>信息按 <strong>用户观察 / 可核验外部资料 / 模型假设</strong> 分栏，不显示没有来源的精确概率。</li>
+<li>本地原型使用 localStorage（仅在浏览器允许时）保存非精准位置的演示记录；支持清空；正式上线前需单独设计隐私告知、删除、访问控制及数据保留周期。</li>
+<li>对南充真实水域的合法性和当地禁钓规定，应以适用日期的官方公告为准；本原型不做垂钓许可判断。</li>
+<li>可能存在野生动物资源保护、汛期危险等场景；触发安全风险时不推荐继续涉水。</li>
+</ul>
+<h2 id="8-评测与迭代">8. 评测与迭代</h2>
+<h3 id="8-1-离线测试集">8.1 离线测试集</h3>
+<p>配套《24 场景评测集》以 <strong>人工改写/合成样例</strong> 检查：无依据鱼种判断、伪造水情、违法/危险建议、重复建议、输出是否有单一行动、信息不全是否承认未知。测试样本不是 24 个真实用户，也没有真实中鱼结果。</p>
+<h3 id="8-2-人工评价量表">8.2 人工评价量表</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>如何判断</th>
+<th>是否一票否决</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>虚构事实</td>
+<td>将未知鱼种、水位、鱼口或法规说成确定事实</td>
+<td>是</td>
+</tr>
+<tr>
+<td>安全合法性</td>
+<td>在危险水情、禁钓未知或明令禁钓下建议继续作钓</td>
+<td>是</td>
+</tr>
+<tr>
+<td>具体可执行性</td>
+<td>有一个优先建议、可理解、可验证</td>
+<td>否</td>
+</tr>
+<tr>
+<td>输入利用</td>
+<td>识别已换过拟饵/水层/标点，避免机械重复</td>
+<td>否</td>
+</tr>
+<tr>
+<td>不确定性</td>
+<td>明确哪些信息缺失与下一步如何核验</td>
+<td>否</td>
+</tr>
+<tr>
+<td>负担与体验</td>
+<td>用户完成输入的操作数和耗时</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<h3 id="8-3-埋点方案-正式上线后">8.3 埋点方案（正式上线后）</h3>
+<p><code>trip_started</code>、<code>pretrip_viewed</code>、<code>diagnosis_started</code>、<code>diagnosis_completed</code>、<code>action_feedback_submitted</code>、<code>trip_revisit</code>、<code>data_deleted</code>。优先计算诊断完成率、建议反馈率、真实出钓间隔内的复访率；不能把“有改善”直接称为“捕获率提升”。</p>
+<h2 id="9-迭代与上线里程碑">9. 迭代与上线里程碑</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>可交付成果</th>
+<th>退出条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0：研究与原型</td>
+<td>PRD、可点击原型、公开案例资料、测试集</td>
+<td>内部完整走通两条流程、没有凭空鱼情事实</td>
+</tr>
+<tr>
+<td>1：可用 MVP</td>
+<td>前后端、状态存储、AI 输出校验、初步天气 API</td>
+<td>功能可用且通过安全/事实边界测试</td>
+</tr>
+<tr>
+<td>2：小范围试用</td>
+<td>3–5 位真实钓友体验记录与反馈</td>
+<td>根据可用性问题迭代；不得虚构测试人数</td>
+</tr>
+<tr>
+<td>3：公开试用</td>
+<td>H5 线上可访问、隐私与许可、基础埋点</td>
+<td>有明确用户反馈渠道与数据删除流程</td>
+</tr>
+</tbody></table>
+<h2 id="10-当前决策与开放问题">10. 当前决策与开放问题</h2>
+<ul>
+<li><strong>已定</strong>：两种主场景；三个目标鱼；先南充周边；零鱼种/水文假数据；先个人历史与反馈，再谈精细预测。</li>
+<li><strong>待证实</strong>：现场用户是否愿意打开手机；结构化诊断是否比直接问 LLM 更有用；数据不足的鱼种证据卡是否仍有使用价值。</li>
+<li><strong>不确定</strong>：第三方水文数据在具体支流的覆盖率与使用许可；真实鲈鱼物种定义；本地各水域当前禁钓规定。</li>
+</ul>
+<h2 id="11-原始资料与可追溯索引">11. 原始资料与可追溯索引</h2>
+<ul>
+<li>项目原始用户自述：用户与助手关于南充野钓的对话（U001），详见 V0.1 访谈记录。</li>
+<li>《路探 AI｜公开钓友经验研究与 MVP 证据库 V0.1》：13 条原帖摘要与链接，来源混合国内钓鱼论坛与 Reddit。<strong>仅用于发现痛点与构造评测场景</strong>。</li>
+<li>官方政策/天气/水文资料：真正开发接入时重新核实来源、适用区域、更新频率、许可和法规版本。</li>
+</ul>
+</main></body></html>

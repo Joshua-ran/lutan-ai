@@ -1,0 +1,46 @@
+{
+  "status": "published_with_known_limitations",
+  "url": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+  "deployment_id": "appgdep_6afb2b0ce46c8191b51ea824c29373b8",
+  "version_id": "appgprj_6afb0113872081918a20ad19d27147f9~appgver_a9123acb4e548191b9a499974e32e658",
+  "source_commit": "2a98677b1527ec9f46773ed16de92edf2802d532",
+  "published_at_utc": "2026-11-16T16:11:04.960530+00:00",
+  "local_real_demo": {
+    "record": "agent-showcase-live.json",
+    "status": "passed",
+    "vision": true,
+    "session_history_tool": true,
+    "weather_tool": true,
+    "three_turns": true
+  },
+  "public_verification": {
+    "image_response": "agent",
+    "session_history_tool": "executed",
+    "some_model_responses": "server_rule fallback after validation",
+    "weather": "Open-Meteo HTTP 429; no substituted values",
+    "record": "agent-showcase-public.json",
+    "weather_record": "agent-showcase-public-weather.json"
+  },
+  "checks": {
+    "typecheck": "passed",
+    "unit_tests": {
+      "passed": 97,
+      "failed": 0
+    },
+    "existing_browser_tests": {
+      "passed": 36,
+      "failed": 0
+    },
+    "build": "passed",
+    "baseline": {
+      "passed": 23,
+      "failed": 0,
+      "needs_review": 1
+    }
+  },
+  "keys": {
+    "deepseek": "existing server-side key, required for self hosting",
+    "weather": "none for successful local free endpoint",
+    "session_history": "none"
+  }
+}

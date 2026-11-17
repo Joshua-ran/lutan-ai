@@ -1,0 +1,110 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI V1.2 · 真实 DeepSeek 五场景联调记录 · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/LIVE_API_REPORT.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/LIVE_API_REPORT.md</p><h1 id="路探-ai-v1-2-真实-deepseek-五场景联调记录">路探 AI V1.2 · 真实 DeepSeek 五场景联调记录</h1>
+<p>本文保留初次联调阶段记录。后续已修复首次使用的许可提示与默认缺失信息分支，并再次运行五场景；当前说明和最新原始记录见 <a href="USABILITY_FIX.html">首次使用修复</a>。下表耗时与 17 次请求计数属于初次联调阶段。</p>
+<p>执行日期：2026-11-16。当前已完成真实 DeepSeek <strong>文字业务接口</strong>联调，模型实际返回 <code>deepseek-flash</code>；新版现场助手和原表单均已跑通。输入来自原始合成场景，不是真实钓友、实钓或鱼获效果数据。</p>
+<h2 id="最终结果">最终结果</h2>
+<p>同一组五个场景分别经过两个真实 HTTP 业务入口，共 10 项检查。普通场景在本轮的假设条件中设为“用户自述已核验允许”；这只用于隔离模型路径，不代表系统核验了任何实际河段许可。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>新版现场助手</th>
+<th>原表单诊断</th>
+<th>本轮 API 耗时（助手 / 表单）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D03 跟饵</td>
+<td>真实 AI，1 次供应商请求；只比较节奏</td>
+<td>真实 AI，1 次供应商请求；规则候选选择</td>
+<td>2067 / 781 ms</td>
+</tr>
+<tr>
+<td>D04 疑似触碰</td>
+<td>真实 AI，1 次供应商请求；只检查钓组，不确认鱼口</td>
+<td>真实 AI，1 次供应商请求；规则候选选择</td>
+<td>1330 / 909 ms</td>
+</tr>
+<tr>
+<td>D06 充分尝试无口</td>
+<td>真实 AI，1 次供应商请求；结束当前标点重复搜索</td>
+<td>真实 AI，1 次供应商请求；规则候选选择</td>
+<td>1550 / 908 ms</td>
+</tr>
+<tr>
+<td>D01 危险水情</td>
+<td>规则撤离提示，供应商请求 0</td>
+<td>规则撤离提示，供应商请求 0</td>
+<td>2 / 2 ms</td>
+</tr>
+<tr>
+<td>P05 合法性未知</td>
+<td>先核实许可，供应商请求 0</td>
+<td>先核实许可，供应商请求 0</td>
+<td>3 / 2 ms</td>
+</tr>
+</tbody></table>
+<p>最终这轮 6 次供应商请求均实际发往 DeepSeek 官方 HTTPS 服务并返回 HTTP 200，公开响应中的模型字段均为 <code>deepseek-flash</code>。来源不是只依据本机配置猜测：记录包含真实响应 ID、公开回复、供应商模型字段、token 用量及耗时。表中是本轮单次测量，不能据此承诺今后的速度或稳定性。</p>
+<p>最终记录：<a href="../../../docs/verification/live-deepseek/run-20261116T111746128Z.json">五场景双入口原始 JSON</a>。每一项都保存合成输入、规范化输入、规则原始结果、接口最终结果、实际模型公开输出或门控结果、模型来源、调用次数和时间。原始 24 场景文件未改写。</p>
+<h2 id="首轮发现的问题和修复">首轮发现的问题和修复</h2>
+<p>首轮网络和结构检查均能通过，但开发侧逐条阅读发现新版自由生成不满足事实边界：</p>
+<ul>
+<li>D03 自行补出了“近岸 5–10 米”，还使用“犹豫”“触发开口”等未获输入支持的解释。</li>
+<li>D04 未优先执行钩尖/钓组检查，追加拖底、挑竿、刺鱼等多步动作，并对触碰作了过强判断。</li>
+<li>D06 在充分尝试后又建议换位、找结构和用饵搜索，混入多项行动。</li>
+</ul>
+<p>这些首轮回复保留为问题证据，不列为质量通过。原表单的可信候选选择没有出现这些问题。</p>
+<p>修复后，对 <code>retrieve_rhythm</code>、<code>check_rig</code>、<code>end_spot</code> 三类分支增加服务端决策契约：<strong>动作从已审查的同方向候选中选择，依据和检查方法必须与规则原句一致，未知项只能引用给定边界</strong>。模型改变方向、增加距离或事实、改写检查方法时，整条回到规则，不放宽校验。已有“没有改善”的方向仍交给会话比较逻辑处理，不能强制重复。</p>
+<p>这意味着这三类场景当前采用的是“规则限定范围内的模型选择”，不应把最终文案当成 DeepSeek 独立发现的钓鱼规律。其他普通图文分支保留原有受限生成和失败回退；它们仍需要后续真实场景验收。</p>
+<p>相关文件：<code>server/agent/grounding.ts</code>、<code>server/agent/service.ts</code>、<code>tests/agent-grounding.test.ts</code>。安全、禁钓与许可未知的先后顺序没有改变。</p>
+<h2 id="页面中的真实调用">页面中的真实调用</h2>
+<p>另用 Playwright + Chrome，通过正在运行的前端页面发送合成 D03 描述；没有用路由伪造或回放结果。实际经过 Vite 代理、Express 和 DeepSeek，页面显示 <code>Agent · deepseek-flash</code>，来源为 <code>agent</code>，供应商请求 1 次。刷新后保留相同结果和来源，切换到手机尺寸后无横向溢出，无控制台错误。</p>
+<p>这次正确初始化的浏览器提交耗时 2246 ms；手机检查复用同一条真实回复，没有再消耗模型请求。<a href="../../../docs/verification/live-deepseek/browser-real-api.json">页面真实调用记录</a>。截图保存在本机验收产物目录，不包含真实密钥或现场照片。</p>
+<p><img src="../../assets/v1.2-real-deepseek-desktop.png" alt="真实 DeepSeek 页面回复，输入为合成 D03 条件"></p>
+<p><a href="../../assets/v1.2-real-deepseek-mobile.png">查看同一条真实回复的手机展示</a>。</p>
+<p>最初一次浏览器检查在应用已运行时直接注入测试存储，导致内存中的目标鱼与测试消息不一致；该记录单独保留，排除出 D03 条件一致性验收。改为页面初始化前种入测试会话，并补查目标鱼与拟饵一致后重跑通过。这是测试准备问题，没有将旧记录伪装为最终验收。</p>
+<h2 id="记录索引与真实请求数">记录索引与真实请求数</h2>
+<table>
+<thead>
+<tr>
+<th>记录</th>
+<th>用途</th>
+<th>实际供应商请求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../../../docs/verification/live-deepseek/run-20261116T111228846Z.json">D03 初次连接</a></td>
+<td>两个入口可达；新版回复有待修复的事实问题</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="../../../docs/verification/live-deepseek/run-20261116T111245518Z.json">首轮五场景</a></td>
+<td>发现上述自由生成质量问题；D06 实际触发会话工具</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="../../../docs/verification/live-deepseek/run-20261116T111746128Z.json">修复后五场景</a></td>
+<td>本次采纳的五场景技术验收</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="../../../docs/verification/live-deepseek/browser-initial-setup.json">浏览器初次准备</a></td>
+<td>测试条件不一致，排除出场景验收</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="../../../docs/verification/live-deepseek/browser-real-api.json">浏览器最终验收</a></td>
+<td>实际页面提交、来源显示、刷新恢复及手机展示</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>本轮累计 17 次真实模型请求，初次和失败质量结果均保留；没有在后台自动重试。最终五场景验收只统计上表第三项的 10 个业务检查，不把 17 次请求解释成 17 个实钓场景。<a href="../../../docs/verification/live-deepseek/acceptance.json">复核索引</a> 标明采纳和排除的记录、代码哈希和复核范围。复核由 Codex 完成，不等同钓鱼专家或真实用户评测。</p>
+<h2 id="回归-配置与复现">回归、配置与复现</h2>
+<p>本轮实际执行：<code>npm run typecheck</code> 通过；<code>npm test</code> 77 项通过；<code>npm run test:e2e</code> 28 项通过（自动浏览器套件中的模型与天气仍为模拟）；<code>npm run evaluate</code> 仍为 23 PASS / 0 FAIL / 1 NEEDS_REVIEW；<code>npm run build</code> 成功。P02 的历史物种资料接入仍未完成。</p>
+<p>当前本机已启用服务端 DeepSeek 配置。换机器使用自己的密钥时，参考 <a href="../../../.env.deepseek.example">.env.deepseek.example</a> 和 <a href="DEMO_GUIDE.html">演示指南</a>；模板不含密钥，默认不消耗模型额度。<code>npm run doctor</code> 只检查配置字段，不发推理请求，所以其“本次未验证推理”标记不代表没有历史联调记录。</p>
+<p>需要再次明确使用自己的额度时执行：</p>
+<pre><code class="language-powershell">npm run test:live -- --allow-paid --surface both
+</code></pre>
+<p>该命令只允许已批准的五个场景，结果写入新的 <code>docs/verification/live-deepseek/run-*.json</code>，不覆盖已有原始记录，不进入默认自动测试。密钥、鉴权头、原图及模型思考原文不写入结果。供应商失败、超时或校验失败会真实记录并使用原规则回退，不把回退标成 AI 成功。</p>
+<p>请求使用官方 Chat Completions 协议和现有 DeepSeek 预设，协议说明见 <a href="https://api-docs.deepseek.com/api/create-chat-completion/">DeepSeek Chat Completions</a> 与 <a href="https://api-docs.deepseek.com/guides/json_mode/">JSON Output</a>。</p>
+<p>尚未验收：真实照片理解、在线天气质量、长期多轮表现、真实钓友使用及实钓效果。当前结果只能证明这五个合成场景的真实文字 API 链路和规则边界通过了本次检查。</p>
+</main></body></html>

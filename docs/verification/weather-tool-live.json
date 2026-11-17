@@ -1,0 +1,53 @@
+{
+  "executed_at": "2026-11-16T15:38:48.554Z",
+  "request_kind": "public_city_weather",
+  "api_key_required": false,
+  "model_calls": 0,
+  "tool_name": "get_weather",
+  "tool_arguments": {
+    "city": "南充",
+    "region": "四川"
+  },
+  "requests": [
+    {
+      "host": "geocoding-api.open-meteo.com",
+      "path": "/v1/search",
+      "http_status": 200,
+      "duration_ms": 1488
+    },
+    {
+      "host": "api.open-meteo.com",
+      "path": "/v1/forecast",
+      "http_status": 200,
+      "duration_ms": 1008
+    }
+  ],
+  "duration_ms": 2505,
+  "result": {
+    "status": "ok",
+    "city": "南充",
+    "region": "四川 / 中国",
+    "requested_city": "南充",
+    "location_resolution": "按用户提供的城市及地区筛选",
+    "temperature_c": 11.8,
+    "precipitation_mm": 0,
+    "wind_kmh": 13.8,
+    "units": {
+      "temperature": "°C",
+      "precipitation": "mm",
+      "wind": "km/h"
+    },
+    "precipitation_interval_seconds": 900,
+    "weather_code": 3,
+    "data_time": "2026-11-16T23:30",
+    "timezone": "Asia/Shanghai",
+    "retrieved_at": "2026-11-16T15:38:48.554Z",
+    "source": "Open-Meteo Weather Forecast / GeoNames",
+    "source_url": "https://open-meteo.com/en/docs",
+    "geocoding_source_url": "https://open-meteo.com/en/docs/geocoding-api",
+    "license": "CC BY 4.0",
+    "limitations": "天气为城市附近网格模型数据，不是钓点实测、水温、小河道水位或鱼口预测。",
+    "cached": false
+  },
+  "network_transport": "Node fetch using the existing environment proxy"
+}

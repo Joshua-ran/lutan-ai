@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+!.env.deepseek.example
+coverage/
+playwright-report/
+test-results/
+.cache/
+releases/
+*.log
+*.zip
+sites/
+output/

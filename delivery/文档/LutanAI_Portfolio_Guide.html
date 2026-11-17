@@ -1,0 +1,96 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI｜AI 产品经理求职材料 · 路探 AI</title><link rel="stylesheet" href="../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../LutanAI_Portfolio_Guide.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：LutanAI_Portfolio_Guide.md</p><h1 id="路探-ai-ai-产品经理求职材料">路探 AI｜AI 产品经理求职材料</h1>
+<p>更新：2026-11-17。当前为已接入真实 DeepSeek、可公开访问的 V1.2 体验版。</p>
+<p><a href="https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site">在线体验</a> · <a href="../../路探AI_求职作品介绍.html">可独立分享的作品介绍页</a></p>
+<h2 id="可直接写进简历">可直接写进简历</h2>
+<p><strong>路探 AI｜淡水路亚 AI 现场助手（个人项目，已上线）</strong><br><strong>角色：产品负责人｜AI 辅助开发</strong></p>
+<ul>
+<li><strong>需求与 MVP</strong>：围绕路亚作钓“连续没口、不知如何调整”的场景，结合 13 条公开社区案例开展二手需求分析，规划“出钓准备—现场排查—反馈复盘”闭环，形成 PRD、交互原型与三页面 MVP。</li>
+<li><strong>AI Agent 方案</strong>：接入真实 DeepSeek 多模态模型，结合河岸照片、现场描述和会话反馈形成单项行动；设计天气与本次会话历史两类 Function Calling 工具，由模型按需调用，并展示视觉观察、工具结果和调整依据。</li>
+<li><strong>体验迭代</strong>：围绕“初次无口—尝试后仍无口—换位后跟饵不咬”的三轮场景，完善会话记忆、动作反馈与决策解释，让用户看见 AI 记住了什么、实际调用什么工具、为何调整建议，并保留真实 API 输出与演示截图。</li>
+<li><strong>落地与交付</strong>：借助 Codex 辅助完成 Web 应用实现和部署，支持手机与桌面访问、本机记录和导出；建立 24 条合成场景基线并结合真实 API 联调，完成免登录公开体验版上线。</li>
+</ul>
+<p>项目时间按真实起止月份填写；可确认的公开上线时间为 <strong>2026 年 11 月 16 日</strong>。在简历中将项目名链接至在线体验地址即可。</p>
+<h2 id="简历篇幅紧张时-使用三条精简版">简历篇幅紧张时，使用三条精简版</h2>
+<ul>
+<li>基于 13 条公开社区案例开展二手需求分析，定义“准备—排查—复盘”的路亚现场助手 MVP，完成 PRD、原型与产品上线。</li>
+<li>接入真实 DeepSeek 图片理解，设计天气与会话历史两类按需调用工具；结合照片、现场描述和动作反馈生成单项建议，并展示实际工具结果及调整依据。</li>
+<li>围绕重复回复和连续反馈问题迭代会话体验，借助 Codex 落地手机／桌面 Web 产品，通过合成场景和真实 API 联调验证主流程。</li>
+</ul>
+<h2 id="面试开场讲法">面试开场讲法</h2>
+<p>路探 AI 是我围绕路亚现场“不知道下一步怎么做”设计并推动上线的个人项目。它结合照片、现场描述和尝试记录，用 DeepSeek 提取可见信息，并按需调用天气或会话历史工具，持续给出一项下一步建议。我负责产品方案与迭代推进，借助 Codex 辅助开发，已完成真实图片、工具调用和三轮连续决策演示。</p>
+<h2 id="本轮-agent-演示">本轮 Agent 演示</h2>
+<p>本机真实联调：图片理解：真实图片与模型已联调；天气工具：真实天气查询已成功；会话历史：真实工具调用已成功；三轮连续决策：真实模型连续对话已完成。</p>
+<p>本页截图来自本机真实接口联调；公网已验证图片输入和会话工具。公网部分模型回复会回退规则，天气服务本轮返回 HTTP 429；完整天气演示请在已启用现有代理的本机环境复现。未伪造或填补云端天气结果。</p>
+<p><a href="../../docs/verification/agent-showcase-live.json">真实联调原始记录</a>。图片与连续对话使用演示场景，天气为查询时的真实返回；这不是实际钓获或外部用户反馈。</p>
+<p><strong>多模态图片理解</strong>：模型返回的可见观察包括：前景是大片圆润的砾石和卵石滩，石块较为密集。；水面开阔，表面有细碎波纹和反光，水色偏深蓝。；对岸有一条平直的砾石或沙质岸带，岸边外侧为低矮林带。；远景可见低矮山脊和较多云层。。<a href="../../docs/assets/agent-showcase-vision.png">查看真实图片分析截图</a>。演示采用 U.S. Fish and Wildlife Service 的<a href="https://commons.wikimedia.org/wiki/File:River_shoreline_with_gray_rocks_close_up_photo.jpg">公有领域示例照片</a>，不是南充现场照片，也不是目标鱼存在证据。单张照片不能确认水位涨退、流速或水下鱼群。</p>
+<p><strong>真实天气工具</strong>：本轮实际调用 get_weather，数据来源 Open-Meteo Weather Forecast / GeoNames，数据时间 2026-11-16T23:30 Asia/Shanghai。<a href="../../docs/assets/agent-showcase-weather.png">查看真实工具截图</a>。</p>
+<p><strong>第 1 轮</strong>：我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。<br>建议：保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。<br>实际工具：本轮未调用工具。<a href="../../docs/assets/agent-showcase-turn1.png">截图</a>。</p>
+<p><strong>第 2 轮</strong>：我按你说的试了，还是没口。请读取本次尝试再决定下一步。<br>建议：先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。<br>实际工具：get_session_history。<a href="../../docs/assets/agent-showcase-turn2.png">截图</a>。</p>
+<p><strong>第 3 轮</strong>：我换了位置，发现鱼有跟饵但不咬。<br>建议：保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。<br>实际工具：本轮未调用工具。<a href="../../docs/assets/agent-showcase-turn3.png">截图</a>。</p>
+<h2 id="ai-agent-技术架构">AI Agent 技术架构</h2>
+<pre><code class="language-text">现场助手：一张照片＋自然语言＋本次会话反馈
+    ↓ 输入脱敏 / Zod 校验 / 安全与许可门控
+DeepSeek 图文 Agent：有界决策、按需选择工具
+    ├─ get_weather → Open-Meteo 城市天气 / 数据时间 / 来源
+    └─ get_session_history → 客户端提交的本次动作与反馈
+    ↓ 输出结构与事实边界校验 / 失败时规则回退
+页面：视觉观察、实际工具、下一行动、调整依据
+    ↓ 本机保存 / 恢复 / 导出
+</code></pre>
+<p>模型自主决定是否调用工具，不是每轮固定调用。安全、禁钓和许可未知时优先给规则提示，不使用模型推翻门控。单张照片只支持可见结构与水面外观，未知项继续保留未知。</p>
+<h2 id="浏览器复现与配置">浏览器复现与配置</h2>
+<ol>
+<li>进入“正在作钓”，按真实情况确认许可与水情。只有确实核验允许当前方式时，才选择相应许可选项。</li>
+<li>上传一张自己有权使用的河岸照片，输入“我在乱石边钓鳜鱼，软饵试了半小时都没口”。查看视觉观察、当前行动和需要补充的信息；按真实情况回答追问。</li>
+<li>实际尝试后输入“我按你说的试了，还是没口”；再输入“我换了位置，发现鱼有跟饵但不咬”。查看动作记忆、实际工具与建议变化。</li>
+<li>查询天气时明确给出城市，例如“请查询南充现在的天气，再结合当前情况给建议”。天气工具不是每轮自动执行；未调用时页面如实显示。</li>
+</ol>
+<p>真实模型需要服务端配置 <code>DEEPSEEK_API_KEY</code> 或 <code>LLM_API_KEY</code>，并开启图像与工具能力；模板见 <a href="../../.env.deepseek.example">.env.deepseek.example</a>。Open-Meteo 天气与本次会话历史工具无需额外 API Key。记录保存在当前浏览器，原始照片不写入历史。</p>
+<h2 id="两个值得展开的产品决策">两个值得展开的产品决策</h2>
+<p><strong>为什么做“下一步行动”，而不是鱼情预测？</strong><br>用户真正面临的是缺少排查顺序；当前又没有可核验的鱼群、鱼种和水文数据库。因此 MVP 优先把观察、单项尝试和反馈串起来，不用无来源的概率替代判断。这是范围取舍与证据边界的产品决策。</p>
+<p><strong>为什么限制模型，还要保留规则？</strong><br>安全水情、禁钓和许可未知先由规则处理。普通场景下，模型可以读取提交的会话、辅助解释和选择行动，但动作及依据须符合规则契约；格式错误、越界或超时时回退并标明来源。模型接入本身不是终点，用户需要知道当前建议来自哪里、哪些信息还不确定。</p>
+<h2 id="一个可以讲清楚的迭代案例">一个可以讲清楚的迭代案例</h2>
+<p>本人试用时，输入“还是没有口啊”会得到相同回复。排查发现，必要信息尚未补齐、反馈是否代表实际尝试不清晰，追问也不够显眼。迭代后，将关键追问放到输入框旁，提供按真实情况填写的快捷回复，并区分“未尝试”和“已尝试无改善”。真实四轮联调记录显示：持续无口先补问水层；用户明确补全条件后推进；明确尝试失败后选择另一方向。<strong>这是试用问题驱动的流程改进，没有外部用户留存或效率提升数据。</strong></p>
+<h2 id="我的贡献与-ai-工具的分工">我的贡献与 AI 工具的分工</h2>
+<p>个人项目中，负责场景定义、MVP 范围、交互流程、AI 能力边界、迭代优先级与发布推进；代码实现、测试脚本和部分材料整理借助 Codex 完成。面试时可以直接说明 AI 辅助开发方式，并重点解释产品取舍、问题如何被发现、改动依据和实际执行记录。</p>
+<h2 id="成果证据-供面试备查">成果证据，供面试备查</h2>
+<table>
+<thead>
+<tr>
+<th>已有成果</th>
+<th>依据与口径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13 条公开案例材料</td>
+<td><a href="LutanAI_Secondary_Research.html">二手需求分析</a>；是公开帖子的定性研究，不是 13 次用户访谈</td>
+</tr>
+<tr>
+<td>PRD 与交互原型</td>
+<td><a href="LutanAI_PRD_V1.0.html">早期 PRD</a>、<a href="../demo/demo.html">早期可交互原型</a>；两者保留当时的阶段说明</td>
+</tr>
+<tr>
+<td>真实五场景联调</td>
+<td>D03、D04、D06 普通场景调用模型；D01 危险、P05 许可未知验证零调用；<a href="../../docs/verification/live-deepseek/run-20261116T125023929Z.json">原始记录</a>，均为合成场景</td>
+</tr>
+<tr>
+<td>真实四轮连续反馈</td>
+<td><a href="../../docs/verification/followup-live-browser.json">浏览器原始记录</a>；是合成对话联调，不是钓友实测</td>
+</tr>
+<tr>
+<td>公开上线与文字回复</td>
+<td><a href="../../docs/verification/online-publication.json">发布记录</a>、<a href="../../docs/verification/online-smoke-20261116T140230436Z.json">已上线阶段浏览器记录</a>；记录是阶段证据，不代表平均速度</td>
+</tr>
+<tr>
+<td>本轮图片、工具与三轮 Agent</td>
+<td><a href="../../docs/verification/agent-showcase-live.json">真实联调原始记录</a>；区分模型输出、规则回退、实际工具结果和耗时</td>
+</tr>
+<tr>
+<td>工程验证</td>
+<td>常规自动测试以模拟供应商为主，真实 API 联调单独留档。本轮检查结果以最终执行汇报为准；历史物种库尚未实现，场景回归不能写成模型准确率</td>
+</tr>
+</tbody></table>
+<h2 id="当前阶段与下一步">当前阶段与下一步</h2>
+<p>已完成可运行 MVP 和公开体验。本机真实联调：图片理解：真实图片与模型已联调；天气工具：真实天气查询已成功；会话历史：真实工具调用已成功；三轮连续决策：真实模型连续对话已完成。下一步是邀请目标钓友完成真实任务，观察信息填写、建议理解和连续反馈是否顺畅。目前没有外部用户规模、留存、付费或渔获改善数据；历史物种资料库尚未实现，GitHub 仓库尚未公开发布。</p>
+<p>技术栈作为补充即可：React、TypeScript、Express、Zod；真实 DeepSeek API、会话快照工具、有界工具调用与失败回退。当前没有模型训练、RAG 知识库或多 Agent 系统。</p>
+</main></body></html>

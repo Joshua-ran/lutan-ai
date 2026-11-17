@@ -1,0 +1,107 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI V1.2 · 交付演示步骤 · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/DEMO_GUIDE.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/DEMO_GUIDE.md</p><h1 id="路探-ai-v1-2-交付演示步骤">路探 AI V1.2 · 交付演示步骤</h1>
+<p>本指南用于本机演示与研发交接，不是实钓效果报告。五场景的真实 DeepSeek 文字 API 已完成联调，见 <a href="LIVE_API_REPORT.html">原始记录与结果</a>；真实照片、在线天气和实钓效果尚未验收。</p>
+<h2 id="先选择要看的内容">先选择要看的内容</h2>
+<table>
+<thead>
+<tr>
+<th>入口</th>
+<th>能做什么</th>
+<th>需要什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>根目录 <code>交付中心.html</code></td>
+<td>阅读版本说明、文档、界面截图</td>
+<td>双击即可，离线可读</td>
+</tr>
+<tr>
+<td>交付中心中的“历史原型演示”</td>
+<td>在手机壳内点击 V1.0 原型</td>
+<td>离线可点；不代表 V1.2 的模型能力</td>
+</tr>
+<tr>
+<td>根目录 <code>Start-LutanAI.cmd</code></td>
+<td>安装依赖、构建、启动 V1.2 真实应用</td>
+<td>Windows、Node.js 22.12+，首次安装需联网</td>
+</tr>
+<tr>
+<td><code>npm run dev</code></td>
+<td>修改源码并实时查看</td>
+<td>已安装依赖，开发环境</td>
+</tr>
+</tbody></table>
+<p>完整源码包不包含 Node、node_modules 或构建产物，不是免安装软件。请先解压，勿直接在压缩包里双击启动。</p>
+<h2 id="十分钟规则模式演示">十分钟规则模式演示</h2>
+<ol>
+<li>解压到可写目录。双击 <code>交付中心.html</code>，先看版本范围与当前界面。</li>
+<li>双击 <code>Start-LutanAI.cmd</code>。默认从 <code>.env.example</code> 创建关闭模型的 <code>.env</code>，不会覆盖已有文件；已有服务端环境变量优先。首次安装依赖，随后构建并打开 <code>http://127.0.0.1:8787</code>。保留终端窗口。</li>
+<li>打开“出钓前”，填写水域与目标，生成参考，查看数据缺口。</li>
+<li>进入“正在作钓”。合法性保持“未知”，在上方现场助手输入“软饵试了半小时没口”。按钮会显示“先确认作钓条件”，点击会展开条件并保留草稿，不重复刷安全回复、不调用模型。</li>
+<li>仅在真实核验允许的条件下才选择相应确认项；演示者无法核实时，停留在未知分支。已按真实情况确认且没有危险信号后，可点击“发送给现场助手”；未启用模型时仍使用规则。首次使用的实际页面验证见 <a href="USABILITY_FIX.html">修复说明</a>。</li>
+<li>选择明显急涨或很急水流，确认安全撤离优先于其他建议。修改输入后旧建议不应作为当前建议继续使用。</li>
+<li>反馈“暂未尝试”或如实选择实际反馈，在“我的记录”恢复、导出与删除；不要把演示中的“有改善”当成真实用户结果。</li>
+<li>Ctrl+C 停止启动器启动的服务。已有同版本服务时启动器会提示复用；该情况需在旧终端停止旧服务，才能应用新代码或配置。</li>
+</ol>
+<h2 id="可选-自己的模型-api">可选：自己的模型 API</h2>
+<p>首次使用可复制根目录 <a href="../../../.env.deepseek.example">.env.deepseek.example</a> 为 <code>.env</code>；已有 <code>.env</code> 时手工合并。模板默认 <code>LLM_ENABLED=false</code>，确认使用自己的额度后改为 <code>true</code>。</p>
+<p>DeepSeek 密钥通过服务端 <code>DEEPSEEK_API_KEY</code> 环境变量读取，也可仅在本机 <code>.env</code> 的 <code>LLM_API_KEY</code> 填写。不要写入前端、截图、聊天记录或交付压缩包。项目未附带任何真实密钥。</p>
+<pre><code class="language-dotenv">LLM_ENABLED=true
+LLM_PROVIDER=deepseek
+LLM_BASE_URL=https://api.deepseek.com
+LLM_MODEL=deepseek-flash
+LLM_MODEL_LABEL=deepseek-flash
+LLM_RESPONSE_FORMAT=json_object
+LLM_TOKEN_PARAMETER=max_tokens
+LLM_TIMEOUT_MS=20000
+LLM_MAX_OUTPUT_TOKENS=1024
+LLM_VISION_ENABLED=true
+LLM_TOOLS_ENABLED=true
+</code></pre>
+<p>重启服务，运行 <code>npm run doctor</code>。<code>ready</code> 只代表配置字段完整，不能证明当前供应商可达或实际推理成功。旧服务未停时检查的是磁盘配置，现有进程仍使用启动时配置。doctor 不会发推理请求；已完成的历史真实联调见 <a href="LIVE_API_REPORT.html">验证记录</a>。</p>
+<p>通用兼容服务使用 <code>.env.example</code>，配置 <code>LLM_BASE_URL</code>、<code>LLM_API_KEY</code>、<code>LLM_MODEL</code>；只有供应商实际支持时才开启图片和工具。完整协议、超时与预算见 <a href="AI_WORKFLOW.html">AI 工作流</a> 和 <a href="V1.2_AGENT.html">V1.2 说明</a>。</p>
+<h2 id="五场景文字-api-联调-已执行-合成输入">五场景文字 API 联调（已执行，合成输入）</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>已核对的行为</th>
+<th>本次状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D03 跟饵</td>
+<td>普通且假设用户已核验合法，只比较节奏</td>
+<td>两入口均收到真实 DeepSeek 回复</td>
+</tr>
+<tr>
+<td>D04 疑似触碰</td>
+<td>检查钓组，不把触碰直接认定鱼口</td>
+<td>两入口均收到真实 DeepSeek 回复</td>
+</tr>
+<tr>
+<td>D06 充分尝试仍无口</td>
+<td>不保证鱼获，结束当前标点重复搜索</td>
+<td>两入口均收到真实 DeepSeek 回复</td>
+</tr>
+<tr>
+<td>D01 危险水情</td>
+<td>规则优先，模型调用次数为 0</td>
+<td>两入口均验证零供应商请求</td>
+</tr>
+<tr>
+<td>P05 合法性未知</td>
+<td>暂停作钓先核对，模型调用次数为 0</td>
+<td>两入口均验证零供应商请求</td>
+</tr>
+</tbody></table>
+<p>原始输入、规则与模型公开输出、来源、次数和耗时均已保存。再次明确使用自己的额度时可运行 <code>npm run test:live -- --allow-paid --surface both</code>，默认自动测试不会发真实模型请求。</p>
+<p>连续追问时，请先回答输入框旁显示的具体问题，按真实情况选择提供的回复或自行描述；仅说“仍没口”不会被自动记成已执行。实际尝试后再报告反馈。<a href="FOLLOWUP_FIX.html">四轮实际运行示例</a>。</p>
+<h2 id="常见情况">常见情况</h2>
+<ul>
+<li>端口占用：启动器不会结束其他进程。在旧窗口 Ctrl+C，或在 <code>.env</code> 改 <code>PORT=8788</code> 后重启；开发代理仍固定使用 8787。</li>
+<li>首次安装失败：确认网络与目录写权限，然后在该目录执行 <code>npm ci --cache .cache/npm --no-audit --no-fund</code>。</li>
+<li>无模型输出：看来源和回退说明，再看 <code>npm run doctor</code>；危险、禁钓、未知合法性本来就不调用模型。</li>
+<li>城市天气失败：保留“不可用”状态，不补天气、水位或鱼情估计。没有城市不自动定位。</li>
+<li>历史记录不见：localhost、127.0.0.1、5173、8787 属于不同浏览器来源。切换前先导出；当前没有跨来源自动导入功能。</li>
+</ul>
+</main></body></html>

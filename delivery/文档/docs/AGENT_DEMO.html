@@ -1,0 +1,22 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI：图片、工具与连续决策演示 · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/AGENT_DEMO.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/AGENT_DEMO.md</p><h1 id="路探-ai-图片-工具与连续决策演示">路探 AI：图片、工具与连续决策演示</h1>
+<p>打开 <a href="https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site/#diagnose">在线产品</a>，或运行本地 <code>npm run dev</code> 并访问 <a href="http://127.0.0.1:5173/#diagnose%E3%80%82">http://127.0.0.1:5173/#diagnose。</a></p>
+<p>本轮图片、工具和三轮成功截图来自本机真实接口联调。公网图片及历史工具已实际执行，但部分模型回复未通过校验而回退；公网天气目前收到 Open-Meteo 的 HTTP 429，完整天气演示请使用下述本机环境。页面如实显示未取得天气，不使用本机成功值代替云端结果。</p>
+<h2 id="三轮现场排查">三轮现场排查</h2>
+<ol>
+<li>点击“新建会话”，展开作钓条件。在真实使用中如实核验许可；合成演示假设已核验允许。选择目标鳜鱼、软饵、实际搜索范围“主要一个水层”，不要从照片推断水下覆盖范围。</li>
+<li>上传自己的河岸照片，或下载输入区的公开河岸示例再上传。公开示例来自 USFWS，经 Wikimedia 提供，为公有领域照片；不是南充或本次用户现场，也不证明目标鱼存在。</li>
+<li>输入：“我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。” 页面显示照片观察、当前作钓条件、一项行动、依据和观察方法。</li>
+<li>输入：“我按你说的试了，还是没口。请读取本次尝试再决定下一步。” 检查实际工具 <code>get_session_history</code> 的返回动作和反馈，以及新的建议。工具由模型按需选择，未执行时页面显示“本轮未调用工具”。</li>
+<li>输入：“我换了位置，发现鱼有跟饵但不咬。” 新的跟饵观察进入本轮决策，页面同时保留此前的尝试和反馈。</li>
+</ol>
+<p>不清楚搜索水层时如实保留未知，助手可能先追问，不能为展示效果编造条件。是否出现工具调用以当轮实际结果为准。</p>
+<h2 id="天气工具">天气工具</h2>
+<p>城市输入框填写“四川南充”，发送：“请查询四川南充当前真实天气，告诉我温度、降水、风速和数据时间，不要据天气预测鱼口。”</p>
+<p>实际调用 <code>get_weather</code> 后，页面展示温度、降水统计间隔、风速、数据时间、时区和 Open-Meteo 来源。返回的是城市附近网格天气，不是钓点实测、水温、水位或鱼口预测。失败时显示不可用，不补假值。</p>
+<h2 id="配置">配置</h2>
+<p>现有服务器已经配置真实 DeepSeek。自行运行时仅需要自己的 DeepSeek API Key，放在服务端环境或本机 <code>.env</code>，参考 <code>.env.deepseek.example</code>。启用 <code>LLM_ENABLED=true</code>、<code>LLM_PROVIDER=deepseek</code>、<code>LLM_MODEL=deepseek-flash</code>、<code>LLM_VISION_ENABLED=true</code>、<code>LLM_TOOLS_ENABLED=true</code>。密钥放 <code>DEEPSEEK_API_KEY</code> 或 <code>LLM_API_KEY</code>，不要写到前端。</p>
+<p>天气与本次会话工具不需要额外 Key。若本机访问天气服务依赖已有网络代理，使用 Node.js 24，并在启动前设置 PowerShell 环境 <code>$env:NODE_USE_ENV_PROXY=&#39;1&#39;</code>；代理地址沿用已有 <code>HTTPS_PROXY</code>。没有代理需要时无需设置。</p>
+<p>原图只在本次分析时发送，不写入本机历史；刷新可以恢复文字观察、建议与反馈，原图预览不会恢复。模型或工具失败时沿用现有规则回退。</p>
+<h2 id="本轮真实证据">本轮真实证据</h2>
+<p><a href="../../../docs/verification/agent-showcase-live.json">演示原始记录</a>保留真实输入（图片正文省略）、模型来源、建议、工具结果与耗时；公开照片来源另有说明。截图对应真实模型回复，常规自动测试仍使用模拟供应商。当前不含 RAG、模型训练、实时水位和鱼群识别。</p>
+</main></body></html>

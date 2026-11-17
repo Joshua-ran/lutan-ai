@@ -1,0 +1,31 @@
+{
+  "executed_at": "2026-11-16T15:37:52.079Z",
+  "request_kind": "public_city_weather",
+  "api_key_required": false,
+  "model_calls": 0,
+  "tool_name": "get_weather",
+  "tool_arguments": {
+    "city": "南充",
+    "region": "四川"
+  },
+  "requests": [
+    {
+      "host": "geocoding-api.open-meteo.com",
+      "path": "/v1/search",
+      "http_status": 200,
+      "duration_ms": 1032
+    },
+    {
+      "host": "api.open-meteo.com",
+      "duration_ms": 5004,
+      "transport_error": "TimeoutError"
+    }
+  ],
+  "duration_ms": 6044,
+  "result": {
+    "status": "unavailable",
+    "message": "天气服务暂不可用，没有填入替代或推测数据。",
+    "source": "Open-Meteo",
+    "retrieved_at": "2026-11-16T15:37:52.079Z"
+  }
+}

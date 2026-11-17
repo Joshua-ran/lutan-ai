@@ -1,0 +1,127 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>V1.2 连续追问复读修复 · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/FOLLOWUP_FIX.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/FOLLOWUP_FIX.md</p><h1 id="v1-2-连续追问复读修复">V1.2 连续追问复读修复</h1>
+<p>日期：2026-11-16。针对“还是没有口啊”后原样返回水层确认建议的问题，已修复反馈识别、后续决策和追问展示。真实 DeepSeek 连续四轮及浏览器验证通过；这些输入是合成联调条件，不是实钓反馈或渔获改善证据。</p>
+<h2 id="原因">原因</h2>
+<p>原反馈匹配识别“还是没口”，漏掉了“还是没有口啊”。模型虽然收到历史消息，规则候选仍只依据旧的“水层未知”状态生成，导致继续选同一条初始动作。必要追问又放在输入框下方的结果详情中，聊天消息没有带出问题；聊天区也未自动滚到最新消息。</p>
+<p>仅仅让模型换一种说法不能解决这个问题。本次增加了明确的对话进度处理，保留既有安全和事实边界。</p>
+<h2 id="当前行为">当前行为</h2>
+<ul>
+<li>“还是没有口”“仍然没有鱼口”等会识别为持续无口。没有明确实际执行过时，不擅自把上一项记成失败，不补造执行时间。</li>
+<li>上一步需要的信息仍缺失时，先提出一个具体追问，不复读初始动作。追问放在输入框旁边，聊天回复也带出问题。</li>
+<li>“一个水层 / 多个水层 / 仍不清楚”等回复选项只填入草稿，由用户按实际情况选择并发送。明确补充的水层、拟饵会进入下一轮条件；未知仍保留未知。</li>
+<li>明确说已尝试且没有改善后，使用本次会话记录选取另一个尚未失败的单变量方向，模型不能继续选已失败的同方向动作。</li>
+<li>信息确认不再以鱼口是否改善作为成功标准。用户说已尝试但还不能判断结果时，只记录已尝试，不强记成功或失败。</li>
+<li>去掉产品预填的“试了 20 分钟”，文字报告没有给出的实际执行时间保持未知。</li>
+<li>新消息和会话恢复会定位到聊天区最新回复；已有历史记录和存储 Schema 保持兼容。</li>
+</ul>
+<p>安全、禁钓、许可未知仍在模型调用前拦截；连续追问不能绕过门控。离线/无模型时，规则回退也会提出必要追问。</p>
+<h2 id="真实-deepseek-四轮结果">真实 DeepSeek 四轮结果</h2>
+<p>通过本机 Chrome + Playwright 操作真实前端，没有使用路由伪造或回放 API 响应。仅在合成测试假设中显式确认允许，用于隔离普通模型路径。</p>
+<table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>合成输入</th>
+<th>实际处理</th>
+<th>接口耗时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>软饵试了半小时没口，覆盖水层不清楚</td>
+<td>确认覆盖水层，并提出追问</td>
+<td>2160 ms</td>
+</tr>
+<tr>
+<td>2</td>
+<td>还是没有口啊</td>
+<td>明确问一个水层、多个水层或仍不清楚；未把上一项记成已尝试或失败</td>
+<td>2063 ms</td>
+</tr>
+<tr>
+<td>3</td>
+<td>已确认主要搜索一个水层</td>
+<td>条件更新后，给出只比较另一搜索水层的动作</td>
+<td>1842 ms</td>
+</tr>
+<tr>
+<td>4</td>
+<td>按你说的试过了，还是没有口啊</td>
+<td>保留没有改善的反馈，改为单项钓组检查，不重复变水层</td>
+<td>1553 ms</td>
+</tr>
+</tbody></table>
+<p>四轮返回来源均为 <code>agent</code>、模型为 <code>deepseek-flash</code>，每轮报告一次模型请求。此次没有执行会话或天气工具，不把随请求提供的会话快照说成工具成功。刷新后最后结果和来源可恢复。</p>
+<p><a href="../../../docs/verification/followup-live-browser.json">四轮原始记录</a> 保留输入快照、基础规则结果、连续会话规则回退结果、实际接口输出、来源、调用次数和耗时。执行时间、真实鱼种和鱼口原因没有被补造；“试过”的声明只是合成输入。</p>
+<h2 id="实际检查">实际检查</h2>
+<table>
+<thead>
+<tr>
+<th>命令/检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm run typecheck</code></td>
+<td>通过</td>
+</tr>
+<tr>
+<td><code>npm test</code></td>
+<td>85 项通过</td>
+</tr>
+<tr>
+<td><code>npm run test:e2e</code></td>
+<td>完整 34 项通过，含桌面与手机的精确复现语句</td>
+</tr>
+<tr>
+<td><code>npm run evaluate</code></td>
+<td>23 PASS / 0 FAIL / 1 NEEDS_REVIEW；P02 仍待接入历史物种资料</td>
+</tr>
+<tr>
+<td><code>npm run build</code></td>
+<td>成功；有原第三方 Zod 注释位置警告</td>
+</tr>
+<tr>
+<td>原五场景双入口真实回归</td>
+<td>最终 10 项通过；普通分支实际请求，危险/未知许可仍零调用</td>
+</tr>
+</tbody></table>
+<p><a href="../../../docs/verification/live-deepseek/run-20261116T125023929Z.json">最终五场景原始记录</a>。另保留了 <a href="../../../docs/verification/live-deepseek/run-20261116T124710153Z.json">此前同组回归</a>；两次各 6 个真实模型请求，加四轮对话，本次受控检查共 16 次。此计数不包含用户自主使用，也不是账户账单总请求数。</p>
+<p>默认自动浏览器套件中的供应商与天气仍为模拟；真实四轮和真实五场景证据独立存档，不把模拟结果当真实模型质量。真实照片、在线天气和实钓效果仍未验收，复杂口语识别仍需更多真实场景检查。</p>
+<h2 id="修改文件">修改文件</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>shared/agent.ts</code></td>
+<td>扩展口语反馈识别，区分是否尝试，避免虚构时间或成功归因</td>
+</tr>
+<tr>
+<td><code>shared/agent-followup.ts</code></td>
+<td>缺失信息、待确认结果、持续无口的具体追问</td>
+</tr>
+<tr>
+<td><code>shared/agent-fallback.ts</code></td>
+<td>用户明确条件归入下一轮，离线回退也遵守同一进度</td>
+</tr>
+<tr>
+<td><code>server/agent/grounding.ts</code>、<code>service.ts</code></td>
+<td>后续追问与下一动作契约、失败方向约束及模型输入</td>
+</tr>
+<tr>
+<td><code>src/components/AgentAssistant.tsx</code>、<code>src/styles.css</code></td>
+<td>显眼追问、真实回复选项、聊天自动滚动，移除伪造时长</td>
+</tr>
+<tr>
+<td><code>tests/agent-followup.test.ts</code>、既有 Agent 测试、<code>tests/e2e/agent-followup.spec.ts</code></td>
+<td>精确语句与三轮推进、明确失败后的不同动作、安全优先和界面回归</td>
+</tr>
+</tbody></table>
+<h2 id="现在怎么继续">现在怎么继续</h2>
+<p>刷新原会话，回答输入框上方的“这轮先补充这一项”。按实际情况选择覆盖一个水层、多个水层或仍不清楚，然后发送。没有实际尝试时如实说未尝试；实际试过无改善时再明确说明，不需要为了得到不同回复编造条件。</p>
+<p><img src="../../assets/desktop-followup-latest-fixed.png" alt="第二轮追问及可选回复"></p>
+<p><a href="../../assets/mobile-followup-latest-fixed.png">手机展示</a>。截图用同一条已保存的真实回复恢复会话，验证最新消息定位与追问位置，没有额外发模型请求。</p>
+</main></body></html>

@@ -1,0 +1,544 @@
+{
+  "url": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+  "synthetic_scenarios": true,
+  "real_model_requested": true,
+  "started_at": "2026-11-16T13:51:28.402Z",
+  "status": "passed",
+  "gates": [
+    {
+      "name": "unknown_legality",
+      "status": 200,
+      "elapsed_ms": 181,
+      "input": {
+        "session_id": "1a74b5d2-66d9-4a11-89d5-40e913521a0f",
+        "message": "合成场景：现在先做什么？",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "未知",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [],
+          "actions": [],
+          "observations": {
+            "visible": [],
+            "reported": [],
+            "unknown": []
+          },
+          "city": ""
+        }
+      },
+      "rule_output": {
+        "id": "e94e5974-52ec-4a11-8e2d-aea4c7468a55",
+        "rule_version": "lutan-rules-1.0.0",
+        "rule_id": "verify_legality",
+        "created_at": "2026-11-16T13:51:31.306Z",
+        "source": "server_rules",
+        "generation": {
+          "mode": "rules",
+          "workflow_version": "lutan-workflow-1.1.0",
+          "provider": null,
+          "model": null,
+          "fallback_reason": null,
+          "output_boundary": "建议来自版本化规则与用户观察，未核验鱼种、水文和法规，不保证鱼口或渔获。"
+        },
+        "title": "先核实这片水域是否允许垂钓",
+        "priority_action": "先在安全位置查询适用日期的当地官方公告，核对具体河段和禁钓范围；确认前暂停作钓。",
+        "rationale": "当前合法性未知。存在鱼类、水域适合或他人作钓，都不能证明这里依法允许垂钓。",
+        "observed_facts": [
+          "用户计划：河流 / 支流 / 鳜鱼，并非物种证据。",
+          "用户观察：水位未知 / 水流未知 / 水色未知 / 降雨未知。",
+          "结构：不清楚；时长：不清楚。",
+          "拟饵：未选择；水层：不清楚。",
+          "已调整：不清楚；鱼口：不清楚；其他观察：不清楚。",
+          "合法性：未知（用户自述，系统未独立核验）。"
+        ],
+        "evidence_status": "insufficient",
+        "unknowns": [
+          "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。",
+          "未接入实时天气、水温、水位幅度或鱼群位置，不提供鱼口概率与水位预测。"
+        ],
+        "safety_or_legality_notice": "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+        "follow_up_question": "你是否已核对适用日期的官方公告，并确认该河段允许当前方式作钓？",
+        "risk": "verify_first",
+        "input": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "未知",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [],
+          "reported": [
+            "合成场景：现在先做什么？",
+            "用户条件：目标鳜鱼；水位未知；合法性未知。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "先在安全位置查询适用日期的当地官方公告，核对具体河段和禁钓范围；确认前暂停作钓。",
+        "action_kind": "confirm_observation",
+        "reason": "当前合法性未知。存在鱼类、水域适合或他人作钓，都不能证明这里依法允许垂钓。",
+        "check": "先确认已经远离危险或暂停作钓，并核对适用的官方预警及公告；未确认前不要继续作钓。",
+        "follow_up_question": "你是否已核对适用日期的官方公告，并确认该河段允许当前方式作钓？",
+        "session_id": "1a74b5d2-66d9-4a11-89d5-40e913521a0f",
+        "turn_id": "5731f626-e58d-4524-bae5-b10a8b182e57",
+        "created_at": "2026-11-16T13:51:38.440Z",
+        "answer_source": "server_rule",
+        "model_name": null,
+        "provider": null,
+        "model_calls": 0,
+        "duration_ms": 0,
+        "tool_events": [],
+        "warnings": [
+          "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+          "安全或合法性门控：本次未调用模型。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "未知",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      }
+    },
+    {
+      "name": "danger",
+      "status": 200,
+      "elapsed_ms": 246,
+      "input": {
+        "session_id": "1a74b5d2-66d9-4a11-89d5-40e913521a0f",
+        "message": "合成场景：现在先做什么？",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "急变",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "很急",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [],
+          "actions": [],
+          "observations": {
+            "visible": [],
+            "reported": [],
+            "unknown": []
+          },
+          "city": ""
+        }
+      },
+      "rule_output": {
+        "id": "d0daabb0-f655-4231-8505-0f42e53a38cd",
+        "rule_version": "lutan-rules-1.0.0",
+        "rule_id": "safety_first",
+        "created_at": "2026-11-16T13:51:31.556Z",
+        "source": "server_rules",
+        "generation": {
+          "mode": "rules",
+          "workflow_version": "lutan-workflow-1.1.0",
+          "provider": null,
+          "model": null,
+          "fallback_reason": null,
+          "output_boundary": "建议来自版本化规则与用户观察，未核验鱼种、水文和法规，不保证鱼口或渔获。"
+        },
+        "title": "安全优先：先离开危险岸边",
+        "priority_action": "先停止危险岸边作钓，撤离可能受水位上涨、冲刷影响的区域，在安全位置查看当地官方水情预警。不要涉水或靠近危险结构。",
+        "rationale": "你报告了明显急涨水或急流。安全风险的优先级高于寻找鱼口，未知水位不能当作水情稳定。",
+        "observed_facts": [
+          "用户计划：河流 / 支流 / 鳜鱼，并非物种证据。",
+          "用户观察：水位急变 / 水流很急 / 水色未知 / 降雨未知。",
+          "结构：不清楚；时长：不清楚。",
+          "拟饵：未选择；水层：不清楚。",
+          "已调整：不清楚；鱼口：不清楚；其他观察：不清楚。",
+          "合法性：用户已核实允许（用户自述，系统未独立核验）。"
+        ],
+        "evidence_status": "insufficient",
+        "unknowns": [
+          "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。",
+          "未接入实时天气、水温、水位幅度或鱼群位置，不提供鱼口概率与水位预测。"
+        ],
+        "safety_or_legality_notice": "先停止危险岸边作钓，撤离可能受水位上涨、冲刷影响的区域，在安全位置查看当地官方水情预警。不要涉水或靠近危险结构。",
+        "follow_up_question": null,
+        "risk": "danger",
+        "input": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "急变",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "很急",
+          "clarity": "未知",
+          "observed": "不清楚"
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [],
+          "reported": [
+            "合成场景：现在先做什么？",
+            "用户条件：目标鳜鱼；水位急变；合法性用户已核实允许。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "先停止危险岸边作钓，撤离可能受水位上涨、冲刷影响的区域，在安全位置查看当地官方水情预警。不要涉水或靠近危险结构。",
+        "action_kind": "end_spot",
+        "reason": "你报告了明显急涨水或急流。安全风险的优先级高于寻找鱼口，未知水位不能当作水情稳定。",
+        "check": "先确认已经远离危险或暂停作钓，并核对适用的官方预警及公告；未确认前不要继续作钓。",
+        "follow_up_question": null,
+        "session_id": "1a74b5d2-66d9-4a11-89d5-40e913521a0f",
+        "turn_id": "6f4299b5-76dc-4adc-9e85-6ff744fa4ae2",
+        "created_at": "2026-11-16T13:51:38.688Z",
+        "answer_source": "server_rule",
+        "model_name": null,
+        "provider": null,
+        "model_calls": 0,
+        "duration_ms": 0,
+        "tool_events": [],
+        "warnings": [
+          "先停止危险岸边作钓，撤离可能受水位上涨、冲刷影响的区域，在安全位置查看当地官方水情预警。不要涉水或靠近危险结构。",
+          "安全或合法性门控：本次未调用模型。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "急变",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "很急",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      }
+    }
+  ],
+  "turns": [
+    {
+      "status": 200,
+      "elapsed_ms": 3024,
+      "input": {
+        "session_id": "a6905ff6-a333-4927-98a5-7f04d4707bb8",
+        "message": "合成演示：米诺试了半小时，主要搜索一个水层，有跟饵但没有咬口。下一步先做什么？",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [],
+          "actions": [],
+          "observations": {
+            "visible": [],
+            "reported": [],
+            "unknown": []
+          },
+          "city": ""
+        }
+      },
+      "baseline_rule_output": {
+        "id": "9420702d-f323-4c07-9ba2-7e3d28a06ede",
+        "rule_version": "lutan-rules-1.0.0",
+        "rule_id": "compare_layer",
+        "created_at": "2026-11-16T13:51:36.659Z",
+        "source": "server_rules",
+        "generation": {
+          "mode": "rules",
+          "workflow_version": "lutan-workflow-1.1.0",
+          "provider": null,
+          "model": null,
+          "fallback_reason": null,
+          "output_boundary": "建议来自版本化规则与用户观察，未核验鱼种、水文和法规，不保证鱼口或渔获。"
+        },
+        "title": "下一步，只比较另一个水层",
+        "priority_action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+        "rationale": "当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+        "observed_facts": [
+          "用户计划：河流 / 支流 / 鳜鱼，并非物种证据。",
+          "用户观察：水位未知 / 水流未知 / 水色未知 / 降雨未知。",
+          "结构：不清楚；时长：20–40 分钟。",
+          "拟饵：米诺；水层：主要一个水层。",
+          "已调整：不清楚；鱼口：不清楚；其他观察：不清楚。",
+          "合法性：用户已核实允许（用户自述，系统未独立核验）。"
+        ],
+        "evidence_status": "insufficient",
+        "unknowns": [
+          "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。",
+          "未接入实时天气、水温、水位幅度或鱼群位置，不提供鱼口概率与水位预测。"
+        ],
+        "safety_or_legality_notice": "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+        "follow_up_question": null,
+        "risk": "normal",
+        "input": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "20–40 分钟",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        }
+      },
+      "rule_fallback_output": {
+        "observations": {
+          "visible": [],
+          "reported": [
+            "合成演示：米诺试了半小时，主要搜索一个水层，有跟饵但没有咬口。下一步先做什么？",
+            "用户条件：目标鳜鱼；水位未知；合法性用户已核实允许。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+        "action_kind": "change_layer",
+        "reason": "当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+        "check": "只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+        "follow_up_question": null,
+        "session_id": "a6905ff6-a333-4927-98a5-7f04d4707bb8",
+        "turn_id": "86babb12-3552-4f06-b24b-70504240e312",
+        "created_at": "2026-11-16T13:51:36.661Z",
+        "answer_source": "server_rule",
+        "model_name": null,
+        "provider": null,
+        "model_calls": 0,
+        "duration_ms": 0,
+        "tool_events": [],
+        "warnings": [
+          "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "20–40 分钟",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "output": {
+        "observations": {
+          "visible": [],
+          "reported": [
+            "合成演示：米诺试了半小时，主要搜索一个水层，有跟饵但没有咬口。下一步先做什么？",
+            "用户自述：目标鳜鱼；水位未知；水流未知。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。",
+            "水层与底部结构不清楚",
+            "水流速度与水体清浊度未知",
+            "水情是否有涨退变化未确认"
+          ]
+        },
+        "action": "保持米诺不变，先记录跟饵出现的水层与方向，再只改一个变量：将饵在该水层放慢并延长停顿，观察是追随还是离开。",
+        "action_kind": "retrieve_rhythm",
+        "reason": "米诺已在单一水层试探半小时并出现跟饵无咬口，说明有鱼接近但不接受当前节奏；在用户只允许单变量调整的框架下，先改回收节奏成本最低，且不必更换位置或装备。",
+        "check": "每次停顿后记录是否有鱼贴身、转身或触碰线；若同一水层连续多次仍只跟不咬，则视为节奏无效，下一轮再考虑换水层。",
+        "follow_up_question": "跟饵时主要出现在水面附近还是中下层？",
+        "session_id": "a6905ff6-a333-4927-98a5-7f04d4707bb8",
+        "turn_id": "13e959a5-a203-47a9-a673-20660eefc7f1",
+        "created_at": "2026-11-16T13:51:43.789Z",
+        "answer_source": "agent",
+        "model_name": "deepseek-flash",
+        "provider": "deepseek",
+        "model_calls": 1,
+        "duration_ms": 2709,
+        "tool_events": [],
+        "warnings": [
+          "合法性来自用户自述，系统未独立核验适用公告。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "20–40 分钟",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      }
+    }
+  ],
+  "checks": {
+    "anonymous_public_access": true,
+    "example_dialog": true,
+    "safety_gates_zero_calls": true,
+    "real_provider_result": true,
+    "source_label": true,
+    "reload_preserves_session": true,
+    "history_visible": true,
+    "desktop_mobile_no_horizontal_overflow": true,
+    "page_errors": []
+  },
+  "screenshot_paths": [
+    "docs/assets/online-ai-desktop.png",
+    "docs/assets/online-ai-mobile.png"
+  ],
+  "health": {
+    "status": 200,
+    "data": {
+      "status": "ok",
+      "product": "路探 AI",
+      "version": "1.2.0",
+      "rule_version": "lutan-rules-1.0.0",
+      "capabilities": {
+        "diagnosis": "rules_with_optional_llm",
+        "llm": true,
+        "weather": true,
+        "waterlevel": false,
+        "species": false,
+        "cloud_storage": false
+      },
+      "llm": {
+        "configured": true,
+        "configuration": "ready",
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "connection_verified": false,
+        "output_policy": "grounded_candidates_only",
+        "workflow_version": "lutan-workflow-1.1.0"
+      },
+      "agent": {
+        "enabled": true,
+        "model": "deepseek-flash",
+        "vision": true,
+        "tools": true,
+        "max_tool_rounds": 2,
+        "max_tool_executions": 3,
+        "protected_rule_ids": [
+          "retrieve_rhythm",
+          "check_rig",
+          "end_spot",
+          "confirm_layer",
+          "clarify_lure"
+        ],
+        "version": "lutan-agent-1.2.0"
+      }
+    }
+  },
+  "completed_at": "2026-11-16T13:51:37.947Z",
+  "content_review": {
+    "status": "requires_fix",
+    "reason": "Following-lure report was not normalized into rule context; ordinary branch allowed an unsupported fish-motive explanation. Preserved as an initial functional run, superseded after normalization and universal grounding fix."
+  }
+}

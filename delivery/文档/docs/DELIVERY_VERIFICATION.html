@@ -1,0 +1,84 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>V1.2 交付验证记录 · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/DELIVERY_VERIFICATION.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/DELIVERY_VERIFICATION.md</p><h1 id="v1-2-交付验证记录">V1.2 交付验证记录</h1>
+<p>日期：2026-11-16。五场景真实 DeepSeek 文字 API 已完成联调；真实照片、在线天气和实钓效果尚未验收。<a href="LIVE_API_REPORT.html">最新原始输出与修复记录</a>。</p>
+<p>最新连续对话补丁已验收：真实 DeepSeek 四轮可从持续无口转入明确追问、已确认水层及下一动作；85 项单元/API、34 项完整浏览器测试通过，类型检查和构建成功，原始 24 场景口径不变。<a href="FOLLOWUP_FIX.html">最新修复与原始记录</a>。</p>
+<p>后续首次使用修复已验收：模型配置与门控原因分开显示，草稿保留，旧会话兼容，明确确认后真实 DeepSeek 返回成功。79 项单元/API、完整 30 项浏览器回归及新增旧会话两项定向检查通过；类型检查、构建、原 24 场景回归也完成。最新证据见 <a href="USABILITY_FIX.html">首次使用修复</a>，以下保留早期阶段记录。</p>
+<h2 id="最新真实联调与补丁验证">最新真实联调与补丁验证</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>实际结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>五场景双入口真实 HTTP 业务检查</td>
+<td>修复后 10 项通过；三个普通场景各入口一次真实 DeepSeek 请求，共 6 次 HTTP 200；两个门控场景两个入口均零调用</td>
+</tr>
+<tr>
+<td>真实前端提交与保存</td>
+<td>页面直接提交 D03，DeepSeek 返回成功；来源展示、刷新恢复、桌面与手机展示通过，没有 mock 路由</td>
+</tr>
+<tr>
+<td><code>npm run typecheck</code> / <code>npm run build</code></td>
+<td>通过 / 成功</td>
+</tr>
+<tr>
+<td><code>npm test</code></td>
+<td>77 项通过，含真实联调暴露的候选越界和旁路记录隐私回归</td>
+</tr>
+<tr>
+<td><code>npm run test:e2e</code></td>
+<td>全部 28 项通过；此默认套件的模型与天气仍为模拟响应</td>
+</tr>
+<tr>
+<td><code>npm run evaluate</code></td>
+<td>23 PASS / 0 FAIL / 1 NEEDS_REVIEW；原始合成基线未改写</td>
+</tr>
+</tbody></table>
+<p>真实调用的采纳/排除范围与耗时以 <a href="LIVE_API_REPORT.html">真实联调报告</a> 为准。此前的交付、迁移和模拟测试记录保留如下；它们不自动升级为真实图片或天气证据。</p>
+<h2 id="交付整理阶段-历史记录">交付整理阶段（历史记录）</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>实际结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm run typecheck</code></td>
+<td>通过</td>
+</tr>
+<tr>
+<td><code>npm test</code></td>
+<td>73 通过，0 失败；含新增隐藏父目录下的生产首页回归</td>
+</tr>
+<tr>
+<td><code>npm run test:delivery</code></td>
+<td>3 通过，0 失败；路径清单、密钥排除、doctor 零推理与无密钥回显</td>
+</tr>
+<tr>
+<td><code>npm run test:e2e</code></td>
+<td>全部 28 项通过，桌面 1440×1000 / 手机 390×844，模型与天气为模拟响应</td>
+</tr>
+<tr>
+<td><code>npm run evaluate</code></td>
+<td>23 PASS / 0 FAIL / 1 NEEDS_REVIEW；P02 历史鱼种资料待接入</td>
+</tr>
+<tr>
+<td><code>npm run doctor -- --json</code></td>
+<td>Node 24.15.0 / npm 11.12.1；源码、依赖完整；本机 DeepSeek 配置字段 ready；未调用推理</td>
+</tr>
+</tbody></table>
+<p>| 迁移目录依赖安装 | 从无 node_modules 的解压目录执行 <code>npm ci --offline --cache &lt;本机已有缓存&gt;</code>，按锁文件安装 179 个依赖 |
+| 迁移目录生产构建与启动 | <code>node scripts/launch.mjs --no-open</code> 成功创建关闭模型的 .env，完成生产构建，监听独立本机端口 18787 |
+| 生产网页与 API 冒烟 | 首页、参考卡交互、health V1.2.0 正常；合法性未知 Agent 请求 HTTP 200、来源 server_rule、模型调用 0 |
+| 离线交付页浏览器检查 | 两种视口均通过：页面身份、非空、图片加载、文档表格/代码块与返回导航、原型诊断/历史切换；无控制台错误、无 HTTP 请求、无横向溢出；iframe 实测 375×812 |
+| 归档清单与链接 | 按白名单排除实际 .env、依赖、缓存、旧 ZIP；ZIP 解码后逐文件 SHA-256 校验；14 个离线 HTML 的本地链接全部有效 |</p>
+<p>迁移验证目录包含带点号的父目录、中文和空格。第一次验证发现绝对路径形式的 <code>res.sendFile</code> 被 Express 视为隐藏路径，导致首页 500；已改为受限根目录中的固定 <code>index.html</code>，新增测试确认首页 200 且 <code>.env</code> 仍 404，再重建并完成生产页面验证。手机原型壳已移除缩放，按原生移动视口完成点击验证。</p>
+<p>浏览器检查使用 Playwright + 本机 Chrome，因为当前会话没有 Browser 插件。Windows 启动器底层 Node 命令实际运行；未用桌面 GUI 双击 CMD，也未执行自动打开浏览器分支（验证使用 <code>--no-open</code>）。</p>
+<p>原始机器记录：<a href="../../../docs/verification/evaluation24.json">24 场景规则回归</a>、<a href="../../../docs/verification/production-rules-smoke.json">迁移规则接口冒烟</a>、<a href="../../../docs/verification/browser-delivery.json">离线浏览器检查</a>。记录中的输入为合成演示条件；没有真实 AI 推理、真实鱼情或实钓反馈。</p>
+<p>源码 ZIP 不含依赖缓存；本轮离线安装能复用本机已有缓存，接收者首次安装仍需网络。构建成功，有两条第三方 Zod 注释位置警告，不影响输出。</p>
+<h2 id="既有-v1-2-证据">既有 V1.2 证据</h2>
+<p>此前 <code>npm run build</code> 成功，V1.2 关键流程的桌面与手机浏览器用例共 6 项通过；本轮交付收尾已补跑完整 28 项。详见 <a href="V1.2_AGENT.html">版本说明</a>。</p>
+<p>交付页中的 V1.2 截图来自真实应用的初始界面，不含模型结果或天气样例；历史原型仅用于交互参考。</p>
+</main></body></html>

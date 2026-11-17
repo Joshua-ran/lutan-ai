@@ -1,0 +1,122 @@
+{
+  "kind": "reviewed_real_deepseek_check_index",
+  "reviewer": "Codex",
+  "reviewed_at": "2026-11-16T11:25:38.454Z",
+  "review_scope": "source, rule contract, single action, unknown boundaries; not expert fishing judgement",
+  "accepted_run": "run-20261116T111746128Z.json",
+  "accepted_run_sha256": "f3bdfa3a9f4ccd02c1f31c491b0ab566f3a81944cf155c435b7a0c6ed38a6bb7",
+  "provider_origin": "https://api.deepseek.com",
+  "provider_model": "deepseek-flash",
+  "summary": {
+    "synthetic_cases": 5,
+    "surfaces": 2,
+    "technical_checks": 10,
+    "passed": 10,
+    "provider_http_calls_in_accepted_run": 6,
+    "total_calls_including_probes_quality_failures_and_browser": 17
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "D03",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 2067
+    },
+    {
+      "case_id": "D03",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 781
+    },
+    {
+      "case_id": "D04",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 1330
+    },
+    {
+      "case_id": "D04",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 909
+    },
+    {
+      "case_id": "D06",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 1550
+    },
+    {
+      "case_id": "D06",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 1,
+      "duration_ms": 908
+    },
+    {
+      "case_id": "D01",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 2
+    },
+    {
+      "case_id": "D01",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 2
+    },
+    {
+      "case_id": "P05",
+      "surface": "agent",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 3
+    },
+    {
+      "case_id": "P05",
+      "surface": "diagnosis",
+      "technical_status": "PASS",
+      "development_scope_review": "passed_for_this_contract_and_input",
+      "model_calls": 0,
+      "duration_ms": 2
+    }
+  ],
+  "excluded_from_final_quality_acceptance": [
+    {
+      "file": "run-20261116T111228846Z.json",
+      "reason": "D03 free generation added unsupported fish psychology and extra next steps"
+    },
+    {
+      "file": "run-20261116T111245518Z.json",
+      "reason": "Three Agent outputs passed transport/schema but failed single-action/factual review; retained as regression evidence"
+    },
+    {
+      "file": "browser-initial-setup.json",
+      "reason": "Browser seeding after app mount caused context/message target mismatch; corrected test setup and reran"
+    }
+  ],
+  "browser_record": "browser-real-api.json",
+  "limitations": {
+    "synthetic_input": true,
+    "rule_candidate_selection_for_three_branches": true,
+    "real_photo_validation": false,
+    "live_weather_validation": false,
+    "field_effects_or_users": false
+  }
+}

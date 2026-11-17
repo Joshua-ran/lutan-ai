@@ -1,0 +1,404 @@
+{
+  "kind": "real_deepseek_synthetic_scenario_integration",
+  "status": "passed_technical_checks",
+  "started_at": "2026-11-16T11:12:28.846Z",
+  "provider": "deepseek",
+  "provider_origin": "https://api.deepseek.com",
+  "requested_model": "deepseek-flash",
+  "model_label": "deepseek-flash",
+  "settings": {
+    "timeout_ms": 20000,
+    "max_output_tokens": 1024,
+    "response_format": "json_object",
+    "vision_enabled": true,
+    "tools_enabled": true
+  },
+  "limitations": [
+    "输入来自原始合成场景，不是真实钓友或实钓反馈。",
+    "普通场景的允许作钓状态是假设的用户自述，只用于隔离模型路径，不是官方许可核验。",
+    "本次为文字联调；没有真实照片理解或在线天气准确性验证。",
+    "仅保存供应商公开回复与工具调用；不保存密钥、鉴权头或思考原文。",
+    "P05 原为出钓前场景；附原出钓前规则，并在两个现场 API 验证合法性门控。"
+  ],
+  "source_sha256": {
+    "LutanAI_Evaluation_24cases_V1.0.json": "c39964d2b84109b2b8ecff50f6a37dfc402dbc3ecc22e360207a3204a9b5aaf1",
+    "package.json": "0dd2ce0f3a54e6cdda064ec28edb7960a449fb268ff85c826fa267afbd36e72e",
+    "server/agent/image.ts": "2bc9ec193b6dd0ebffc8ac4f7b33d45e5cf294ec0958c3c4bef36ce81132c2cb",
+    "server/agent/service.ts": "7698eb61f32d65c72be0ba7b37728aa9709904d1d5f31a81ef7812ffc538002a",
+    "server/agent/tools.ts": "fc111a7518f50b5bd2b2acaefb91a8ad4e9c37c8531af293d1b4d58005cdedf5",
+    "server/app.ts": "5a66577113623bf0a287de95b8748f4a37c29ab3c60f57fee1f2e508c9a151f6",
+    "server/diagnosis-service.ts": "073c9ac2cf2b07f7d05fcd5b6245c3f7bfb166f677e705ea6a024b110fcdf825",
+    "server/index.ts": "d84e633eb982223c03d3f127b9ecc1fce65e698fff07acbfece4178cf7c1d221",
+    "server/llm/adapter.ts": "193adcf293935315ee3b96220b6829954758132b6347c84aac0e2827743c256b",
+    "server/llm/budget.ts": "2f56aac16757b7480265ad6f74cc5ea31d1d8a496f67e21345d33bb138533d25",
+    "server/llm/chat.ts": "5a8d8320c0a294be2f54b6718a82b4816d5dfb5fda18740ea5f8cfa69ef879cb",
+    "server/llm/config.ts": "dc9503712ea14bd532b7b5ff3b132849d556df60772cc1cee02b2b1450e2c78a",
+    "server/llm/errors.ts": "e5c95433eeacf1aa2819b015ccc202af6366d677f63c30e2c05f2935b28b6fe5",
+    "server/llm/grounding.ts": "9efee4491b2d1b11619cb791595bed9a6949a722aa9cf92864709b0de5b3170f",
+    "shared/agent-fallback.ts": "0c5d78fc1e987e8aa26adcdd3b58d925ff140252896f7a1deb31277b60ed5ab7",
+    "shared/agent.ts": "a022caa90afadaf17250bfd3959a00f1fd8ac7f8e754fa8c88b3332b0f1a6c4f",
+    "shared/engine.ts": "30277a39f3a88a82da45403b8ae160881cf6c6a196862e3a8dbe0119ff884579",
+    "shared/presentation.ts": "9a3101fb91f46498e257b44722218bddd62dc7bb2c69424455739287254b025a",
+    "shared/schema.ts": "3d91c0080af5d5c094a66ba0a2211ff97dd440409ffeddfc9c6ddded57fe9868"
+  },
+  "results": [
+    {
+      "case_id": "D03",
+      "theme": "有跟饵但不攻击",
+      "surface": "agent",
+      "started_at": "2026-11-16T11:12:28.875Z",
+      "duration_ms": 3033,
+      "api_http_status": 200,
+      "raw_scene_input": {
+        "fish": "翘嘴",
+        "signal": "跟饵",
+        "lures": [
+          "米诺"
+        ],
+        "flow": "普通"
+      },
+      "input": {
+        "session_id": "dd308afa-5adb-4993-aad6-20eb6de85e38",
+        "message": "目标是翘嘴，用米诺，在普通水流条件下看到跟饵但没有攻击；跟饵的鱼种没有确认。下一步做什么？",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "翘嘴",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "跟饵",
+          "flow": "普通",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [],
+          "actions": [],
+          "observations": {
+            "visible": [],
+            "reported": [],
+            "unknown": []
+          },
+          "city": ""
+        }
+      },
+      "rule_output": {
+        "observations": {
+          "visible": [],
+          "reported": [
+            "目标是翘嘴，用米诺，在普通水流条件下看到跟饵但没有攻击；跟饵的鱼种没有确认。下一步做什么？",
+            "用户条件：目标翘嘴；水位未知；合法性用户已核实允许。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "保持当前拟饵、位置和搜索水层，只小幅调整回收节奏或停顿，比较跟饵与攻击反馈的变化。",
+        "action_kind": "retrieve_rhythm",
+        "reason": "你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。",
+        "check": "只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+        "follow_up_question": null,
+        "session_id": "dd308afa-5adb-4993-aad6-20eb6de85e38",
+        "turn_id": "80921c46-755e-4621-bdfd-693c121e9394",
+        "created_at": "2026-11-16T11:12:31.911Z",
+        "answer_source": "server_rule",
+        "model_name": null,
+        "provider": null,
+        "model_calls": 0,
+        "duration_ms": 0,
+        "tool_events": [],
+        "warnings": [
+          "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "翘嘴",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "跟饵",
+          "flow": "普通",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "api_output": {
+        "observations": {
+          "visible": [],
+          "reported": [
+            "目标是翘嘴，用米诺，在普通水流条件下看到跟饵但没有攻击；跟饵的鱼种没有确认。下一步做什么？",
+            "用户自述：目标翘嘴；水位未知；水流普通。"
+          ],
+          "unknown": [
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。",
+            "翘嘴是否确实存在、跟饵鱼种、水位与涨退水趋势、水色与透明度、具体标点结构和水深、米诺型号与颜色、操作节奏与收线速度"
+          ]
+        },
+        "action": "保持同一方向和同一标点，先用同款米诺做一次明显的“匀速收线中途中停 1–2 秒再继续”的节奏变化，其余不变",
+        "action_kind": "retrieve_rhythm",
+        "reason": "已报告出现跟饵但无攻击，说明有鱼在观察饵；在未确认鱼种且此前无失败调整记录的情况下，先只改变收线节奏这一单一变量，比换饵或换位更能验证是否为追击后的犹豫",
+        "check": "记录中停后是否有鱼在停顿瞬间转向或攻击、跟饵是否继续到近岸；若一次节奏变化后仍只有跟饵无攻击，则下一次只改为放慢匀速收线再观察，不要同时改动其他变量",
+        "follow_up_question": "跟饵是在哪一段出现的——入水后不远处、中段还是接近岸边？",
+        "session_id": "dd308afa-5adb-4993-aad6-20eb6de85e38",
+        "turn_id": "9c8b173d-0f42-4d60-97fe-681cb6f03a88",
+        "created_at": "2026-11-16T11:12:31.902Z",
+        "answer_source": "agent",
+        "model_name": "deepseek-flash",
+        "provider": "deepseek",
+        "model_calls": 1,
+        "duration_ms": 2976,
+        "tool_events": [],
+        "warnings": [
+          "合法性来自用户自述，系统未独立核验适用公告。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "翘嘴",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "跟饵",
+          "flow": "普通",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "provider_calls": [
+        {
+          "started_at": "2026-11-16T11:12:28.927Z",
+          "duration_ms": 2973,
+          "http_status": 200,
+          "capture_status": "captured",
+          "response_id": "c1120dfd-6614-4fea-b44e-a798ade6563a",
+          "provider_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "content": "{\"observations\":{\"visible\":[],\"reported\":[\"用户称目标鱼为翘嘴，使用米诺，在水流普通条件下出现跟饵但未攻击\",\"跟饵鱼种未确认\",\"用户已核实该处允许作钓\"],\"unknown\":[\"翘嘴是否确实存在、跟饵鱼种、水位与涨退水趋势、水色与透明度、具体标点结构和水深、米诺型号与颜色、操作节奏与收线速度\"]},\"action\":\"保持同一方向和同一标点，先用同款米诺做一次明显的“匀速收线中途中停 1–2 秒再继续”的节奏变化，其余不变\",\"action_kind\":\"retrieve_rhythm\",\"reason\":\"已报告出现跟饵但无攻击，说明有鱼在观察饵；在未确认鱼种且此前无失败调整记录的情况下，先只改变收线节奏这一单一变量，比换饵或换位更能验证是否为追击后的犹豫\",\"check\":\"记录中停后是否有鱼在停顿瞬间转向或攻击、跟饵是否继续到近岸；若一次节奏变化后仍只有跟饵无攻击，则下一次只改为放慢匀速收线再观察，不要同时改动其他变量\",\"follow_up_question\":\"跟饵是在哪一段出现的——入水后不远处、中段还是接近岸边？\"}",
+          "usage": {
+            "prompt_tokens": 920,
+            "completion_tokens": 280,
+            "total_tokens": 1200
+          }
+        }
+      ],
+      "checks": {
+        "output_schema": true,
+        "expected_source": "agent",
+        "actual_source": "agent",
+        "model_http_calls": 1,
+        "safety_gate_zero_calls": null,
+        "forbidden_literal_claims_found": []
+      },
+      "status": "PASS",
+      "quality_review": "pending_manual_review_of_saved_public_output"
+    },
+    {
+      "case_id": "D03",
+      "theme": "有跟饵但不攻击",
+      "surface": "diagnosis",
+      "started_at": "2026-11-16T11:12:31.912Z",
+      "duration_ms": 665,
+      "api_http_status": 200,
+      "raw_scene_input": {
+        "fish": "翘嘴",
+        "signal": "跟饵",
+        "lures": [
+          "米诺"
+        ],
+        "flow": "普通"
+      },
+      "input": {
+        "water": "河流 / 支流",
+        "fish": "翘嘴",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "不清楚",
+        "duration": "不清楚",
+        "lures": [
+          "米诺"
+        ],
+        "layers": "不清楚",
+        "adjust": "不清楚",
+        "signal": "跟饵",
+        "flow": "普通",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "rule_output": {
+        "id": "aa052513-621c-4199-ab3e-7505b7922eab",
+        "rule_version": "lutan-rules-1.0.0",
+        "rule_id": "retrieve_rhythm",
+        "created_at": "2026-11-16T11:12:32.577Z",
+        "source": "server_rules",
+        "generation": {
+          "mode": "rules",
+          "workflow_version": "lutan-workflow-1.1.0",
+          "provider": null,
+          "model": null,
+          "fallback_reason": null,
+          "output_boundary": "建议来自版本化规则与用户观察，未核验鱼种、水文和法规，不保证鱼口或渔获。"
+        },
+        "title": "有跟饵，先验证操作节奏",
+        "priority_action": "保持当前拟饵、位置和搜索水层，只小幅调整回收节奏或停顿，比较跟饵与攻击反馈的变化。",
+        "rationale": "你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。",
+        "observed_facts": [
+          "用户计划：河流 / 支流 / 翘嘴，并非物种证据。",
+          "用户观察：水位未知 / 水流普通 / 水色未知 / 降雨未知。",
+          "结构：不清楚；时长：不清楚。",
+          "拟饵：米诺；水层：不清楚。",
+          "已调整：不清楚；鱼口：跟饵；其他观察：不清楚。",
+          "合法性：用户已核实允许（用户自述，系统未独立核验）。"
+        ],
+        "evidence_status": "insufficient",
+        "unknowns": [
+          "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。",
+          "未接入实时天气、水温、水位幅度或鱼群位置，不提供鱼口概率与水位预测。"
+        ],
+        "safety_or_legality_notice": "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+        "follow_up_question": null,
+        "risk": "normal",
+        "input": {
+          "water": "河流 / 支流",
+          "fish": "翘嘴",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "跟饵",
+          "flow": "普通",
+          "clarity": "未知",
+          "observed": "不清楚"
+        }
+      },
+      "api_output": {
+        "id": "77946ae7-3a97-4cb1-aa19-376fc4f61422",
+        "rule_version": "lutan-rules-1.0.0",
+        "rule_id": "retrieve_rhythm",
+        "created_at": "2026-11-16T11:12:31.915Z",
+        "source": "server_llm",
+        "generation": {
+          "mode": "llm_assisted",
+          "workflow_version": "lutan-workflow-1.1.0",
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "fallback_reason": null,
+          "output_boundary": "AI 仅在规则限定的单变量候选和可追溯输入内组织建议；未核验鱼种、水文和法规，不保证鱼口或渔获。",
+          "provider_model": "deepseek-flash",
+          "latency_ms": 661
+        },
+        "title": "有跟饵，先验证操作节奏",
+        "priority_action": "保持当前拟饵、位置和搜索水层，只小幅调整回收节奏或停顿，比较跟饵与攻击反馈的变化。",
+        "rationale": "你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。 你的本次目标是翘嘴，目标选择不是该水域物种出现的证据；本建议用于比较动作，不是针对该鱼种习性的推断。 你报告的搜索时长为不清楚、水层为不清楚、已调整不清楚；这些尝试决定了本次只比较一个变量的范围。",
+        "observed_facts": [
+          "用户计划：河流 / 支流 / 翘嘴，并非物种证据。",
+          "用户观察：水位未知 / 水流普通 / 水色未知 / 降雨未知。",
+          "结构：不清楚；时长：不清楚。",
+          "拟饵：米诺；水层：不清楚。",
+          "已调整：不清楚；鱼口：跟饵；其他观察：不清楚。",
+          "合法性：用户已核实允许（用户自述，系统未独立核验）。"
+        ],
+        "evidence_status": "insufficient",
+        "unknowns": [
+          "没有该水域目标鱼的可核验出现证据，证据不足；不能根据空军断言没有鱼。",
+          "未接入实时天气、水温、水位幅度或鱼群位置，不提供鱼口概率与水位预测。"
+        ],
+        "safety_or_legality_notice": "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+        "follow_up_question": "你目前搜索的结构是什么？不确定时可以保留未知。",
+        "risk": "normal",
+        "input": {
+          "water": "河流 / 支流",
+          "fish": "翘嘴",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "米诺"
+          ],
+          "layers": "不清楚",
+          "adjust": "不清楚",
+          "signal": "跟饵",
+          "flow": "普通",
+          "clarity": "未知",
+          "observed": "不清楚"
+        }
+      },
+      "provider_calls": [
+        {
+          "started_at": "2026-11-16T11:12:31.916Z",
+          "duration_ms": 659,
+          "http_status": 200,
+          "capture_status": "captured",
+          "response_id": "3209f1d5-0ad1-42cb-8756-02323d6d0fcb",
+          "provider_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "content": "{\"action_id\":\"rule_action\",\"rationale_ids\":[\"rule_basis\",\"target_context\",\"attempt_context\"],\"unknown_ids\":[\"u0\",\"u1\"],\"follow_up_question_id\":\"structure_question\",\"evidence_status\":\"insufficient\"}",
+          "usage": {
+            "prompt_tokens": 761,
+            "completion_tokens": 50,
+            "total_tokens": 811
+          }
+        }
+      ],
+      "checks": {
+        "output_schema": true,
+        "expected_source": "server_llm",
+        "actual_source": "server_llm",
+        "model_http_calls": 1,
+        "safety_gate_zero_calls": null,
+        "forbidden_literal_claims_found": []
+      },
+      "status": "PASS",
+      "quality_review": "pending_manual_review_of_saved_public_output"
+    }
+  ],
+  "completed_at": "2026-11-16T11:12:32.578Z",
+  "summary": {
+    "checks": 2,
+    "passed": 2,
+    "failed": 0,
+    "actual_provider_http_calls": 2
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>路探 AI · 出钓参考与空军诊断 | V1.0 原型</title>
+<style>
+:root{--bg:#f5f8f9;--paper:#fff;--ink:#132a2d;--sub:#667b7e;--line:#e1eaeb;--green:#0b7665;--green2:#eaf7f3;--dark:#102c31;--warn:#b16d25;--warnbg:#fff8e9;--blue:#1b657f;--radius:18px;--shadow:0 9px 40px rgba(9,46,50,.05)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.55}
+button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #84d2c2;outline-offset:2px}
+.layout{display:grid;grid-template-columns:250px minmax(0,790px);gap:28px;justify-content:center;max-width:1190px;margin:auto;padding:30px 18px 70px}
+.sidebar{padding:25px 19px;background:var(--dark);color:#fff;border-radius:24px;align-self:start;position:sticky;top:20px;min-height:640px;box-shadow:var(--shadow)}
+.brand{font-size:25px;font-weight:800;letter-spacing:-.6px;display:flex;gap:10px;align-items:center}.mark{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#1c8c78;color:white;border-radius:12px;font-size:22px}
+.brand-sub{font-size:12px;color:#9dcac7;margin:5px 0 30px 46px}.side-btn{width:100%;text-align:left;border:1px solid transparent;background:transparent;color:#c2d7d7;border-radius:12px;padding:13px 15px;margin:3px 0;font-weight:700}.side-btn.active{background:#205257;border-color:#397476;color:#fff}.side-btn:hover{background:#244950}.foot-side{margin-top:45px;border-top:1px solid #315154;padding-top:20px;color:#b8d0cd;font-size:12px}.foot-side b{color:#fff}
+.main{min-width:0}.topline{display:flex;align-items:center;justify-content:space-between;margin:4px 0 20px;gap:16px}.eyebrow{font-size:11px;letter-spacing:1.6px;font-weight:800;color:var(--green)}.pill{display:inline-flex;background:#e7f1f3;color:#2e6974;padding:5px 10px;border-radius:99px;font-size:11px;font-weight:700}
+.h1{font-size:33px;line-height:1.28;letter-spacing:-1px;font-weight:800;margin:5px 0 9px}.lead{color:var(--sub);font-size:14px;margin:0 0 24px;max-width:680px}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{margin:0 0 6px;font-size:19px}.card h3{font-size:15px;margin:2px 0 10px}.muted{color:var(--sub)}.small{font-size:12px}.label{display:block;font-size:13px;font-weight:800;margin:17px 0 9px}.choices{display:flex;flex-wrap:wrap;gap:8px}.choice{border:1px solid #d4e2e1;background:#fff;border-radius:11px;padding:9px 13px;font-size:13px;color:#335155;transition:background .12s,border-color .12s}.choice.active{background:var(--green2);border-color:var(--green);color:#086553;font-weight:800}.choice:hover{border-color:var(--green)}
+.field-input{width:100%;padding:12px 14px;border:1px solid #d4e2e1;border-radius:11px;background:#fff;color:var(--ink)}.hint{font-size:12px;color:var(--sub);margin:8px 0 0}.dual{display:grid;grid-template-columns:1fr 1fr;gap:16px}.primary{background:var(--green);color:#fff;border:1px solid var(--green);padding:12px 18px;border-radius:12px;font-weight:800}.primary:hover{background:#075a4d}.outline{background:#fff;color:var(--green);border:1px solid #9abeb8;padding:12px 18px;border-radius:12px;font-weight:800}.ghost{border:0;background:transparent;color:var(--green);font-weight:800;padding:7px 0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.notice{border-radius:13px;padding:14px 15px;background:var(--warnbg);color:#6c4b24;font-size:13px;border:1px solid #f1d9aa}.notice.critical{background:#fff0ee;color:#a7352c;border-color:#f0b7ae}.info{border-radius:13px;padding:14px 15px;background:var(--green2);border:1px solid #c6e6dc;font-size:13px}.neutral{background:#f4f7f8;border:1px dashed #becfd1;border-radius:13px;padding:16px;font-size:13px}.source{font-size:11px;color:#697e81;margin-top:7px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.metric{background:#f5f8f7;padding:15px;border-radius:13px}.metric strong{display:block;font-size:14px}.metric span{color:var(--sub);font-size:11px}.section-sub{font-size:12px;color:var(--sub);margin:0 0 6px}.tagrow{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tag{background:#edf4f4;color:#406266;font-size:11px;padding:5px 9px;border-radius:9px}.result-title{font-weight:800;font-size:20px;margin:6px 0}.resultbox{padding:20px;background:#eff8f5;border:1px solid #bee0d8;border-radius:15px}.resultbox p{font-size:14px;line-height:1.85}.one{font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px}
+.divider{border-top:1px solid var(--line);margin:18px 0}.outcome{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.outcome button{border:1px solid var(--line);background:#fff;padding:12px;border-radius:12px;text-align:center;color:var(--ink)}.outcome button.active{background:var(--green2);border-color:var(--green);font-weight:800}.page{display:none}.page.active{display:block}.hidden{display:none!important}.rec{padding:15px;border:1px solid var(--line);border-radius:13px;margin:10px 0}.rec .date{color:var(--sub);font-size:11px}.rec strong{font-size:14px}.empty{text-align:center;padding:40px 15px;color:var(--sub);font-size:13px}
+.mobile-nav{display:none}footer{margin-top:30px;font-size:11px;color:#89999d;text-align:center}.linkbutton{font-size:12px;color:#a73e2d;border:0;background:none;cursor:pointer}.kbd{font-family:ui-monospace,monospace;background:#f1f6f5;padding:1px 4px;border-radius:4px}
+@media(max-width:850px){.layout{grid-template-columns:1fr;max-width:660px;padding:0 13px 94px}.sidebar{display:none}.topline{margin-top:20px}.h1{font-size:28px}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 25px rgba(0,0,0,.04);padding:8px 8px max(8px,env(safe-area-inset-bottom));gap:5px}.mobile-nav button{flex:1;border:0;background:transparent;padding:7px 4px;color:#637b7e;font-size:12px;border-radius:10px}.mobile-nav button.active{color:var(--green);font-weight:800;background:#ecf7f3}}
+@media(max-width:500px){.card{padding:16px;border-radius:16px}.dual,.grid3{grid-template-columns:1fr}.metric{padding:11px}.h1{font-size:25px}.choice{font-size:12px}.pill{font-size:10px}.topline{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar"><div class="brand"><span class="mark">≈</span>路探 AI</div><p class="brand-sub">把空军，变成下一次的经验</p><button class="side-btn active" data-nav="pretrip">◈　出钓前分析</button><button class="side-btn" data-nav="diagnose">◎　正在作钓</button><button class="side-btn" data-nav="history">▤　我的记录</button><div class="foot-side"><b>V1.0 · 可点击原型</b><p>演示规则，并非真实 AI 诊断。没有联网获取鱼情、天气、水文、地理位置和禁钓信息。</p><p>本地记录可一键清空；不采集精确钓点。</p></div></aside>
+<main class="main">
+<div class="topline"><span class="eyebrow">LUTAN · FISHING DECISION LAB</span><span class="pill">研究演示版 · 离线</span></div>
+<section class="page active" id="page-pretrip">
+<h1 class="h1">出发前，先把信息理清楚。</h1><p class="lead">选一片水域和目标鱼，看看哪些是已知事实、哪些还无法判断。我们不提供“今天必爆口”的虚构预测。</p>
+<div class="card"><h2>01　创建出钓计划</h2><p class="section-sub">第一版不索取 GPS，也不要求公开自己的精确标点。</p>
+<div class="label">准备去什么水域？</div><div class="choices" data-key="water"><button class="choice active" data-value="河流 / 支流">河流 / 支流</button><button class="choice" data-value="湖泊 / 水库">湖泊 / 水库</button><button class="choice" data-value="不确定">不确定</button></div>
+<div class="label">目标鱼</div><div class="choices" data-key="fish"><button class="choice active" data-value="鳜鱼">鳜鱼</button><button class="choice" data-value="翘嘴">翘嘴</button><button class="choice" data-value="鲈鱼">鲈鱼</button></div>
+<div class="label">水域备注（选填）</div><input id="alias" class="field-input" type="text" maxlength="36" placeholder="例如：南充某小河道（仅保存在本机）"/><p class="hint">避免填写精确坐标或他人的秘密钓点。</p>
+<div class="label">你目前了解的水情</div><div class="choices" data-key="waterlevel"><button class="choice" data-value="稳定">相对稳定</button><button class="choice" data-value="涨水">近期涨水</button><button class="choice" data-value="退水">近期退水</button><button class="choice" data-value="急变">明显急涨 / 急流</button><button class="choice active" data-value="未知">还不清楚</button></div>
+<div class="label">你是否观察到上游近期降雨？</div><div class="choices" data-key="rain"><button class="choice" data-value="有">有</button><button class="choice" data-value="无">没有</button><button class="choice active" data-value="未知">不知道</button></div><div class="actions"><button class="primary" id="pretrip-btn">生成出钓参考卡 →</button></div></div>
+<div class="card hidden" id="pretrip-result" aria-live="polite"><h2>你的出钓参考卡</h2><div class="tagrow" id="pretrip-tags"></div>
+<div class="grid3"><div class="metric"><span>目标鱼是否存在</span><strong>证据不足</strong></div><div class="metric"><span>实时水位</span><strong>未接入</strong></div><div class="metric"><span>合法垂钓状态</span><strong>待官方核实</strong></div></div>
+<div class="divider"></div><h3>已知 / 未知 / 建议核实</h3><div class="info" id="pretrip-insight"></div><div class="source">以上“已知”仅来自你的输入，不来自实时水文或鱼种调查。没有鱼种记录≠没有鱼。</div>
+<div id="pretrip-warning" class="notice" style="margin-top:14px"></div><div class="actions"><button class="primary" id="go-diagnose">开始作钓诊断 →</button><button class="outline" id="pretrip-revise">修改计划</button></div></div>
+</section>
+<section class="page" id="page-diagnose">
+<h1 class="h1">没口了？先排查一个变量。</h1><p class="lead">这不是一键算出“鱼在哪”，而是根据你已经尝试的动作，整理下一步最值得验证的方向。</p>
+<div class="card"><h2>02　当前作钓情况</h2><p class="section-sub">沿用出钓前的水域和目标鱼信息。</p><div class="tagrow" id="context-tags"></div>
+<div class="dual"><div><div class="label">正在搜索的结构</div><div class="choices" data-key="structure"><button class="choice active" data-value="乱石 / 深浅交界">乱石 / 深浅交界</button><button class="choice" data-value="桥墩 / 回水湾">桥墩 / 回水湾</button><button class="choice" data-value="水草 / 岸边结构">水草 / 岸边结构</button><button class="choice" data-value="不清楚">不清楚</button></div></div><div><div class="label">已搜索多久</div><div class="choices" data-key="duration"><button class="choice" data-value="10 分钟左右">10 分钟左右</button><button class="choice active" data-value="20–40 分钟">20–40 分钟</button><button class="choice" data-value="40 分钟以上">40 分钟以上</button></div></div></div>
+<div class="label">已尝试的拟饵（可多选）</div><div class="choices" id="lure-options"><button class="choice active" data-lure="软饵" aria-pressed="true">软饵</button><button class="choice" data-lure="铁板" aria-pressed="false">铁板</button><button class="choice" data-lure="米诺" aria-pressed="false">米诺</button><button class="choice" data-lure="VIB" aria-pressed="false">VIB</button><button class="choice" data-lure="其他" aria-pressed="false">其他</button></div>
+<div class="label">已经搜索过的水层</div><div class="choices" data-key="layers"><button class="choice active" data-value="主要一个水层">主要一个水层</button><button class="choice" data-value="多个水层">多个水层</button><button class="choice" data-value="不清楚">不清楚</button></div>
+<div class="label">已经调整过什么？</div><div class="choices" data-key="adjust"><button class="choice active" data-value="没有">还没有调整</button><button class="choice" data-value="手法">调整过手法</button><button class="choice" data-value="换位">换过附近位置</button><button class="choice" data-value="都试过">手法和换位都试过</button></div>
+<div class="label">实际观察到的鱼口</div><div class="choices" data-key="signal"><button class="choice active" data-value="无口">完全没口</button><button class="choice" data-value="跟饵">有跟饵但不攻击</button><button class="choice" data-value="疑似触碰">疑似咬口但未中鱼</button></div>
+<div class="label">当前水流（用户观察）</div><div class="choices" data-key="flow"><button class="choice" data-value="缓慢">缓慢</button><button class="choice active" data-value="普通">普通</button><button class="choice" data-value="很急">明显很急</button><button class="choice" data-value="未知">不确定</button></div><div class="actions"><button class="primary" id="diag-btn">生成下一步建议 →</button><button class="outline" id="diag-back">查看出钓前信息</button></div></div>
+<div class="card hidden" id="diagnosis-result" aria-live="polite"><span class="one">诊断结果 / 模拟规则</span><h2 class="result-title" id="diag-heading"></h2><div class="resultbox"><div class="one">建议只先做这一项</div><p id="diag-action"></p><p class="muted small" id="diag-reason"></p></div><div class="divider"></div><h3>依据与限制</h3><p class="small" id="diag-facts"></p><div class="notice" id="diag-limits"></div><div class="source">诊断结果来自本地演示规则，并非 AI、大数据或实时鱼情预测。遇到水流剧变、安全风险时先停止危险操作。</div><div class="actions"><button class="primary" id="feedback-btn">记录结果反馈 →</button><button class="outline" id="diag-revise">修改输入</button></div></div>
+<div class="card hidden" id="feedback-card"><h2>03　这条建议的实际结果</h2><p class="section-sub">如还未尝试，可以选择“暂未尝试”。这是个人反馈，不代表产品已提高中鱼率。</p><div class="outcome" id="outcomes"><button data-outcome="有改善">有改善</button><button data-outcome="没有改善">没有改善</button><button data-outcome="暂未尝试" class="active">暂未尝试</button><button data-outcome="不适用 / 不安全">不适用 / 不安全</button></div><div class="label">简短备注（选填）</div><textarea id="memo" rows="3" maxlength="240" class="field-input" placeholder="比如：换到另一侧缓流后有跟饵；或尝试后仍然没口"></textarea><div class="actions"><button class="primary" id="save-btn">保存到本机记录</button><button class="outline" id="export-one-btn">导出本次 JSON</button></div><p class="hint" id="save-message" aria-live="polite">记录仅在当前浏览器本地保存，不上传服务器。</p></div>
+</section>
+<section class="page" id="page-history">
+<h1 class="h1">每次尝试，都有迹可循。</h1><p class="lead">历史记录默认只在当前浏览器本地保存。以后正式产品需要再设计登录、云同步、数据删除和隐私保护。</p>
+<div class="card"><h2>我的尝试记录</h2><p class="section-sub">不包含 GPS 或精准钓点。</p><div id="record-list"></div><div class="actions"><button class="outline" id="export-all">导出全部 JSON</button><button class="outline" id="clear-all" style="color:#ae4d3e;border-color:#d5ada6">清空全部记录</button></div><p class="hint" id="history-message" aria-live="polite"></p></div>
+<div class="card"><h3>这里还没有做什么？</h3><p class="small muted">没有接入鱼种数据库、实时天气/水位、地图、AI 模型或用户账户。原型只用于验证“出钓前参考 → 空军诊断 → 反馈”是否值得做成正式产品。</p></div>
+</section>
+<footer>路探 AI · 低保真功能验证 V1.0 · 非实时鱼情 / 非合法垂钓许可判断</footer>
+</main></div>
+<nav class="mobile-nav" aria-label="切换功能"><button data-nav="pretrip" class="active">◈<br>出钓前</button><button data-nav="diagnose">◎<br>正在作钓</button><button data-nav="history">▤<br>我的记录</button></nav>
+<script>
+(()=>{
+'use strict';
+const state={water:'河流 / 支流',fish:'鳜鱼',waterlevel:'未知',rain:'未知',structure:'乱石 / 深浅交界',duration:'20–40 分钟',layers:'主要一个水层',adjust:'没有',signal:'无口',flow:'普通'};
+let selectedLures=new Set(['软饵']), selectedOutcome='暂未尝试', lastDiagnosis=null, lastPretrip=null;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const recordsKey='lutan_v1_records';
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function nav(page){ $$('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));$$('[data-nav]').forEach(x=>x.classList.toggle('active',x.dataset.nav===page));if(page==='diagnose')renderTags();if(page==='history')renderHistory();window.scrollTo({top:0,behavior:'instant'}); }
+$$('[data-nav]').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.nav)));
+$$('[data-key]').forEach(group=>{group.querySelectorAll('[data-value]').forEach(b=>b.addEventListener('click',()=>{group.querySelectorAll('[data-value]').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});b.classList.add('active');b.setAttribute('aria-pressed','true');state[group.dataset.key]=b.dataset.value;if(group.dataset.key==='waterlevel'||group.dataset.key==='rain')$('#pretrip-result').classList.add('hidden');$('#diagnosis-result').classList.add('hidden');$('#feedback-card').classList.add('hidden');}));});
+$$('[data-lure]').forEach(b=>b.addEventListener('click',()=>{const name=b.dataset.lure;if(selectedLures.has(name))selectedLures.delete(name);else selectedLures.add(name);b.classList.toggle('active',selectedLures.has(name));b.setAttribute('aria-pressed',String(selectedLures.has(name)));$('#diagnosis-result').classList.add('hidden');$('#feedback-card').classList.add('hidden');}));
+function tags(node,labels){node.innerHTML=labels.map(s=>'<span class="tag">'+esc(s)+'</span>').join('');}
+function renderTags(){tags($('#context-tags'),[state.water,state.fish,($('#alias').value.trim()||'未命名水域'),'水位：'+state.waterlevel]);}
+function isDanger(){return state.waterlevel==='急变'||state.flow==='很急';}
+function pretrip(){let name=$('#alias').value.trim()||'未命名水域';tags($('#pretrip-tags'),[name,state.water,state.fish]);let info=[];
+info.push('【你的观察】近期水情：'+state.waterlevel+'；上游降雨情况：'+(state.rain==='未知'?'未知':state.rain==='有'?'用户报告有降雨':'用户报告未观察到降雨')+'。');
+info.push('【数据缺口】未接入该河段实测水位、上游调度、历史物种记录和现场鱼群数据。');
+let preparing=state.fish==='鳜鱼'?'如果依法可以作钓，可准备适合结构区、贴近目标水层的搜索方案，留意触底和挂底风险。':state.fish==='翘嘴'?'如果依法可以作钓，先观察饵鱼活动迹象和可安全覆盖的搜索水层。':'如果依法可以作钓，可观察水草或结构边缘，但不要以此推断一定存在目标鱼。';
+info.push('【准备建议】'+preparing);$('#pretrip-insight').textContent=info.join('\n');$('#pretrip-insight').style.whiteSpace='pre-line';
+let warning=isDanger()?'发现明显急涨水或急流的迹象时，请先远离危险岸边，查看当地官方预警，不要为了试饵继续靠近水边。':'具体河段是否允许垂钓尚未核验；出行前请根据当地最新官方管理公告确认。';
+$('#pretrip-warning').textContent=warning;$('#pretrip-warning').classList.toggle('critical',isDanger());$('#pretrip-result').classList.remove('hidden');lastPretrip={name,water:state.water,fish:state.fish,waterlevel:state.waterlevel,rain:state.rain};$('#pretrip-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('#pretrip-btn').addEventListener('click',pretrip);$('#pretrip-revise').addEventListener('click',()=>$('#pretrip-result').classList.add('hidden'));$('#go-diagnose').addEventListener('click',()=>nav('diagnose'));
+function diagnose(){let heading,action,reason,unknown='不能根据空军认定该标点没有鱼；没有目标水域的真实鱼种、实时水位、当地垂钓许可或鱼群位置数据。';
+const triedMany=(state.layers==='多个水层'&&state.adjust==='都试过'&&selectedLures.size>=2);
+if(isDanger()){
+ heading='安全优先：先停止危险岸边作钓';action='观察到急涨水或明显急流时，先撤离受水位和冲刷影响的区域；在安全位置核对官方预警和垂钓规定。不建议继续涉水或靠近危险结构。';reason='安全风险的优先级高于寻找鱼口。这里不依据气温或拟饵推断河道是否安全。';
+}else if(state.signal==='跟饵'){
+ heading='有跟饵反馈，先检验操作节奏';action='保持同一个合法安全的搜索区域与拟饵，先小幅调整回收节奏或停顿，观察是否出现不同的攻击反馈。';reason='用户报告已有跟饵，先改变一个变量比同时换饵换点更容易形成可比较的记录。';
+}else if(state.signal==='疑似触碰'){
+ heading='先区分鱼口和结构碰撞';action='在安全位置检查钩尖、钓组与拟饵运行状态；下一次搜索时注意区分触底、挂草与可能的咬口，必要时放慢动作观察。';reason='触碰不等于确定鱼口，现阶段不能仅凭一次触碰确认目标鱼存在。';
+}else if(state.layers==='不清楚'){
+ heading='先确认拟饵的搜索水层';action='先用当前拟饵确认下沉和回收路径，明确实际搜索哪个水层；暂时不要一次更换多个拟饵和操作变量。';reason='未知实际搜索水层时，无法判断没口是覆盖不足还是其他因素。';
+}else if(triedMany&&state.duration==='40 分钟以上'){
+ heading='考虑结束当前标点搜索';action='你已换过拟饵、搜索多个水层并调整手法和位置，仍无口。可考虑结束当前标点，改天再试或转向另一个合法安全、流态/结构不同的区域。';reason='当前尝试覆盖较多，继续重复同一组动作的新增信息有限；这仍不能证明没有鱼。';
+}else if(state.adjust==='没有'){
+ heading='先比较相邻结构的差异';action='在确认安全合法后，选择附近流态或结构略有不同的位置，暂时维持当前拟饵和操作方式，观察是否出现跟饵或咬口。';reason='用户尚未尝试更换位置；一次只改变一个因素，便于比较结果。';
+}else if(state.layers==='主要一个水层'){
+ heading='尝试验证另一个搜索水层';action='保持安全与合规，在当前已使用的拟饵能力范围内小幅改变搜索水层，记录是否出现新的反馈。';reason='当前主要搜索一个水层，尚未充分比较其他水层，但不能因此断定目标鱼在更深处。';
+}else{
+ heading='优先核对水情与已尝试范围';action='先查看用户可观察的水位、水色和结构变化，回顾哪个范围尚未覆盖；选择一个尚未尝试的变量，而不是同时换饵和换位。';reason='输入显示已进行部分调整，但不足以把空军单独归因于拟饵、天气或鱼群。';
+}
+if(state.waterlevel==='涨水'||state.waterlevel==='退水')reason+=' 你报告了水位变化，可记录流速、水色、岸边稳定性；水位变化与鱼口的因果关系无法由本次记录确定。';
+lastDiagnosis={heading,action,reason,unknown,fish:state.fish,water:state.water,waterlevel:state.waterlevel,structure:state.structure,duration:state.duration,lures:[...selectedLures],layers:state.layers,adjust:state.adjust,signal:state.signal,flow:state.flow};
+$('#diag-heading').textContent=heading;$('#diag-action').textContent=action;$('#diag-reason').textContent='为什么：'+reason;$('#diag-facts').textContent='用户提供：'+state.water+' / '+state.fish+' / '+state.structure+' / '+state.duration+' / 拟饵 '+([...selectedLures].join('、')||'未选择')+' / '+state.layers+' / '+state.adjust+' / '+state.signal+' / 水位 '+state.waterlevel+' / 水流 '+state.flow+'。';$('#diag-limits').textContent=unknown+' 具体水域合法性需要核对当地官方管理信息。';$('#diagnosis-result').classList.remove('hidden');$('#feedback-card').classList.add('hidden');$('#diagnosis-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('#diag-btn').addEventListener('click',diagnose);$('#diag-revise').addEventListener('click',()=>{$('#diagnosis-result').classList.add('hidden');$('#feedback-card').classList.add('hidden')});$('#diag-back').addEventListener('click',()=>nav('pretrip'));
+$('#feedback-btn').addEventListener('click',()=>{$('#feedback-card').classList.remove('hidden');$('#feedback-card').scrollIntoView({behavior:'smooth',block:'start'})});
+$$('[data-outcome]').forEach(b=>b.addEventListener('click',()=>{$$('[data-outcome]').forEach(x=>x.classList.remove('active'));b.classList.add('active');selectedOutcome=b.dataset.outcome;}));
+function readRecords(){try{return JSON.parse(localStorage.getItem(recordsKey)||'[]')}catch(e){return []}}
+function store(records){try{localStorage.setItem(recordsKey,JSON.stringify(records));return true}catch(e){return false}}
+function recordNow(){return {id:'trip-'+Date.now(),version:'V1.0-prototype',created_at:new Date().toISOString(),name:$('#alias').value.trim()||null,pretrip:lastPretrip,diagnosis:lastDiagnosis,feedback:{outcome:selectedOutcome,memo:$('#memo').value.trim()},provenance:'用户输入+本地演示规则，无实时数据'}}
+function downloadJson(data,filename){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+$('#save-btn').addEventListener('click',()=>{if(!lastDiagnosis)return;const items=readRecords();items.unshift(recordNow());const ok=store(items);$('#save-message').textContent=ok?'已保存到当前浏览器本地，可在“我的记录”查看；关闭网页后一般仍可查看（浏览器清理数据除外）。':'浏览器禁止本地存储，请使用“导出本次 JSON”保存。';});
+$('#export-one-btn').addEventListener('click',()=>{if(lastDiagnosis)downloadJson(recordNow(),'路探AI_本次诊断.json')});
+function renderHistory(){const items=readRecords();$('#record-list').innerHTML=items.length?items.map(r=>'<div class="rec"><div class="date">'+esc(new Date(r.created_at).toLocaleString('zh-CN'))+'</div><strong>'+esc(r.name||'未命名水域')+' · '+esc(r.diagnosis?.fish||'未知鱼种')+'</strong><div class="small muted">'+esc(r.diagnosis?.heading||'诊断记录')+'</div><div class="tagrow"><span class="tag">'+esc(r.feedback?.outcome||'未反馈')+'</span><span class="tag">'+esc(r.diagnosis?.waterlevel||'未知水位')+'</span></div><div class="small">'+esc(r.feedback?.memo||'无备注')+'</div><button class="linkbutton" data-delete="'+esc(r.id)+'">删除本条</button></div>').join(''):'<div class="empty">还没有记录。先完成一次作钓诊断，再选择反馈并保存。</div>';
+$$('[data-delete]').forEach(b=>b.addEventListener('click',()=>{if(confirm('确定删除本条本地记录吗？')){store(readRecords().filter(x=>x.id!==b.dataset.delete));renderHistory()}}));}
+$('#export-all').addEventListener('click',()=>{const items=readRecords();if(!items.length){$('#history-message').textContent='当前没有可导出的记录。';return;}downloadJson({product:'路探AI',prototype_version:'V1.0',records:items},'路探AI_本地记录.json')});
+$('#clear-all').addEventListener('click',()=>{if(confirm('确定清空当前浏览器的全部路探 AI 记录？操作不可撤销。')){store([]);renderHistory();$('#history-message').textContent='本地记录已清空。';}});
+renderTags();
+})();
+</script>
+</body>
+</html>

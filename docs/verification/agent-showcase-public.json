@@ -1,0 +1,394 @@
+{
+  "status": "failed",
+  "executed_at": "2026-11-16T16:03:15.675Z",
+  "ui": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+  "api": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+  "synthetic_scenarios": true,
+  "real_model_requests": true,
+  "photo_source": {
+    "url": "https://commons.wikimedia.org/wiki/File:River_shoreline_with_gray_rocks_close_up_photo.jpg",
+    "author": "U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "note": "公开授权示例，非南充现场"
+  },
+  "vision": {
+    "status": 200,
+    "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+    "roundtrip_ms": 2944,
+    "input": {
+      "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+      "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+      "image": "[omitted: actual image was sent; source is documented]",
+      "context": {
+        "water": "河流 / 支流",
+        "fish": "鳜鱼",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "不清楚",
+        "duration": "不清楚",
+        "lures": [
+          "软饵"
+        ],
+        "layers": "主要一个水层",
+        "adjust": "不清楚",
+        "signal": "不清楚",
+        "flow": "未知",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "session_snapshot": {
+        "messages": [],
+        "actions": [],
+        "observations": {
+          "visible": [],
+          "reported": [],
+          "unknown": []
+        },
+        "city": ""
+      }
+    },
+    "output": {
+      "observations": {
+        "visible": [
+          "近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆。",
+          "水面呈蓝色细密波纹，中远处无可见白浪或明显水花。",
+          "对岸为低矮林带与远处山地，岸线开阔平直。"
+        ],
+        "reported": [
+          "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+          "用户自述：目标鳜鱼；水位未知；水流未知。"
+        ],
+        "unknown": [
+          "单张照片不能确定实际流速、流向、水深或水下鱼群。",
+          "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+          "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+          "天气数据不等于现场水位或鱼口预测。"
+        ]
+      },
+      "action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+      "action_kind": "change_layer",
+      "reason": "照片观察（模型识别，待核实）：近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆；水面呈蓝色细密波纹，中远处无可见白浪或明显水花。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+      "check": "记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+      "follow_up_question": null,
+      "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+      "turn_id": "9a322976-9370-4ae4-8b83-a5a8bb648ef0",
+      "created_at": "2026-11-16T16:03:29.162Z",
+      "answer_source": "agent",
+      "model_name": "deepseek-flash",
+      "provider": "deepseek",
+      "model_calls": 1,
+      "duration_ms": 2428,
+      "tool_events": [],
+      "warnings": [
+        "合法性来自用户自述，系统未独立核验适用公告。"
+      ],
+      "reported_actions": [],
+      "context": {
+        "water": "河流 / 支流",
+        "fish": "鳜鱼",
+        "alias": "",
+        "waterlevel": "未知",
+        "rain": "未知",
+        "legality": "用户已核实允许",
+        "structure": "乱石 / 深浅交界",
+        "duration": "20–40 分钟",
+        "lures": [
+          "软饵"
+        ],
+        "layers": "主要一个水层",
+        "adjust": "不清楚",
+        "signal": "无口",
+        "flow": "未知",
+        "clarity": "未知",
+        "observed": "不清楚"
+      },
+      "agent_version": "lutan-agent-1.2.0"
+    },
+    "screenshot": "docs/assets/agent-showcase-vision.png"
+  },
+  "weather": {},
+  "turns": [
+    {
+      "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+      "status": 200,
+      "roundtrip_ms": 2944,
+      "input": {
+        "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+        "message": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+        "image": "[omitted: actual image was sent; source is documented]",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "不清楚",
+          "duration": "不清楚",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "不清楚",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [],
+          "actions": [],
+          "observations": {
+            "visible": [],
+            "reported": [],
+            "unknown": []
+          },
+          "city": ""
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [
+            "近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆。",
+            "水面呈蓝色细密波纹，中远处无可见白浪或明显水花。",
+            "对岸为低矮林带与远处山地，岸线开阔平直。"
+          ],
+          "reported": [
+            "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+            "用户自述：目标鳜鱼；水位未知；水流未知。"
+          ],
+          "unknown": [
+            "单张照片不能确定实际流速、流向、水深或水下鱼群。",
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+        "action_kind": "change_layer",
+        "reason": "照片观察（模型识别，待核实）：近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆；水面呈蓝色细密波纹，中远处无可见白浪或明显水花。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+        "check": "记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+        "follow_up_question": null,
+        "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+        "turn_id": "9a322976-9370-4ae4-8b83-a5a8bb648ef0",
+        "created_at": "2026-11-16T16:03:29.162Z",
+        "answer_source": "agent",
+        "model_name": "deepseek-flash",
+        "provider": "deepseek",
+        "model_calls": 1,
+        "duration_ms": 2428,
+        "tool_events": [],
+        "warnings": [
+          "合法性来自用户自述，系统未独立核验适用公告。"
+        ],
+        "reported_actions": [],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "screenshot": "docs/assets/agent-showcase-turn1.png"
+    },
+    {
+      "message": "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+      "status": 200,
+      "roundtrip_ms": 3935,
+      "input": {
+        "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+        "message": "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "session_snapshot": {
+          "messages": [
+            {
+              "id": "b18b0b6a-b15d-486d-b922-bece7339d3e6",
+              "role": "user",
+              "text": "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+              "created_at": "2026-11-16T16:03:19.197Z",
+              "had_image": true
+            },
+            {
+              "id": "9a322976-9370-4ae4-8b83-a5a8bb648ef0",
+              "role": "assistant",
+              "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。\n依据：照片观察（模型识别，待核实）：近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆；水面呈蓝色细密波纹，中远处无可见白浪或明显水花。结合用户自述：目标鳜鱼，拟饵软饵，搜索范围主要一个水层。当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。\n观察：记录这一次水层比较的覆盖范围与反馈，没有变化也如实记录，不据此断言鱼在某层。",
+              "created_at": "2026-11-16T16:03:29.162Z",
+              "had_image": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "e7997b71-b14c-4ec4-bdb4-35e1c4404d17",
+              "turn_id": "9a322976-9370-4ae4-8b83-a5a8bb648ef0",
+              "kind": "change_layer",
+              "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+              "created_at": "2026-11-16T16:03:29.162Z",
+              "applied_at": null,
+              "feedback": "暂未尝试",
+              "feedback_at": null,
+              "source": "agent"
+            }
+          ],
+          "observations": {
+            "visible": [
+              "近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆。",
+              "水面呈蓝色细密波纹，中远处无可见白浪或明显水花。",
+              "对岸为低矮林带与远处山地，岸线开阔平直。"
+            ],
+            "reported": [
+              "我在乱石边钓鳜鱼，软饵试了半小时都没口。请结合照片，只说可见信息，不要推断流速、水位涨退或水下鱼群。",
+              "用户自述：目标鳜鱼；水位未知；水流未知。"
+            ],
+            "unknown": [
+              "单张照片不能确定实际流速、流向、水深或水下鱼群。",
+              "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+              "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+              "天气数据不等于现场水位或鱼口预测。"
+            ]
+          },
+          "city": ""
+        }
+      },
+      "output": {
+        "observations": {
+          "visible": [
+            "近岸为大量圆滑卵石与碎石铺成的浅滩，未见明显大块乱石堆。",
+            "水面呈蓝色细密波纹，中远处无可见白浪或明显水花。",
+            "对岸为低矮林带与远处山地，岸线开阔平直。"
+          ],
+          "reported": [
+            "我按你说的试了，还是没口。请读取本次尝试再决定下一步。",
+            "用户条件：目标鳜鱼；水位未知；合法性用户已核实允许。"
+          ],
+          "unknown": [
+            "单张照片不能确定实际流速、流向、水深或水下鱼群。",
+            "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+            "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+            "天气数据不等于现场水位或鱼口预测。"
+          ]
+        },
+        "action": "先在安全位置检查钩尖、钓组与拟饵运行状态；这次只检查装备状态，不同时换位和换饵。",
+        "action_kind": "check_rig",
+        "reason": "本次会话已经记录该方向没有改善，规则回退因此选择另一个尚未失败的单变量方向。",
+        "check": "只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+        "follow_up_question": null,
+        "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+        "turn_id": "d27eec59-cff1-4e4c-aac1-645e7b060ba3",
+        "created_at": "2026-11-16T16:03:33.376Z",
+        "answer_source": "server_rule",
+        "model_name": null,
+        "provider": null,
+        "model_calls": 3,
+        "duration_ms": 3752,
+        "tool_events": [
+          {
+            "id": "be7cca0f-878e-4c42-8263-7f14cb7298ab",
+            "name": "get_session_history",
+            "status": "ok",
+            "started_at": "2026-11-16T16:03:31.941Z",
+            "duration_ms": 0,
+            "summary": "已读取本次会话 1 条动作记录",
+            "result": {
+              "status": "ok",
+              "source": "client_session_snapshot_user_reported",
+              "session_id": "bc245741-c033-4c2e-bb50-952819c2af4d",
+              "actions": [
+                {
+                  "id": "e7997b71-b14c-4ec4-bdb4-35e1c4404d17",
+                  "turn_id": "9a322976-9370-4ae4-8b83-a5a8bb648ef0",
+                  "kind": "change_layer",
+                  "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+                  "created_at": "2026-11-16T16:03:29.162Z",
+                  "applied_at": null,
+                  "feedback": "没有改善",
+                  "feedback_at": "2026-11-16T16:03:29.624Z",
+                  "source": "agent"
+                }
+              ],
+              "attempted_count": 1,
+              "failed_action_kinds": [
+                "change_layer"
+              ],
+              "notice": "来自前端明确传入的本次会话快照，不是服务端读取 localStorage，也不是独立核验的渔获记录。"
+            }
+          }
+        ],
+        "warnings": [
+          "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+          "模型结果不可用或未通过校验，已使用规则建议，未展示未经校验的输出。"
+        ],
+        "reported_actions": [
+          {
+            "id": "e7997b71-b14c-4ec4-bdb4-35e1c4404d17",
+            "turn_id": "9a322976-9370-4ae4-8b83-a5a8bb648ef0",
+            "kind": "change_layer",
+            "text": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+            "created_at": "2026-11-16T16:03:29.162Z",
+            "applied_at": null,
+            "feedback": "没有改善",
+            "feedback_at": "2026-11-16T16:03:29.624Z",
+            "source": "agent"
+          }
+        ],
+        "context": {
+          "water": "河流 / 支流",
+          "fish": "鳜鱼",
+          "alias": "",
+          "waterlevel": "未知",
+          "rain": "未知",
+          "legality": "用户已核实允许",
+          "structure": "乱石 / 深浅交界",
+          "duration": "20–40 分钟",
+          "lures": [
+            "软饵"
+          ],
+          "layers": "主要一个水层",
+          "adjust": "不清楚",
+          "signal": "无口",
+          "flow": "未知",
+          "clarity": "未知",
+          "observed": "不清楚"
+        },
+        "agent_version": "lutan-agent-1.2.0"
+      },
+      "screenshot": "docs/assets/agent-showcase-turn2.png"
+    }
+  ],
+  "checks": {},
+  "failure": "expect(received).toBe(expected) // Object.is equality\n\nExpected: \"agent\"\nReceived: \"server_rule\"",
+  "completed_at": "2026-11-16T16:03:26.222Z"
+}

@@ -1,0 +1,51 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI V1.2 · 源码交付说明 · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/DELIVERY.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/DELIVERY.md</p><h1 id="路探-ai-v1-2-源码交付说明">路探 AI V1.2 · 源码交付说明</h1>
+<p>当前代码、说明与已有材料合并为可移动源码包，保留三个页面和 24 场景原始基线。五场景真实文字 API 已完成联调；新增三类普通规则分支的模型候选契约，详见 <a href="LIVE_API_REPORT.html">真实 API 记录</a>。真实照片、在线天气及实钓效果尚未验收。</p>
+<h2 id="阅读顺序">阅读顺序</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>建议入口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>演示与评审</td>
+<td>根目录 <code>交付中心.html</code> → 当前界面 → <a href="DEMO_GUIDE.html">演示指南</a></td>
+</tr>
+<tr>
+<td>产品与设计</td>
+<td><a href="../LutanAI_PRD_V1.0.html">原始 PRD</a> → <a href="V1.2_AGENT.html">V1.2 增量范围</a>；V1.0 原型只作历史参考</td>
+</tr>
+<tr>
+<td>研发</td>
+<td><a href="../README.html">README</a> → <a href="AI_WORKFLOW.html">AI 工作流</a> → <code>shared/</code>、<code>server/</code>、<code>src/</code></td>
+</tr>
+<tr>
+<td>测试</td>
+<td><a href="../LutanAI_Evaluation_Plan_V1.0.html">评测方案</a>、原始 24 场景、<code>tests/</code> 与版本验证边界</td>
+</tr>
+</tbody></table>
+<p>根目录 HTML 和预渲染文档可离线阅读。当前 V1.2 页面通过本机 Node 服务运行；历史 V1.0 可点击原型独立放在手机壳中，标签不会把它当成当前实现。</p>
+<h2 id="包含与排除">包含与排除</h2>
+<p>包含 React/TypeScript/Express/Zod 源码、锁文件、运行与测试脚本、静态交付入口、预渲染文档、V1.2 空态截图、原始 PRD/原型/研究/24 场景材料，以及两个无密钥环境变量模板。</p>
+<p>排除 node_modules、dist、缓存、浏览器测试产物、日志、旧 ZIP、releases、<code>.git</code> 和私有环境目录；只允许 <code>.env.example</code> 与 <code>.env.deepseek.example</code> 两个环境模板。实际 <code>.env</code> 和环境密钥不进入包。当前已有旧压缩包保留原处，不被覆盖或嵌套打包。</p>
+<p><code>RELEASE_MANIFEST.json</code> 记录逐文件 SHA-256、字节数、源码版本和交付边界；不记录本机绝对路径、密钥或浏览器记录。它证明文件一致性，不提供发布者签名。</p>
+<h2 id="本机运行">本机运行</h2>
+<p>Windows 解压后双击 <code>Start-LutanAI.cmd</code>，或在终端执行：</p>
+<pre><code class="language-powershell">npm ci --cache .cache/npm --no-audit --no-fund
+npm run doctor
+npm run launch
+</code></pre>
+<p>Node.js 要求 22.12+。启动器仅在依赖未安装时执行 <code>npm ci</code>，每次重新构建当前源码；变更依赖后请主动重新执行 <code>npm ci</code>。默认生产入口是 <code>http://127.0.0.1:8787</code>。初次创建的 <code>.env</code> 关闭模型，规则可独立使用。配置自己的模型见 <a href="DEMO_GUIDE.html">演示指南</a>；检查不会验证真实 API。</p>
+<p>开发者继续使用 <code>npm run dev</code>，默认入口 5173。两种地址的本机历史记录独立，换地址前可导出备份。交付包不带原浏览器历史，不提供登录或云同步。</p>
+<h2 id="重新生成交付物">重新生成交付物</h2>
+<pre><code class="language-powershell">npm run delivery
+npm run release
+</code></pre>
+<p>交付脚本的安全回归可单独运行 <code>npm run test:delivery</code>，验证路径排除、密钥阻断和配置检查不发送推理请求。</p>
+<p><code>delivery</code> 使用构建时 Markdown 渲染器生成静态 HTML，没有浏览器运行时 Markdown 解析，也没有外链字体或样式依赖。<code>release</code> 先生成交付页，再按明确目录和扩展名清单选取文件，检查密钥与禁入路径、文档链接和资源，写入 <code>releases/</code> 中新的 ZIP；不会覆盖已有归档。</p>
+<p>源码包需要再次安装依赖，不是免安装或全离线安装包。依赖下载缓存可供本机验证复用，但不随包分发。</p>
+<h2 id="验证口径">验证口径</h2>
+<p>运行记录见 <a href="V1.2_AGENT.html">V1.2 说明</a> 和 <a href="DELIVERY_VERIFICATION.html">交付验证记录</a>。自动测试中的模型、天气与图片输入为模拟或合成数据；模拟工具测试执行了真实工具代码，但不等同供应商在线联调。</p>
+<p>已知 P02 历史物种资料仍待接入，不能把 24 条全部记为通过。五场景真实文字推理记录已随文档保存；尚无真实图文与天气联调、真实用户反馈或渔获改善结果。</p>
+</main></body></html>

@@ -1,0 +1,76 @@
+{
+  "executed_at": "2026-11-16T16:06:34.842Z",
+  "ui": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site/#diagnose",
+  "synthetic_scenario": true,
+  "status": "failed",
+  "output": {
+    "observations": {
+      "visible": [],
+      "reported": [
+        "请查询四川南充当前真实天气，告诉我温度、降水、风速和数据时间，不要据天气预测鱼口。",
+        "用户条件：目标鳜鱼；水位未知；合法性用户已核实允许。"
+      ],
+      "unknown": [
+        "单张照片不能确定实际流速、流向、水深或水下鱼群。",
+        "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+        "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+        "天气数据不等于现场水位或鱼口预测。"
+      ]
+    },
+    "action": "保持当前拟饵、手法和位置，只在安全范围内小幅改变搜索水层，记录反馈。",
+    "action_kind": "change_layer",
+    "reason": "当前主要搜索一个水层，其他水层的反馈尚未知，不能因此断定鱼在更深处。",
+    "check": "只记录这一个动作后是否出现新的跟饵、触碰或其他反馈；没有改善也如实反馈，不等同于中鱼率变化。",
+    "follow_up_question": null,
+    "session_id": "e137a034-fe42-4293-9554-f775dc7a0457",
+    "turn_id": "93b4a2a2-77d2-4bad-aac9-180dd47fbf5b",
+    "created_at": "2026-11-16T16:06:42.018Z",
+    "answer_source": "server_rule",
+    "model_name": null,
+    "provider": null,
+    "model_calls": 2,
+    "duration_ms": 3441,
+    "tool_events": [
+      {
+        "id": "fc96852c-dfb9-43fe-85a2-ea05abc400e8",
+        "name": "get_weather",
+        "status": "error",
+        "started_at": "2026-11-16T16:06:39.604Z",
+        "duration_ms": 1280,
+        "summary": "天气服务暂不可用，没有填入替代或推测数据。",
+        "result": {
+          "status": "unavailable",
+          "message": "天气服务暂不可用，没有填入替代或推测数据。",
+          "source": "Open-Meteo",
+          "retrieved_at": "2026-11-16T16:06:40.884Z"
+        }
+      }
+    ],
+    "warnings": [
+      "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+      "模型结果不可用或未通过校验，已使用规则建议，未展示未经校验的输出。",
+      "天气服务暂不可用，没有填入替代或推测数据。"
+    ],
+    "reported_actions": [],
+    "context": {
+      "water": "河流 / 支流",
+      "fish": "鳜鱼",
+      "alias": "",
+      "waterlevel": "未知",
+      "rain": "未知",
+      "legality": "用户已核实允许",
+      "structure": "不清楚",
+      "duration": "不清楚",
+      "lures": [
+        "软饵"
+      ],
+      "layers": "主要一个水层",
+      "adjust": "不清楚",
+      "signal": "不清楚",
+      "flow": "未知",
+      "clarity": "未知",
+      "observed": "不清楚"
+    },
+    "agent_version": "lutan-agent-1.2.0"
+  }
+}

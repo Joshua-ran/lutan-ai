@@ -1,0 +1,44 @@
+{
+  "published_at": "2026-11-16T14:02:05.215987+00:00",
+  "url": "https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site",
+  "project_id": "appgprj_6afb0113872081918a20ad19d27147f9",
+  "access_mode": "public",
+  "deployment_id": "appgdep_6afb0cc685188191be072807da626e68",
+  "version_id": "appgprj_6afb0113872081918a20ad19d27147f9~appgver_df6526637e488191b74d7d1f7bc851f6",
+  "source_commit": "df91a771ae65eed03c4c86942b5971fda0278f9a",
+  "environment_revision": 2,
+  "source_scope": "47 runtime source files plus hosting manifest; excludes private documents, request traces, environment files and credentials",
+  "verification_record": "online-smoke-20261116T140230436Z.json",
+  "real_model": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "calls": 1,
+    "model_duration_ms": 1833,
+    "browser_roundtrip_ms": 2117,
+    "rule_id": "retrieve_rhythm",
+    "grounded_contract_verified": true
+  },
+  "checks": {
+    "typecheck": true,
+    "production_build": true,
+    "unit_tests": {
+      "passed": 91,
+      "failed": 0
+    },
+    "browser_tests": {
+      "passed": 36,
+      "failed": 0
+    },
+    "evaluation_baseline": {
+      "passed": 23,
+      "failed": 0,
+      "needs_review": 1
+    },
+    "public_browser_smoke": true
+  },
+  "known_limits": [
+    "Real photos and online weather are not verified.",
+    "GitHub repository publication has not been performed.",
+    "P02 historical species database remains unimplemented."
+  ]
+}

@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI · 路探 AI</title><link rel="stylesheet" href="../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../README.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：README.md</p><h1 id="路探-ai">路探 AI</h1>
+<p><strong>没口的时候，先把下一步想清楚。</strong></p>
+<p>一个面向淡水路亚现场的决策助手：描述看到的情况，获得一项可验证的行动，反馈尝试结果，把经验留到下一次。</p>
+<p><a href="https://lutan-ai-field-assistant.jazzy-snow-2518.chatgpt.site">在线体验</a> · <a href="docs/FOLLOWUP_FIX.html">真实 DeepSeek 联调记录</a> · <a href="docs/V1.2_AGENT.html">模型与功能说明</a></p>
+<p><img src="../../docs/assets/product-desktop.png" alt="路探 AI 桌面界面"></p>
+<h2 id="可以怎么用">可以怎么用</h2>
+<ul>
+<li><strong>出钓前</strong>：整理水域、目标与许可信息，分清已知和待核实项。</li>
+<li><strong>正在作钓</strong>：用文字描述现场，可附一张照片；助手先补充缺失信息，再给出一项行动。实际尝试后继续反馈，避免反复推荐已经失败的方向。原有三步表单也可以使用。</li>
+<li><strong>我的记录</strong>：恢复会话、复用条件、筛选和导出记录。数据保存在当前浏览器，无需注册。</li>
+</ul>
+<p>第一次打开可以点击“先看使用示例”。示例使用虚构场景与当前规则，不调用模型，不写入个人历史，也不会把示例的许可条件带入真实使用。</p>
+<img src="../../docs/assets/example-desktop.png" alt="交互示例" width="760" /><h2 id="作品重点">作品重点</h2>
+<p>路探 AI 把“给一个回答”做成了“观察 → 单项尝试 → 反馈 → 继续排查”的流程。三个页面串起准备、现场与复盘，桌面与手机均可使用。</p>
+<p>技术栈为 <strong>React / TypeScript / Vite / Express / Zod</strong>。前后端共用规则与 Schema，模型通过服务端适配器接入。安全水情、禁钓和许可未知先由规则处理，不进入模型；普通场景才允许模型在限定依据与行动范围内辅助解释。输出校验失败、超时或额度不足时，结果明确标注为规则回退。</p>
+<p>本地生产环境仍由 Express 同时提供页面和 API；在线托管增加轻量传输适配，共用同一套业务服务。在线模型调用使用持久化共享计数器，数据库仅保存日期与次数，个人会话仍保存在浏览器。</p>
+<p><strong>真实进度</strong>：已接通真实 DeepSeek，并完成公开授权河岸照片的多模态分析、模型自主调用 <code>get_session_history</code> / <code>get_weather</code>、连续三轮决策的真实联调。第一轮没有调用工具，第二轮实际读取上轮尝试，第三轮根据新增跟饵观察改变策略。<a href="../../docs/verification/agent-showcase-live.json">原始记录</a> · <a href="docs/AGENT_DEMO.html">浏览器演示步骤</a>。这些是合成场景与公开示例照片，不是实钓效果；没有鱼群、水位数据库或渔获改善数据。</p>
+<p>本轮完整成功演示在本机通过真实接口完成；公网也已执行图片分析与历史工具，但部分模型结果会回退规则，Open-Meteo 当前对云端请求返回 HTTP 429，公网天气尚未验证成功。<a href="../../docs/verification/agent-showcase-public-weather.json">公网天气实际结果</a>。没有用本机成功数据冒充云端天气。</p>
+<p><strong>公开版已上线</strong>：2026-11-16 从未登录的 Chrome 会话完成一次真实 <code>deepseek-flash</code> 交互，模型处理耗时 1833 ms；口语跟饵识别、规则依据约束、安全门控、来源标记、刷新恢复和记录列表均可用。<a href="../../docs/verification/online-smoke-20261116T140230436Z.json">本次线上原始记录</a>。公开体验共用每天 100 次模型请求的额度，用完后继续提供明确标注的规则建议。</p>
+<h2 id="本地启动">本地启动</h2>
+<p>需要 Node.js 22.12+。</p>
+<pre><code class="language-sh">npm ci
+npm run dev
+</code></pre>
+<p>打开 <a href="http://127.0.0.1:5173%E3%80%82Windows">http://127.0.0.1:5173。Windows</a> 也可以双击 <code>Start-LutanAI.cmd</code>。不配置密钥即可使用规则与本机记录。</p>
+<p>接入自己的 DeepSeek：参考 <a href="../../.env.deepseek.example">.env.deepseek.example</a>，在本机 <code>.env</code> 或服务端环境设置以下内容后重启。密钥只放服务端。</p>
+<pre><code class="language-dotenv">LLM_ENABLED=true
+LLM_PROVIDER=deepseek
+LLM_MODEL=deepseek-flash
+DEEPSEEK_API_KEY=
+LLM_MAX_OUTPUT_TOKENS=1024
+</code></pre>
+<p>生产环境运行 <code>npm run build</code>、<code>npm start</code>，默认地址 <a href="http://127.0.0.1:8787%EF%BC%9B%E5%AE%B9%E5%99%A8%E6%88%96%E4%BA%91%E6%9C%8D%E5%8A%A1%E9%80%9A%E8%BF%87">http://127.0.0.1:8787；容器或云服务通过</a> <code>HOST=0.0.0.0</code> 与 <code>PORT</code> 配置监听。在线域名与本机地址的浏览器记录相互独立。</p>
+<p>开发检查：<code>npm run typecheck</code>、<code>npm test</code>、<code>npm run evaluate</code>、<code>npm run test:e2e</code>。常规自动测试使用模拟模型，不产生真实模型费用；真实联调需显式启用。</p>
+<p>早期需求、原型与研究材料保留在项目中，详细实现说明位于 <code>docs/</code>。公开演示和合成用例均不代表真实用户反馈或实钓效果。</p>
+</main></body></html>

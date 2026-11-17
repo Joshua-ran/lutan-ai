@@ -1,0 +1,76 @@
+{
+  "kind": "real_api_browser_smoke",
+  "executed_at": "2026-11-16T11:20:33.727Z",
+  "viewport": [
+    "1440x1000",
+    "390x844"
+  ],
+  "backend": "existing real configured server through Vite API proxy",
+  "requests_fulfilled_or_mocked": false,
+  "synthetic_input": true,
+  "real_provider": true,
+  "input": "目标是翘嘴，用米诺，在普通水流条件下看到跟饵但没有攻击；跟饵的鱼种没有确认。下一步做什么？",
+  "api_http_status": 200,
+  "duration_ms": 2593,
+  "output": {
+    "observations": {
+      "visible": [],
+      "reported": [
+        "目标是翘嘴，用米诺，在普通水流条件下看到跟饵但没有攻击；跟饵的鱼种没有确认。下一步做什么？",
+        "用户自述：目标翘嘴；水位未知；水流普通。"
+      ],
+      "unknown": [
+        "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+        "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+        "天气数据不等于现场水位或鱼口预测。"
+      ]
+    },
+    "action": "保持当前拟饵、位置和搜索水层，本次只做一次小幅停顿节奏比较，记录跟饵与攻击反馈是否不同。",
+    "action_kind": "retrieve_rhythm",
+    "reason": "你已观察到跟饵。先只改变节奏，便于比较反馈；跟饵不等于已识别目标鱼种，也不保证攻击。",
+    "check": "记录这次节奏比较前后的跟饵或攻击反馈；没有变化也如实记录，不据此确认鱼种或保证鱼口。",
+    "follow_up_question": null,
+    "session_id": "f571fe1b-a8b8-4faf-afaf-d390b276cc38",
+    "turn_id": "49879d2f-ef80-4ba7-a093-e0edb7974e7e",
+    "created_at": "2026-11-16T11:20:38.198Z",
+    "answer_source": "agent",
+    "model_name": "deepseek-flash",
+    "provider": "deepseek",
+    "model_calls": 1,
+    "duration_ms": 2340,
+    "tool_events": [],
+    "warnings": [
+      "合法性来自用户自述，系统未独立核验适用公告。"
+    ],
+    "reported_actions": [],
+    "context": {
+      "water": "河流 / 支流",
+      "fish": "翘嘴",
+      "alias": "",
+      "waterlevel": "未知",
+      "rain": "未知",
+      "legality": "用户已核实允许",
+      "structure": "不清楚",
+      "duration": "不清楚",
+      "lures": [
+        "米诺"
+      ],
+      "layers": "不清楚",
+      "adjust": "不清楚",
+      "signal": "跟饵",
+      "flow": "普通",
+      "clarity": "未知",
+      "observed": "不清楚"
+    },
+    "agent_version": "lutan-agent-1.2.0"
+  },
+  "checks": {
+    "actual_ui_submit": "pass",
+    "model_source_visible": "pass",
+    "result_visible": "pass",
+    "reload_and_storage": "pass",
+    "mobile_no_horizontal_overflow": "pass",
+    "console_errors": []
+  },
+  "note": "Only desktop submission called the provider once; mobile view reused its stored real response. No photo or weather was requested."
+}

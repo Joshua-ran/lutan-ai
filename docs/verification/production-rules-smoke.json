@@ -1,0 +1,91 @@
+{
+  "kind": "relocated-source-rules-smoke",
+  "mock": false,
+  "real_model_inference": false,
+  "status": 200,
+  "elapsed_ms": 71,
+  "input": {
+    "session_id": "a7062cdb-20b4-48b9-9029-da1e799c7fb3",
+    "message": "软饵试了半小时没口",
+    "context": {
+      "water": "河流 / 支流",
+      "fish": "鳜鱼",
+      "alias": "",
+      "waterlevel": "未知",
+      "rain": "未知",
+      "legality": "未知",
+      "structure": "不清楚",
+      "duration": "不清楚",
+      "lures": [],
+      "layers": "不清楚",
+      "adjust": "不清楚",
+      "signal": "不清楚",
+      "flow": "未知",
+      "clarity": "未知",
+      "observed": "不清楚"
+    },
+    "session_snapshot": {
+      "messages": [],
+      "actions": [],
+      "observations": {
+        "visible": [],
+        "reported": [],
+        "unknown": []
+      },
+      "city": ""
+    }
+  },
+  "output": {
+    "observations": {
+      "visible": [],
+      "reported": [
+        "软饵试了半小时没口",
+        "用户条件：目标鳜鱼；水位未知；合法性未知。"
+      ],
+      "unknown": [
+        "照片不能确认涨退水趋势、水下鱼种或河段垂钓许可。",
+        "未核验实时鱼情、水温及小河道水位，不提供渔获概率。",
+        "天气数据不等于现场水位或鱼口预测。"
+      ]
+    },
+    "action": "先在安全位置查询适用日期的当地官方公告，核对具体河段和禁钓范围；确认前暂停作钓。",
+    "action_kind": "confirm_observation",
+    "reason": "当前合法性未知。存在鱼类、水域适合或他人作钓，都不能证明这里依法允许垂钓。",
+    "check": "先确认已经远离危险或暂停作钓，并核对适用的官方预警及公告；未确认前不要继续作钓。",
+    "follow_up_question": "你是否已核对适用日期的官方公告，并确认该河段允许当前方式作钓？",
+    "session_id": "a7062cdb-20b4-48b9-9029-da1e799c7fb3",
+    "turn_id": "6248e33f-181a-4250-b024-f46168dc678e",
+    "created_at": "2026-11-16T10:48:27.869Z",
+    "answer_source": "server_rule",
+    "model_name": null,
+    "provider": null,
+    "model_calls": 0,
+    "duration_ms": 6,
+    "tool_events": [],
+    "warnings": [
+      "请先核对适用日期的当地官方管理公告、河段范围和禁钓要求；未核实前暂停作钓。用户自述允许不代表系统已核验许可。",
+      "安全或合法性门控：本次未调用模型。"
+    ],
+    "reported_actions": [],
+    "context": {
+      "water": "河流 / 支流",
+      "fish": "鳜鱼",
+      "alias": "",
+      "waterlevel": "未知",
+      "rain": "未知",
+      "legality": "未知",
+      "structure": "不清楚",
+      "duration": "20–40 分钟",
+      "lures": [
+        "软饵"
+      ],
+      "layers": "不清楚",
+      "adjust": "不清楚",
+      "signal": "不清楚",
+      "flow": "未知",
+      "clarity": "未知",
+      "observed": "不清楚"
+    },
+    "agent_version": "lutan-agent-1.2.0"
+  }
+}

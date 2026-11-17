@@ -1,0 +1,6 @@
+CREATE TABLE ai_usage (
+  day TEXT PRIMARY KEY NOT NULL,
+  minute INTEGER NOT NULL,
+  minute_count INTEGER NOT NULL,
+  total INTEGER NOT NULL
+);

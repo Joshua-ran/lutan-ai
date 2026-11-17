@@ -1,0 +1,94 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>路探 AI V1.2.0 · 图文连续决策 Agent · 路探 AI</title><link rel="stylesheet" href="../../assets/delivery.css"></head><body ><header class="doc-nav"><a href="../../../交付中心.html">← 交付中心</a><span>V1.2.0 · 文档阅读</span><a href="../../../docs/V1.2_AGENT.md">原始 Markdown</a></header><main class="document"><p class="source-label">源文件：docs/V1.2_AGENT.md</p><h1 id="路探-ai-v1-2-0-图文连续决策-agent">路探 AI V1.2.0 · 图文连续决策 Agent</h1>
+<p>基于 V1.1.0 工作区增量实现，日期 2026-11-16。当前已完成五个合成场景的真实 DeepSeek 文字 API 联调，两个业务入口共 10 项检查；真实照片、在线天气和实钓效果仍未验收。详情与原始回复见 <a href="LIVE_API_REPORT.html">真实联调记录</a>。</p>
+<p>连续追问已进一步修复：口语“还是没有口啊”、信息确认与实际尝试分开处理，追问靠近输入框，补全条件后推进且避免重复失败方向。最新真实四轮对话、85 项单元/API 和 34 项浏览器检查见 <a href="FOLLOWUP_FIX.html">连续对话修复</a>。</p>
+<p>首次使用问题已修复：许可未知时显示原因与展开入口，保留草稿、不刷重复回复；显式确认后真实模型可用。缺少拟饵/水层也纳入候选契约，最新回归为 79 项单元/API、30 项完整 E2E 和两项旧会话定向检查通过。<a href="USABILITY_FIX.html">当前使用与原始证据</a>。</p>
+<h2 id="已实现的闭环">已实现的闭环</h2>
+<p>在原“正在作钓”页上方新增 AI 现场助手，下方保留完整表单诊断。支持文字、可选一张图片、单项动作、依据、有效性检查、最多一个追问、实际工具事件和四类动作反馈。</p>
+<pre><code class="language-text">前端文字/压缩图片 + 脱敏会话快照
+  → 输入/图片校验 → 既有风险与合法性门控
+  → 视觉语言模型自行返回 tool_calls 或最终 JSON
+  → 白名单工具执行 → role=tool 真实结果回填 → 最终单项建议
+  → 反馈保存 → 下一轮读取本次已尝试动作 → 比较下一个变量
+</code></pre>
+<ul>
+<li><code>read_session_actions</code>：读取本次请求明确传入的动作、时间和反馈，不假装服务器能读 localStorage。文字“刚才没口”“我换位置了，还是没口”会被作为用户自述的尝试/反馈保留。</li>
+<li><code>get_weather_by_city</code>：仅允许用户当前文字、此前用户消息或城市字段中明确出现的城市。缺少城市不猜位置，返回追问；同名城市不明确时请求补充。实际实现调用 Open-Meteo Geocoding 与 Forecast，保留来源、数据有效时刻、获取时间、时区及失败状态。</li>
+<li>工具最多两轮、总计三次执行；模型最多三次请求。参数严格校验，未授权工具不执行，达到上限、超时、输出无效或模型不可用时回退已有规则。</li>
+<li>原表单和 Agent 共享服务进程调用预算及并发限制，每次物理模型请求都会计数，不重试。DeepSeek 非思考模式用于该循环，不保存或回填模型思考原文。</li>
+</ul>
+<h2 id="图像-事实与安全边界">图像、事实与安全边界</h2>
+<p>客户端仅接受 JPG/PNG/WebP，原文件不超过 20 MB，浏览器缩放最长边至 1280 px 并重新编码 JPEG，去掉原文件元数据。压缩后不超过 2 MB。服务端检查 MIME、实际文件头、base64 与解码大小，不接受远程图片 URL。</p>
+<p>图片仅随当前推理请求临时在内存中使用，不写入本机记录、日志或服务器文件。会话只保留 <code>had_image</code> 和模型整理的观察，不保留原图。</p>
+<p>照片观察、用户描述和未知项分别展示。照片不能确认涨退水趋势、鱼种出现、鱼口、河段许可或水位实测。用户说“感觉在退水”只能记作用户观察。真实联调后，跟饵、疑似触碰、充分尝试无口三类分支的动作、依据和检查限定为规则候选，越界即回退；已有失败反馈不能强制重复。其他普通分支保留受限生成，仍需进一步验收，不声称完全消除幻觉。</p>
+<p>危险水情、用户报告禁钓或合法性未知均在模型调用前拦截。自由文字中的急流、急涨或明确禁钓也会触发门控，不依赖图片来放行。规则与模型结果均不构成安全或垂钓许可保证。</p>
+<h2 id="本机记录与恢复">本机记录与恢复</h2>
+<p>原 <code>lutan_records_v1</code> / V2 表单记录保持原结构和功能。新增 <code>lutan_agent_sessions_v1</code> 保存最多 20 个轻量会话，每个会话最多 20 条消息、20 条动作、30 条工具事件和最近结果。所有快照都经过 Schema 校验。</p>
+<p>刷新现场页会恢复最近会话及其上下文；“我的记录”增加现场会话列表，可恢复、导出、删除、单独清空。新建会话为显式按钮。读取损坏记录不覆盖原文，存储拒绝时提示导出。精确坐标和链接在发送文字时做基础移除，不公开钓点，不提供云端同步。</p>
+<h2 id="配置与使用">配置与使用</h2>
+<p>沿用 V1.1 <code>.env</code>，推荐：</p>
+<pre><code class="language-dotenv">LLM_ENABLED=true
+LLM_PROVIDER=deepseek
+LLM_BASE_URL=https://api.deepseek.com
+LLM_MODEL=deepseek-flash
+LLM_MODEL_LABEL=deepseek-flash
+LLM_RESPONSE_FORMAT=json_object
+LLM_TOKEN_PARAMETER=max_tokens
+LLM_TIMEOUT_MS=20000
+LLM_MAX_OUTPUT_TOKENS=1024
+LLM_VISION_ENABLED=true
+LLM_TOOLS_ENABLED=true
+</code></pre>
+<p>密钥沿用环境变量 <code>DEEPSEEK_API_KEY</code>，或仅在服务端 <code>LLM_API_KEY</code> 配置。DeepSeek 模式只接受官方 API 主机或本机回环代理地址，避免将其密钥误发至示例中的其他供应商地址。通用兼容供应商仍可使用 <code>LLM_PROVIDER=openai_compatible</code>，是否支持图片/工具由显式开关确认；不支持时给出提示或规则降级。</p>
+<p>默认 DeepSeek 单次请求超时 20 秒，服务端可配置上限 60 秒；Agent 整轮上限 60 秒，客户端等待上限 65 秒。用户可取消请求。<code>deepseek-v4-pro</code> 不作为图片模型，模型名/能力开关不等于已经真实联调成功。</p>
+<p>启动 <code>npm run dev</code>，打开 <a href="http://127.0.0.1:5173/#diagnose">http://127.0.0.1:5173/#diagnose</a>。按实际情况设置“作钓条件与安全确认”，只有真实核对允许后才选择相应选项。</p>
+<ol>
+<li>图文：输入“小河道钓鳜鱼，软饵试了半小时没口，感觉在退水”，可附真实现场照片，发送后核对照片观察与用户描述。</li>
+<li>记忆：点击“没改善”，再发送“刚才建议的动作试了20分钟，还是没口”，查看实际的会话工具事件和不同的下一步。</li>
+<li>天气：明确填写城市“南充”或在文字中说明城市并请求天气，查看工具数据来源与时刻。没有城市时不能自动定位。</li>
+<li>降级：设置 <code>LLM_ENABLED=false</code> 并重启后，继续发送可得到规则结果；原有表单和记录可用。</li>
+</ol>
+<p>Open-Meteo 公共服务用于本项目的个人、非商业本机演示，缓存城市查询 15 分钟并显示 Open-Meteo / GeoNames 与 CC BY 4.0 署名。城市天气是网格模型数据，不是钓点实测、水温、河道水位或鱼情。公开商业使用前需确认适用服务计划和条款；失败不补估计值。</p>
+<h2 id="主要文件">主要文件</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>shared/agent.ts</code>、<code>shared/agent-fallback.ts</code></td>
+<td>会话、动作、观察、工具事件、用户反馈与回退契约</td>
+</tr>
+<tr>
+<td><code>server/agent/service.ts</code>、<code>tools.ts</code>、<code>image.ts</code></td>
+<td>有限工具循环、实际工具实现、图像校验</td>
+</tr>
+<tr>
+<td><code>server/llm/chat.ts</code>、<code>budget.ts</code>、<code>errors.ts</code></td>
+<td>共用传输、超时/取消、成本计数及错误类型</td>
+</tr>
+<tr>
+<td><code>server/llm/adapter.ts</code>、<code>config.ts</code>、<code>server/app.ts</code></td>
+<td>复用原模型体系、DeepSeek 预设、Agent API 与共享预算</td>
+</tr>
+<tr>
+<td><code>src/components/AgentAssistant.tsx</code>、<code>AgentHistory.tsx</code></td>
+<td>图文聊天、反馈、观察、实际工具事件与会话恢复</td>
+</tr>
+<tr>
+<td><code>src/lib/agent-api.ts</code>、<code>agent-storage.ts</code></td>
+<td>图片压缩、请求降级和无原图的本机存储</td>
+</tr>
+<tr>
+<td><code>src/App.tsx</code>、页面、样式、包版本、README</td>
+<td>三入口兼容接入，版本更新与使用说明</td>
+</tr>
+</tbody></table>
+<h2 id="实际验证边界">实际验证边界</h2>
+<p>最新真实联调补充：五场景双入口重跑共 10 项检查通过，普通分支实际调用 DeepSeek，危险与未知许可分支零调用。加入输出契约和隐私记录回归后 <code>npm test</code> 为 77 项通过；完整 E2E 28 项通过，类型检查、构建与原 24 场景回归通过原有口径。以下保留开发阶段记录；当前详情见 <a href="LIVE_API_REPORT.html">真实联调报告</a> 与 <a href="DELIVERY_VERIFICATION.html">交付验证记录</a>。</p>
+<p>新增少量关键路径测试：图文消息格式、两种工具的参数与结果回填、反馈记忆、调用上限、图片校验、未知/危险/禁钓门控、超时和规则回退。浏览器主流程使用合成测试图片、模拟模型与模拟天气响应，覆盖桌面和手机端，并检查原 V2 记录没有被覆盖。</p>
+<p>本轮实际执行结果：<code>npm run typecheck</code> 通过，<code>npm test</code> 72 项通过，<code>npm run build</code> 成功；<code>npm run test:e2e -- --grep &#39;V1.2|出钓计划复用|首屏&#39;</code> 在桌面 1440×1000 与手机 390×844 下共 6 项通过。刷新恢复时初始表单覆盖保存结果的问题已修复，并重跑相同流程通过。浏览器使用 Playwright + Chrome；本轮没有将全部既有 E2E 用例另行重跑，也没有扩大真实场景评测。</p>
+<p>早期只真实执行过模型列表鉴权，它不代表推理成功；目前已补做五场景真实文字生成，保留了首轮问题与修复后的回复。<strong>真实现场照片和在线天气仍未完成 A/B/C 联调。</strong> 不把默认自动测试中的 mock 成果写成真实模型/工具效果、用户验证或渔获改善。</p>
+<p>官方协议和条款：<a href="https://api-docs.deepseek.com/zh-cn/guides/vision/">DeepSeek 图片</a>、<a href="https://api-docs.deepseek.com/zh-cn/guides/tool_calls/">Function Calling</a>、<a href="https://open-meteo.com/en/docs">Open-Meteo 天气</a>、<a href="https://open-meteo.com/en/docs/geocoding-api">地理编码</a>、<a href="https://open-meteo.com/en/terms">服务条款</a>。</p>
+</main></body></html>
